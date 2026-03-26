@@ -1,0 +1,13 @@
+# Build files
+bin/
+obj/
+*.o
+*.exe
+
+# Code::Blocks
+*.layout
+*.depend
+
+# OS
+.DS_Store
+Thumbs.db
