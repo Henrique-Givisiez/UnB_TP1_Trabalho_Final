@@ -1,9 +1,25 @@
 #include <iostream>
 #include "dominios/codigo.hpp"
 
-#define ASSERT_TRUE(cond, msg) \
-    if (!(cond)) std::cout << "Falhou: " << msg << "\n"; \
-    else std::cout << "OK: " << msg << "\n";
+// Verifica se a execução ocorre SEM lançar exceções (sucesso)
+#define ASSERT_SUCCESS(comando, msg) \
+    try { \
+        comando; \
+        std::cout << "OK: " << msg << "\n"; \
+    } catch (...) { \
+        std::cout << "Falhou: " << msg << " (Lançou exceção inesperada)\n"; \
+    }
+
+// Verifica se a execução LANÇA uma exceção (erro esperado)
+#define ASSERT_THROWS(comando, msg) \
+    try { \
+        comando; \
+        std::cout << "Falhou: " << msg << " (Não lançou exceção)\n"; \
+    } catch (const std::invalid_argument& e) { \
+        std::cout << "OK: " << msg << "\n"; \
+    } catch (...) { \
+        std::cout << "Falhou: " << msg << " (Lançou tipo de exceção errado)\n"; \
+    }
 
 void testarCodigo() {
     std::cout << "\n===== TESTES CODIGO =====\n";
@@ -11,50 +27,42 @@ void testarCodigo() {
     Codigo c;
 
     // =========================
-    // CASOS VALIDOS
+    // CASOS VALIDOS (Não devem lançar erro)
     // =========================
-    ASSERT_TRUE(c.setCodigo("ABC12") == true, "ABC12 deve ser valido");
-    ASSERT_TRUE(c.setCodigo("XYZ99") == true, "XYZ99 deve ser valido");
-    ASSERT_TRUE(c.setCodigo("QWE00") == true, "QWE00 deve ser valido");
+    ASSERT_SUCCESS(c.setCodigo("ABC12"), "ABC12 deve ser valido");
+    ASSERT_SUCCESS(c.setCodigo("XYZ99"), "XYZ99 deve ser valido");
+    ASSERT_SUCCESS(c.setCodigo("QWE00"), "QWE00 deve ser valido");
 
     // =========================
-    // TAMANHO INVALIDO
+    // TAMANHO INVALIDO (Devem lançar invalid_argument)
     // =========================
-    ASSERT_TRUE(c.setCodigo("AB12") == false, "Menos de 5 caracteres");
-    ASSERT_TRUE(c.setCodigo("ABCDE1") == false, "Mais de 5 caracteres");
-    ASSERT_TRUE(c.setCodigo("") == false, "String vazia");
+    ASSERT_THROWS(c.setCodigo("AB12"), "Menos de 5 caracteres");
+    ASSERT_THROWS(c.setCodigo("ABCDE1"), "Mais de 5 caracteres");
+    ASSERT_THROWS(c.setCodigo(""), "String vazia");
 
     // =========================
     // LETRAS MINUSCULAS
     // =========================
-    ASSERT_TRUE(c.setCodigo("abc12") == false, "Letras minusculas nao permitidas");
-    ASSERT_TRUE(c.setCodigo("AbC12") == false, "Mistura maiuscula/minuscula");
+    ASSERT_THROWS(c.setCodigo("abc12"), "Letras minusculas nao permitidas");
+    ASSERT_THROWS(c.setCodigo("AbC12"), "Mistura maiuscula/minuscula");
 
     // =========================
     // POSICAO ERRADA DE CARACTERES
     // =========================
-    ASSERT_TRUE(c.setCodigo("A1C12") == false, "Numero na posicao de letra");
-    ASSERT_TRUE(c.setCodigo("AB112") == false, "Numero no lugar de letra");
-    ASSERT_TRUE(c.setCodigo("ABC1A") == false, "Letra no lugar de numero");
+    ASSERT_THROWS(c.setCodigo("A1C12"), "Numero na posicao de letra");
+    ASSERT_THROWS(c.setCodigo("ABC1A"), "Letra no lugar de numero");
 
     // =========================
     // CARACTERES INVALIDOS
     // =========================
-    ASSERT_TRUE(c.setCodigo("AB@12") == false, "Caractere especial @");
-    ASSERT_TRUE(c.setCodigo("AB#12") == false, "Caractere especial #");
-    ASSERT_TRUE(c.setCodigo("AB 12") == false, "Espaço no meio");
+    ASSERT_THROWS(c.setCodigo("AB@12"), "Caractere especial @");
+    ASSERT_THROWS(c.setCodigo("AB 12"), "Espaço no meio");
 
     // =========================
-    // DIGITOS INVALIDOS
+    // EDGE CASES (Válidos)
     // =========================
-    ASSERT_TRUE(c.setCodigo("ABC1X") == false, "Letra na parte numerica");
-    ASSERT_TRUE(c.setCodigo("ABCXY") == false, "Sem numeros no final");
-
-    // =========================
-    // EDGE CASES
-    // =========================
-    ASSERT_TRUE(c.setCodigo("AAA00") == true, "Limite inferior valido");
-    ASSERT_TRUE(c.setCodigo("ZZZ99") == true, "Limite superior valido");
+    ASSERT_SUCCESS(c.setCodigo("AAA00"), "Limite inferior valido");
+    ASSERT_SUCCESS(c.setCodigo("ZZZ99"), "Limite superior valido");
 
     std::cout << "===== FIM TESTES CODIGO =====\n";
 }

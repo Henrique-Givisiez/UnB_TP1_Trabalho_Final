@@ -2,6 +2,8 @@
 #define ESTADO_HPP_INCLUDED
 #include <string>
 
+using namespace std;
+
 class Estado {
 public:
     enum Valor {
@@ -13,8 +15,8 @@ private:
     Valor valor;
 public:
     Estado();
-    bool setEstado(std::string& estado);
-    std::string getEstado() const;
+    void setEstado(string& estado);
+    string getEstado() const;
 
     Valor getValorInterno() const;
 };

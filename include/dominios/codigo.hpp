@@ -7,10 +7,10 @@ using namespace std;
 class Codigo {
 private:
     string codigo;
-    bool validar(string);
+    void validar(string);
     static const int TAMANHO = 5;
 public:
-    bool setCodigo(string);
+    void setCodigo(string);
     string getCodigo();
 };
 

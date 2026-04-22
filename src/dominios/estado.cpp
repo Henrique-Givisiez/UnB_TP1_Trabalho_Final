@@ -1,28 +1,28 @@
 #include "dominios/estado.hpp"
 #include <string>
+#include <stdexcept>
 
+using namespace std;
 
+// Metodo init que define o A_FAZER como valor default
 Estado::Estado() {
     valor = A_FAZER;
 }
 
-bool Estado::setEstado(std::string& estado) {
+// Metodo que altera o estado e recebe o endereco (&) da string como parametro
+void Estado::setEstado(std::string& estado) {
     if (estado == "A FAZER") {
         valor = A_FAZER;
-        return true;
-    }
-    if (estado == "FAZENDO") {
+    } else if (estado == "FAZENDO") {
         valor = FAZENDO;
-        return true;
-    }
-    if (estado == "FEITO") {
+    } else if (estado == "FEITO") {
         valor = FEITO;
-        return true;
+    } else {
+        throw invalid_argument("Estado invalido");
     }
-    return false;
 }
 
-std::string Estado::getEstado() const {
+string Estado::getEstado() const {
     switch (valor) {
         case A_FAZER: return "A FAZER";
         case FAZENDO: return "FAZENDO";

@@ -1,8 +1,14 @@
 #include <iostream>
+#include "dominios/codigo.hpp"
 #include "dominios/estado.hpp"
-void testarCodigo();
+#include "dominios/nome.hpp"
 
+void testarCodigo();
+void testarEstado();
+void testarNome();
 int main() {
     testarCodigo();
+    testarEstado();
+    testarNome();
     return 0;
 }
