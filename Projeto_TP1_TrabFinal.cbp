@@ -35,10 +35,14 @@
 		</Compiler>
 		<Unit filename="include/dominios/codigo.hpp" />
 		<Unit filename="include/dominios/estado.hpp" />
+		<Unit filename="include/dominios/nome.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/dominios/codigo.cpp" />
 		<Unit filename="src/dominios/estado.cpp" />
+		<Unit filename="src/dominios/nome.cpp" />
 		<Unit filename="tests/TestCodigo.cpp" />
+		<Unit filename="tests/TestEstado.cpp" />
+		<Unit filename="tests/TestNome.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
