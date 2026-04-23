@@ -6,18 +6,18 @@ using namespace std;
 
 class Estado {
 public:
-    enum Valor {
+    enum EstadoEnum {
         A_FAZER,
         FAZENDO,
         FEITO
     };
 private:
-    Valor valor;
+    EstadoEnum estado;
 public:
     Estado();
-    void setEstado(string& estado);
+    void setEstado(string& novoEstado);
     string getEstado() const;
 
-    Valor getValorInterno() const;
+    EstadoEnum getEstadoInterno() const;
 };
 #endif // ESTADO_HPP_INCLUDED
