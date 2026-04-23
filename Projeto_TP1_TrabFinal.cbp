@@ -37,10 +37,13 @@
 		<Unit filename="include/dominios/estado.hpp" />
 		<Unit filename="include/dominios/nome.hpp" />
 		<Unit filename="include/dominios/papel.hpp" />
+		<Unit filename="include/dominios/prioridade.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/dominios/codigo.cpp" />
 		<Unit filename="src/dominios/estado.cpp" />
 		<Unit filename="src/dominios/nome.cpp" />
+		<Unit filename="src/dominios/papel.cpp" />
+		<Unit filename="src/dominios/prioridade.cpp" />
 		<Unit filename="tests/TestCodigo.cpp" />
 		<Unit filename="tests/TestEstado.cpp" />
 		<Unit filename="tests/TestNome.cpp" />
