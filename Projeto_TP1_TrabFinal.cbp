@@ -36,6 +36,7 @@
 		<Unit filename="include/dominios/codigo.hpp" />
 		<Unit filename="include/dominios/estado.hpp" />
 		<Unit filename="include/dominios/nome.hpp" />
+		<Unit filename="include/dominios/papel.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/dominios/codigo.cpp" />
 		<Unit filename="src/dominios/estado.cpp" />
