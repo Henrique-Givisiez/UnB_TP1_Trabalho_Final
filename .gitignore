@@ -3,6 +3,7 @@ bin/
 obj/
 *.o
 *.exe
+programa
 
 # Code::Blocks
 *.layout
