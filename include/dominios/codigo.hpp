@@ -10,11 +10,11 @@ private:
     void validar(string);
     static const int TAMANHO = 5;
 public:
-    void setCodigo(string);
-    string getCodigo();
+    void set(string);
+    string get();
 };
 
-inline string Codigo::getCodigo() {
+inline string Codigo::get() {
     return codigo;
 }
 

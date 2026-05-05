@@ -15,8 +15,8 @@ private:
     EstadoEnum estado;
 public:
     Estado();
-    void setEstado(string& novoEstado);
-    string getEstado() const;
+    void set(string& novoEstado);
+    string get() const;
 
     EstadoEnum getEstadoInterno() const;
 };

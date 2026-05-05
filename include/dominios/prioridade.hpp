@@ -15,8 +15,8 @@ private:
     PrioridadeEnum prioridade;
 public:
     Prioridade();
-    void setPrioridade (string& novaProridade);
-    string getPrioridade() const;
+    void set(string& novaProridade);
+    string get() const;
 
     PrioridadeEnum getPrioridadeInterno() const;
 };

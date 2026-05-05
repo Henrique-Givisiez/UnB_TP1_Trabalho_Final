@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void Codigo::setCodigo(string codigo) {
+void Codigo::set(string codigo) {
     // Verifica se codigo eh valido e define atributo 'codigo' se nao falhar
     validar(codigo);
     this->codigo = codigo;
@@ -17,7 +17,7 @@ void Codigo::validar(string codigo) {
         throw invalid_argument("Codigo deve ter exatamente " + to_string(TAMANHO) + " caracteres.");
     }
 
-    // 3 primeiras letras maiúsculas
+    // 3 primeiras letras maiï¿½sculas
     for (int i = 0; i < 3; i++) {
         if (!isupper(codigo[i])) {
             throw invalid_argument("Os 3 primeiros caracteres devem ser letras maiusculas.");

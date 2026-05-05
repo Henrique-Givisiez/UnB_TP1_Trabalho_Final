@@ -6,17 +6,17 @@ using namespace std;
 
 class Nome {
 private:
-    string NOME;
+    string nome;
     static const int LIMITE = 10;
-    void validar(string&);
+    void validar(const string&);
 
 public:
-    void setNome(string&);
-    string getNome() const;
+    void set(const string&);
+    string get() const;
 };
 
-inline string Nome::getNome() const {
-    return NOME;
+inline string Nome::get() const {
+    return nome;
 }
 
 #endif // NOME_HPP_INCLUDED

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void Nome::validar(string& nome) {
+void Nome::validar(const string& nome) {
     if (nome.size() > LIMITE ) {
         throw invalid_argument("O nome deve ter no maximo " + to_string(LIMITE) + " caracteres.");
     }
@@ -28,7 +28,7 @@ void Nome::validar(string& nome) {
     }
 }
 
-void Nome::setNome(string& nome) {
+void Nome::set(const string& nome) {
     validar(nome);
-    this->NOME = nome;
+    this->nome = nome;
 }

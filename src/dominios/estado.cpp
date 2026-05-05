@@ -10,7 +10,7 @@ Estado::Estado() {
 }
 
 // Metodo que altera o estado e recebe o endereco (&) da string como parametro
-void Estado::setEstado(std::string& novoEstado) {
+void Estado::set(std::string& novoEstado) {
     if (novoEstado == "A FAZER") {
         estado = A_FAZER;
     } else if (novoEstado == "FAZENDO") {
@@ -22,7 +22,7 @@ void Estado::setEstado(std::string& novoEstado) {
     }
 }
 
-string Estado::getEstado() const {
+string Estado::get() const {
     switch (estado) {
         case A_FAZER: return "A FAZER";
         case FAZENDO: return "FAZENDO";

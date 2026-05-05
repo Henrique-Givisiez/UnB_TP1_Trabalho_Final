@@ -9,7 +9,7 @@ Prioridade::Prioridade() {
 }
 
 // Metodo que altera o estado e recebe o endereco (&) da string como parametro
-void Prioridade::setPrioridade(std::string& novaPrioridade) {
+void Prioridade::set(std::string& novaPrioridade) {
     if (novaPrioridade == "BAIXA") {
         prioridade = BAIXA;
     } else if (novaPrioridade == "MEDIA") {
@@ -21,7 +21,7 @@ void Prioridade::setPrioridade(std::string& novaPrioridade) {
     }
 }
 
-std::string Prioridade::getPrioridade() const {
+std::string Prioridade::get() const {
     switch (prioridade) {
         case BAIXA: return "BAIXA";
         case MEDIA: return "MEDIA";

@@ -5,7 +5,7 @@
 using namespace std;
 
 // Metodo que altera o papel e recebe o endereco (&) da string como parametro
-void Papel::setPapel(std::string& novoPapel) {
+void Papel::set(const std::string& novoPapel) {
     if (novoPapel == "DESENVOLVEDOR") {
         papel = DESENVOLVEDOR;
     } else if (novoPapel == "MESTRE DE SCRUM") {
@@ -17,7 +17,7 @@ void Papel::setPapel(std::string& novoPapel) {
     }
 }
 
-string Papel::getPapel() const {
+string Papel::get() const {
     switch (papel) {
         case DESENVOLVEDOR: return "DESENVOLVEDOR";
         case MESTRE_SCRUM: return "MESTRE SCRUM";

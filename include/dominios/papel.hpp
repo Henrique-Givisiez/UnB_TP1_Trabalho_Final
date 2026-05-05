@@ -14,8 +14,8 @@ public:
 private:
     PapelEnum papel;
 public:
-    void setPapel(string& novoPapel);
-    string getPapel() const;
+    void set(const string& novoPapel);
+    string get() const;
 
     PapelEnum getPapelInterno() const;
 };

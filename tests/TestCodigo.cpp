@@ -1,24 +1,24 @@
 #include <iostream>
 #include "dominios/codigo.hpp"
 
-// Verifica se a execução ocorre SEM lançar exceções (sucesso)
+// Verifica se a execuï¿½ï¿½o ocorre SEM lanï¿½ar exceï¿½ï¿½es (sucesso)
 #define ASSERT_SUCCESS(comando, msg) \
     try { \
         comando; \
         std::cout << "OK: " << msg << "\n"; \
     } catch (...) { \
-        std::cout << "Falhou: " << msg << " (Lançou exceção inesperada)\n"; \
+        std::cout << "Falhou: " << msg << " (Lanï¿½ou exceï¿½ï¿½o inesperada)\n"; \
     }
 
-// Verifica se a execução LANÇA uma exceção (erro esperado)
+// Verifica se a execuï¿½ï¿½o LANï¿½A uma exceï¿½ï¿½o (erro esperado)
 #define ASSERT_THROWS(comando, msg) \
     try { \
         comando; \
-        std::cout << "Falhou: " << msg << " (Não lançou exceção)\n"; \
+        std::cout << "Falhou: " << msg << " (Nï¿½o lanï¿½ou exceï¿½ï¿½o)\n"; \
     } catch (const std::invalid_argument& e) { \
         std::cout << "OK: " << msg << "\n"; \
     } catch (...) { \
-        std::cout << "Falhou: " << msg << " (Lançou tipo de exceção errado)\n"; \
+        std::cout << "Falhou: " << msg << " (Lanï¿½ou tipo de exceï¿½ï¿½o errado)\n"; \
     }
 
 void testarCodigo() {
@@ -27,42 +27,42 @@ void testarCodigo() {
     Codigo c;
 
     // =========================
-    // CASOS VALIDOS (Não devem lançar erro)
+    // CASOS VALIDOS (Nï¿½o devem lanï¿½ar erro)
     // =========================
-    ASSERT_SUCCESS(c.setCodigo("ABC12"), "ABC12 deve ser valido");
-    ASSERT_SUCCESS(c.setCodigo("XYZ99"), "XYZ99 deve ser valido");
-    ASSERT_SUCCESS(c.setCodigo("QWE00"), "QWE00 deve ser valido");
+    ASSERT_SUCCESS(c.set("ABC12"), "ABC12 deve ser valido");
+    ASSERT_SUCCESS(c.set("XYZ99"), "XYZ99 deve ser valido");
+    ASSERT_SUCCESS(c.set("QWE00"), "QWE00 deve ser valido");
 
     // =========================
-    // TAMANHO INVALIDO (Devem lançar invalid_argument)
+    // TAMANHO INVALIDO (Devem lanï¿½ar invalid_argument)
     // =========================
-    ASSERT_THROWS(c.setCodigo("AB12"), "Menos de 5 caracteres");
-    ASSERT_THROWS(c.setCodigo("ABCDE1"), "Mais de 5 caracteres");
-    ASSERT_THROWS(c.setCodigo(""), "String vazia");
+    ASSERT_THROWS(c.set("AB12"), "Menos de 5 caracteres");
+    ASSERT_THROWS(c.set("ABCDE1"), "Mais de 5 caracteres");
+    ASSERT_THROWS(c.set(""), "String vazia");
 
     // =========================
     // LETRAS MINUSCULAS
     // =========================
-    ASSERT_THROWS(c.setCodigo("abc12"), "Letras minusculas nao permitidas");
-    ASSERT_THROWS(c.setCodigo("AbC12"), "Mistura maiuscula/minuscula");
+    ASSERT_THROWS(c.set("abc12"), "Letras minusculas nao permitidas");
+    ASSERT_THROWS(c.set("AbC12"), "Mistura maiuscula/minuscula");
 
     // =========================
     // POSICAO ERRADA DE CARACTERES
     // =========================
-    ASSERT_THROWS(c.setCodigo("A1C12"), "Numero na posicao de letra");
-    ASSERT_THROWS(c.setCodigo("ABC1A"), "Letra no lugar de numero");
+    ASSERT_THROWS(c.set("A1C12"), "Numero na posicao de letra");
+    ASSERT_THROWS(c.set("ABC1A"), "Letra no lugar de numero");
 
     // =========================
     // CARACTERES INVALIDOS
     // =========================
-    ASSERT_THROWS(c.setCodigo("AB@12"), "Caractere especial @");
-    ASSERT_THROWS(c.setCodigo("AB 12"), "Espaço no meio");
+    ASSERT_THROWS(c.set("AB@12"), "Caractere especial @");
+    ASSERT_THROWS(c.set("AB 12"), "Espaï¿½o no meio");
 
     // =========================
-    // EDGE CASES (Válidos)
+    // EDGE CASES (Vï¿½lidos)
     // =========================
-    ASSERT_SUCCESS(c.setCodigo("AAA00"), "Limite inferior valido");
-    ASSERT_SUCCESS(c.setCodigo("ZZZ99"), "Limite superior valido");
+    ASSERT_SUCCESS(c.set("AAA00"), "Limite inferior valido");
+    ASSERT_SUCCESS(c.set("ZZZ99"), "Limite superior valido");
 
     std::cout << "===== FIM TESTES CODIGO =====\n";
 }

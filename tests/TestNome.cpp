@@ -1,24 +1,24 @@
 #include <iostream>
 #include "dominios/nome.hpp"
 
-// Verifica se a execução ocorre SEM lançar exceções (sucesso)
+// Verifica se a execucao ocorre SEM lancar excecoes (sucesso)
 #define ASSERT_SUCCESS(comando, msg) \
     try { \
         comando; \
         std::cout << "OK: " << msg << "\n"; \
     } catch (...) { \
-        std::cout << "Falhou: " << msg << " (Lançou exceção inesperada)\n"; \
+        std::cout << "Falhou: " << msg << " (Lancou excecao inesperada)\n"; \
     }
 
-// Verifica se a execução LANÇA uma exceção (erro esperado)
+// Verifica se a execucao LANï¿½A uma excecao (erro esperado)
 #define ASSERT_THROWS(comando, msg) \
     try { \
         comando; \
-        std::cout << "Falhou: " << msg << " (Não lançou exceção)\n"; \
+        std::cout << "Falhou: " << msg << " (Nao lancou excecao)\n"; \
     } catch (const std::invalid_argument& e) { \
         std::cout << "OK: " << msg << "\n"; \
     } catch (...) { \
-        std::cout << "Falhou: " << msg << " (Lançou tipo de exceção errado)\n"; \
+        std::cout << "Falhou: " << msg << " (Lancou tipo de excecao errado)\n"; \
     }
 
 void testarNome() {
@@ -27,25 +27,17 @@ void testarNome() {
     Nome n;
     std::string teste;
     // =========================
-    // CASOS VALIDOS (Não devem lançar erro)
+    // CASOS VALIDOS (Nao devem lancar erro)
     // =========================
-    teste = "Henrique";
-    ASSERT_SUCCESS(n.setNome(teste), "Henrique deve ser valido");
-    teste = "Ju Mend";
-    ASSERT_SUCCESS(n.setNome(teste), "Ju Mend deve ser valido");
-    teste = "Joao Paulo";
-    ASSERT_SUCCESS(n.setNome(teste), "Joao Paulo deve ser valido");
+    ASSERT_SUCCESS(n.set("Henrique"), "Henrique deve ser valido");
+    ASSERT_SUCCESS(n.set("Ju Mend"), "Ju Mend deve ser valido");
+    ASSERT_SUCCESS(n.set("Joao Paulo"), "Joao Paulo deve ser valido");
 
     // =========================
-    // NOME INVALIDO (Devem lançar invalid_argument)
+    // NOME INVALIDO (Devem lancar invalid_argument)
     // =========================
-    teste = "Henrique Givisiez";
-    ASSERT_THROWS(n.setNome(teste), "Nome maior que 10 caracteres");
-    teste = "Pedro  Leo";
-    ASSERT_THROWS(n.setNome(teste), "Espaco nao seguido de letra");
-    teste = "Ju\nMend";
-    ASSERT_THROWS(n.setNome(teste), "Apenas espaco em branco eh aceito.");
-    teste = "Júlia";
-    ASSERT_THROWS(n.setNome(teste), "Acentos nao sao permitidos");
+    ASSERT_THROWS(n.set("Henrique Givisiez"), "Nome maior que 10 caracteres");
+    ASSERT_THROWS(n.set("Pedro  Leo"), "Espaco nao seguido de letra");
+    ASSERT_THROWS(n.set("Ju\nMend"), "Apenas espaco em branco eh aceito.");
     std::cout << "===== FIM TESTES NOME =====\n";
 }

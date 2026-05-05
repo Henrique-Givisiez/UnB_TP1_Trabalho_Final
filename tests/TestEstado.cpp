@@ -1,24 +1,24 @@
 #include <iostream>
 #include "dominios/estado.hpp"
 
-// Verifica se a execução ocorre SEM lançar exceções (sucesso)
+// Verifica se a execuï¿½ï¿½o ocorre SEM lanï¿½ar exceï¿½ï¿½es (sucesso)
 #define ASSERT_SUCCESS(comando, msg) \
     try { \
         comando; \
         std::cout << "OK: " << msg << "\n"; \
     } catch (...) { \
-        std::cout << "Falhou: " << msg << " (Lançou exceção inesperada)\n"; \
+        std::cout << "Falhou: " << msg << " (Lanï¿½ou exceï¿½ï¿½o inesperada)\n"; \
     }
 
-// Verifica se a execução LANÇA uma exceção (erro esperado)
+// Verifica se a execuï¿½ï¿½o LANï¿½A uma exceï¿½ï¿½o (erro esperado)
 #define ASSERT_THROWS(comando, msg) \
     try { \
         comando; \
-        std::cout << "Falhou: " << msg << " (Não lançou exceção)\n"; \
+        std::cout << "Falhou: " << msg << " (Nï¿½o lanï¿½ou exceï¿½ï¿½o)\n"; \
     } catch (const std::invalid_argument& e) { \
         std::cout << "OK: " << msg << "\n"; \
     } catch (...) { \
-        std::cout << "Falhou: " << msg << " (Lançou tipo de exceção errado)\n"; \
+        std::cout << "Falhou: " << msg << " (Lanï¿½ou tipo de exceï¿½ï¿½o errado)\n"; \
     }
 
 void testarEstado() {
@@ -30,31 +30,31 @@ void testarEstado() {
     // CASOS VALIDOS
     // =========================
     teste = "A FAZER";
-    ASSERT_SUCCESS(e.setEstado(teste), "A FAZER deve ser valido");
+    ASSERT_SUCCESS(e.set(teste), "A FAZER deve ser valido");
     teste = "FAZENDO";
-    ASSERT_SUCCESS(e.setEstado(teste), "FAZENDO deve ser valido");
+    ASSERT_SUCCESS(e.set(teste), "FAZENDO deve ser valido");
     teste = "FEITO";
-    ASSERT_SUCCESS(e.setEstado(teste), "FEITO deve ser valido");
+    ASSERT_SUCCESS(e.set(teste), "FEITO deve ser valido");
 
     // =========================
     // STRING INVALIDA
     // =========================
     teste = "FAZER";
-    ASSERT_THROWS(e.setEstado(teste), "Estado invalido");
+    ASSERT_THROWS(e.set(teste), "Estado invalido");
     teste = "FAZENDO ";
-    ASSERT_THROWS(e.setEstado(teste), "Estado invalido");
+    ASSERT_THROWS(e.set(teste), "Estado invalido");
     teste = "JA FEITO";
-    ASSERT_THROWS(e.setEstado(teste), "Estado invalido");
+    ASSERT_THROWS(e.set(teste), "Estado invalido");
 
     // =========================
     // LETRAS MINUSCULAS
     // =========================
     teste = "a fazer";
-    ASSERT_THROWS(e.setEstado(teste), "Estado invalido");
+    ASSERT_THROWS(e.set(teste), "Estado invalido");
     teste = "fazendo";
-    ASSERT_THROWS(e.setEstado(teste), "Estado invalido");
+    ASSERT_THROWS(e.set(teste), "Estado invalido");
     teste = "FEITo";
-    ASSERT_THROWS(e.setEstado(teste), "Estado invalido");
+    ASSERT_THROWS(e.set(teste), "Estado invalido");
 
     std::cout << "===== FIM TESTES ESTADO =====\n";
 }
