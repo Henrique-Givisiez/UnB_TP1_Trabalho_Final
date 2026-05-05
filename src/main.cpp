@@ -5,6 +5,7 @@
 #include "dominios/data.hpp"
 #include "dominios/email.hpp"
 #include "dominios/senha.hpp"
+#include "dominios/tempo.hpp"
 
 void testarCodigo();
 void testarEstado();
@@ -12,6 +13,7 @@ void testarNome();
 void testarData();
 void testarEmail();
 void testarSenha();
+void testarTempo();
 
 int main() {
     testarCodigo();
@@ -20,5 +22,6 @@ int main() {
     testarData();
     testarEmail();
     testarSenha();
+    testarTempo();
     return 0;
 }
