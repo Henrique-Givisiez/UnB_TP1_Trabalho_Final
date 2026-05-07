@@ -9,6 +9,7 @@ void testarTexto();
 void testarPessoa();
 void testarProjeto();
 void testarPlanoSprint();
+void testarHistoria();
 
 int main() {
     testarCodigo();
@@ -22,5 +23,6 @@ int main() {
     testarPessoa();
     testarProjeto();
     testarPlanoSprint();
+    testarHistoria();
     return 0;
 }
