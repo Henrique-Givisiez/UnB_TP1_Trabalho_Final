@@ -8,7 +8,7 @@ using namespace std;
 void Papel::set(const std::string& novoPapel) {
     if (novoPapel == "DESENVOLVEDOR") {
         papel = DESENVOLVEDOR;
-    } else if (novoPapel == "MESTRE DE SCRUM") {
+    } else if (novoPapel == "MESTRE SCRUM") {
         papel = MESTRE_SCRUM;
     } else if (novoPapel == "PROPRIETARIO DE PRODUTO") {
         papel = PROPRIETARIO_PROD;
