@@ -1,15 +1,3 @@
-#include <iostream>
-#include "dominios/codigo.hpp"
-#include "dominios/estado.hpp"
-#include "dominios/nome.hpp"
-#include "dominios/data.hpp"
-#include "dominios/email.hpp"
-#include "dominios/senha.hpp"
-#include "dominios/tempo.hpp"
-#include "dominios/texto.hpp"
-#include "entidades/pessoa.hpp"
-#include "entidades/projeto.hpp"
-
 void testarCodigo();
 void testarEstado();
 void testarNome();
@@ -20,6 +8,7 @@ void testarTempo();
 void testarTexto();
 void testarPessoa();
 void testarProjeto();
+void testarPlanoSprint();
 
 int main() {
     testarCodigo();
@@ -32,5 +21,6 @@ int main() {
     testarTexto();
     testarPessoa();
     testarProjeto();
+    testarPlanoSprint();
     return 0;
 }
