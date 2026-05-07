@@ -4,6 +4,10 @@
 using namespace std;
 
 void Nome::validar(const string& nome) {
+    if (nome.empty()) {
+        throw invalid_argument("O nome nao pode ser vazio.");
+    }
+    
     if (nome.size() > LIMITE ) {
         throw invalid_argument("O nome deve ter no maximo " + to_string(LIMITE) + " caracteres.");
     }
