@@ -19,6 +19,7 @@ public:
     /// @param tempo Inteiro entre 1 e 365.
     /// @throws std::invalid_argument se o valor estiver fora do intervalo permitido.
     void set(int tempo);
+    void set(double) = delete; // Impede atribuição de valores decimais
 
     /// @brief Retorna o valor do tempo.
     /// @return Inteiro com o valor do tempo.
