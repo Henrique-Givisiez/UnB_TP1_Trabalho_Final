@@ -7,6 +7,8 @@
 #include "dominios/senha.hpp"
 #include "dominios/tempo.hpp"
 #include "dominios/texto.hpp"
+#include "entidades/pessoa.hpp"
+#include "entidades/projeto.hpp"
 
 void testarCodigo();
 void testarEstado();
@@ -16,6 +18,8 @@ void testarEmail();
 void testarSenha();
 void testarTempo();
 void testarTexto();
+void testarPessoa();
+void testarProjeto();
 
 int main() {
     testarCodigo();
@@ -26,5 +30,7 @@ int main() {
     testarSenha();
     testarTempo();
     testarTexto();
+    testarPessoa();
+    testarProjeto();
     return 0;
 }
