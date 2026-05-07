@@ -2,19 +2,18 @@
 #define CODIGO_HPP_INCLUDED
 #include <string>
 
-using namespace std;
 
 class Codigo {
 private:
-    string codigo;
-    void validar(string);
+    std::string codigo;
+    void validar(std::string);
     static const int TAMANHO = 5;
 public:
-    void set(string);
-    string get();
+    void set(std::string);
+    std::string get() const;
 };
 
-inline string Codigo::get() {
+inline std::string Codigo::get() const{
     return codigo;
 }
 
