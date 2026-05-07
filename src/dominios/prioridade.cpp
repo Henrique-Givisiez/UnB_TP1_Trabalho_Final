@@ -9,7 +9,7 @@ Prioridade::Prioridade() {
 }
 
 // Metodo que altera o estado e recebe o endereco (&) da string como parametro
-void Prioridade::set(std::string& novaPrioridade) {
+void Prioridade::set(const std::string& novaPrioridade) {
     if (novaPrioridade == "BAIXA") {
         prioridade = BAIXA;
     } else if (novaPrioridade == "MEDIA") {
