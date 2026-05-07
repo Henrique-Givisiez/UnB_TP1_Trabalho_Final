@@ -19,6 +19,12 @@
         std::cout << "Falhou: " << msg << " (Lancou tipo de excecao errado)\n"; \
     }
 
+/**
+ * @brief Executa todos os testes da entidade Pessoa.
+ *
+ * Verifica que setters válidos são aceitos, que getters retornam
+ * os valores corretos e que valores inválidos lançam std::invalid_argument.
+ */
 void testarPessoa() {
     std::cout << "\n===== TESTES PESSOA =====\n";
 
