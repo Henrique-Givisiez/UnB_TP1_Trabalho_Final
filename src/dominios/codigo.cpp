@@ -17,17 +17,17 @@ void Codigo::validar(string codigo) {
         throw invalid_argument("Codigo deve ter exatamente " + to_string(TAMANHO) + " caracteres.");
     }
 
-    // 3 primeiras letras mai�sculas
-    for (int i = 0; i < 3; i++) {
+    // 2 primeiras letras maiusculas
+    for (int i = 0; i < 2; i++) {
         if (!isupper(codigo[i])) {
-            throw invalid_argument("Os 3 primeiros caracteres devem ser letras maiusculas.");
+            throw invalid_argument("Os 2 primeiros caracteres devem ser letras maiusculas.");
         }
     }
 
     // 2 ultimos digitos
-    for (int i = 3; i < TAMANHO; i++) {
+    for (int i = 2; i < TAMANHO; i++) {
        if (!isdigit(codigo[i])) {
-           throw invalid_argument("Os 2 ultimos caracteres devem ser digitos.");
+           throw invalid_argument("Os 3 ultimos caracteres devem ser digitos.");
        }
     }
 }

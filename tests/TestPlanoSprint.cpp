@@ -45,8 +45,8 @@ void testarPlanoSprint() {
     //  setCodigo                                                           //
     // ------------------------------------------------------------------ //
 
-    ASSERT_SUCCESS(ps.setCodigo("ABC23"),  "setCodigo valor valido (AB123)");
-    ASSERT_SUCCESS(ps.setCodigo("ZZZ99"),  "setCodigo valor valido (ZZ999)");
+    ASSERT_SUCCESS(ps.setCodigo("AB123"),  "setCodigo valor valido (AB123)");
+    ASSERT_SUCCESS(ps.setCodigo("ZZ999"),  "setCodigo valor valido (ZZ999)");
     ASSERT_THROWS (ps.setCodigo(""),       "setCodigo vazio");
     ASSERT_THROWS (ps.setCodigo("ab123"),  "setCodigo letras minusculas");
     ASSERT_THROWS (ps.setCodigo("AB12"),   "setCodigo menos de 5 chars");
@@ -103,12 +103,12 @@ void testarPlanoSprint() {
     //  Getters — verificar retorno correto após atribuições válidas       //
     // ------------------------------------------------------------------ //
 
-    ps.setCodigo("ABC89");
+    ps.setCodigo("AB789");
     ps.setObjetivo("Finalizar autenticacao do sistema");
     ps.setCapacidade(80);
 
     ASSERT_SUCCESS(
-        { if (ps.getCodigo()     != "ABC89")                            throw std::invalid_argument(""); },
+        { if (ps.getCodigo()     != "AB789")                            throw std::invalid_argument(""); },
         "getCodigo retorna valor correto"
     );
     ASSERT_SUCCESS(

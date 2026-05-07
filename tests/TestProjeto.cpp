@@ -37,11 +37,11 @@ void testarProjeto() {
     Projeto p;
 
     // --- setCodigo ---
-    ASSERT_SUCCESS(p.setCodigo("ABC12"), "setCodigo valor valido");
+    ASSERT_SUCCESS(p.setCodigo("AB123"), "setCodigo valor valido");
     ASSERT_THROWS (p.setCodigo(""),      "setCodigo vazio");
     ASSERT_THROWS (p.setCodigo("AB CD"), "setCodigo com espaco");
-    ASSERT_THROWS (p.setCodigo("abc12"), "setCodigo minusculo");
-    ASSERT_THROWS (p.setCodigo("ABC123"), "setCodigo excede tamanho maximo (5 chars)");
+    ASSERT_THROWS (p.setCodigo("ab123"), "setCodigo minusculo");
+    ASSERT_THROWS (p.setCodigo("AB1234"), "setCodigo excede tamanho maximo (5 chars)");
 
     // --- setNome ---
     ASSERT_SUCCESS(p.setNome("My Project"), "setNome valor valido");
@@ -60,13 +60,13 @@ void testarProjeto() {
     ASSERT_THROWS (p.setTermino(""),         "setTermino vazio");
 
     // --- Getters após valores válidos ---
-    p.setCodigo("XYZ45");
+    p.setCodigo("XY345");
     p.setNome("Sprint");
     p.setInicio("01/03/2025");
     p.setTermino("30/06/2025");
 
     ASSERT_SUCCESS(
-        { if (p.getCodigo() != "XYZ45")     throw std::invalid_argument(""); },
+        { if (p.getCodigo() != "XY345")     throw std::invalid_argument(""); },
         "getCodigo retorna valor correto"
     );
     ASSERT_SUCCESS(
