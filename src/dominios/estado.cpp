@@ -2,7 +2,6 @@
 #include <string>
 #include <stdexcept>
 
-using namespace std;
 
 // Metodo init que define o A_FAZER como estado default
 Estado::Estado() {
@@ -10,7 +9,7 @@ Estado::Estado() {
 }
 
 // Metodo que altera o estado e recebe o endereco (&) da string como parametro
-void Estado::set(std::string& novoEstado) {
+void Estado::set(const std::string& novoEstado) {
     if (novoEstado == "A FAZER") {
         estado = A_FAZER;
     } else if (novoEstado == "FAZENDO") {
@@ -22,7 +21,7 @@ void Estado::set(std::string& novoEstado) {
     }
 }
 
-string Estado::get() const {
+std::string Estado::get() const {
     switch (estado) {
         case A_FAZER: return "A FAZER";
         case FAZENDO: return "FAZENDO";
