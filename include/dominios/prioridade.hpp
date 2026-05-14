@@ -2,8 +2,6 @@
 #define PRIORIDADE_HPP_INCLUDED
 #include <string>
 
-using namespace std;
-
 class Prioridade {
 public:
     enum PrioridadeEnum {
@@ -15,8 +13,8 @@ private:
     PrioridadeEnum prioridade;
 public:
     Prioridade();
-    void set(const string& novaProridade);
-    string get() const;
+    void set(const std::string& novaProridade);
+    std::string get() const;
 
     PrioridadeEnum getPrioridadeInterno() const;
 };

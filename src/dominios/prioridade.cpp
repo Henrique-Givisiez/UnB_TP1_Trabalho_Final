@@ -17,7 +17,7 @@ void Prioridade::set(const std::string& novaPrioridade) {
     } else if (novaPrioridade == "ALTA") {
         prioridade = ALTA;
     } else {
-        throw invalid_argument("Prioridade invalida");
+        throw std::invalid_argument("Prioridade invalida");
     }
 }
 
