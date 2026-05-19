@@ -126,7 +126,38 @@ void ControladoraApresentacaoPessoa::criarPessoa() {
         return;
     }
 
-    std::cout << "\n[Pessoa] Criar pessoa ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== CRIAR PESSOA ==========\n";
+
+    std::string email = lerLinha("Email: ");
+    std::string nome  = lerLinha("Nome: ");
+    std::string senha = lerLinha("Senha: ");
+    std::string papel = lerLinha("Papel [DESENVOLVEDOR, MESTRE SCRUM, PROPRIETARIO DE PRODUTO]: ");
+
+    try {
+        Pessoa pessoa;
+
+        pessoa.setEmail(email);
+        pessoa.setNome(nome);
+        pessoa.setSenha(senha);
+        pessoa.setPapel(papel);
+
+        bool sucesso = servicoPessoa->criar(pessoa);
+
+        if (sucesso) {
+            std::cout << "\nPessoa criada com sucesso.\n";
+        } else {
+            std::cout << "\nNao foi possivel criar a pessoa.\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao criar pessoa.\n";
+    }
 }
 
 void ControladoraApresentacaoPessoa::lerPessoa() {
@@ -134,7 +165,35 @@ void ControladoraApresentacaoPessoa::lerPessoa() {
         return;
     }
 
-    std::cout << "\n[Pessoa] Ler pessoa ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== LER PESSOA ==========\n";
+
+    std::string email = lerLinha("Email da pessoa: ");
+
+    try {
+        Pessoa pessoa;
+
+        bool sucesso = servicoPessoa->ler(email, &pessoa);
+
+        if (!sucesso) {
+            std::cout << "\nPessoa nao encontrada.\n";
+            return;
+        }
+
+        std::cout << "\nDados da pessoa:\n";
+        std::cout << "Email: " << pessoa.getEmail() << "\n";
+        std::cout << "Nome : " << pessoa.getNome() << "\n";
+        std::cout << "Senha: " << pessoa.getSenha() << "\n";
+        std::cout << "Papel: " << pessoa.getPapel() << "\n";
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao ler pessoa.\n";
+    }
 }
 
 void ControladoraApresentacaoPessoa::atualizarPessoa() {
@@ -142,7 +201,57 @@ void ControladoraApresentacaoPessoa::atualizarPessoa() {
         return;
     }
 
-    std::cout << "\n[Pessoa] Atualizar pessoa ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== ATUALIZAR PESSOA ==========\n";
+
+    std::string email = lerLinha("Email da pessoa que sera atualizada: ");
+
+    try {
+        Pessoa pessoaAtual;
+
+        bool encontrada = servicoPessoa->ler(email, &pessoaAtual);
+
+        if (!encontrada) {
+            std::cout << "\nPessoa nao encontrada.\n";
+            return;
+        }
+
+        std::cout << "\nDados atuais:\n";
+        std::cout << "Email: " << pessoaAtual.getEmail() << "\n";
+        std::cout << "Nome : " << pessoaAtual.getNome() << "\n";
+        std::cout << "Senha: " << pessoaAtual.getSenha() << "\n";
+        std::cout << "Papel: " << pessoaAtual.getPapel() << "\n";
+
+        std::cout << "\nInforme os novos dados.\n";
+        std::cout << "Observacao: o email nao sera alterado, pois e chave primaria.\n";
+
+        std::string novoNome  = lerLinha("Novo nome: ");
+        std::string novaSenha = lerLinha("Nova senha: ");
+        std::string novoPapel = lerLinha("Novo papel [DESENVOLVEDOR, MESTRE SCRUM, PROPRIETARIO DE PRODUTO]: ");
+
+        Pessoa pessoaAtualizada;
+
+        pessoaAtualizada.setEmail(email);
+        pessoaAtualizada.setNome(novoNome);
+        pessoaAtualizada.setSenha(novaSenha);
+        pessoaAtualizada.setPapel(novoPapel);
+
+        bool sucesso = servicoPessoa->atualizar(pessoaAtualizada);
+
+        if (sucesso) {
+            std::cout << "\nPessoa atualizada com sucesso.\n";
+        } else {
+            std::cout << "\nNao foi possivel atualizar a pessoa.\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao atualizar pessoa.\n";
+    }
 }
 
 void ControladoraApresentacaoPessoa::excluirPessoa() {
@@ -150,7 +259,49 @@ void ControladoraApresentacaoPessoa::excluirPessoa() {
         return;
     }
 
-    std::cout << "\n[Pessoa] Excluir pessoa ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== EXCLUIR PESSOA ==========\n";
+
+    std::string email = lerLinha("Email da pessoa que sera excluida: ");
+
+    try {
+        Pessoa pessoa;
+
+        bool encontrada = servicoPessoa->ler(email, &pessoa);
+
+        if (!encontrada) {
+            std::cout << "\nPessoa nao encontrada.\n";
+            return;
+        }
+
+        std::cout << "\nPessoa encontrada:\n";
+        std::cout << "Email: " << pessoa.getEmail() << "\n";
+        std::cout << "Nome : " << pessoa.getNome() << "\n";
+        std::cout << "Papel: " << pessoa.getPapel() << "\n";
+
+        std::string confirmacao = lerLinha("\nConfirmar exclusao? [S/N]: ");
+
+        if (confirmacao != "S" && confirmacao != "s") {
+            std::cout << "\nExclusao cancelada.\n";
+            return;
+        }
+
+        bool sucesso = servicoPessoa->excluir(email);
+
+        if (sucesso) {
+            std::cout << "\nPessoa excluida com sucesso.\n";
+        } else {
+            std::cout << "\nNao foi possivel excluir a pessoa.\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao excluir pessoa.\n";
+    }
 }
 
 // -----------------------------------------------------------------------------
