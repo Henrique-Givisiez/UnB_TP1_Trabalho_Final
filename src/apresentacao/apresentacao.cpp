@@ -2,6 +2,7 @@
 
 #include <limits>
 #include <stdexcept>
+#include <vector>
 
 namespace {
 
@@ -368,7 +369,39 @@ void ControladoraApresentacaoProjeto::criarProjeto() {
         return;
     }
 
-    std::cout << "\n[Projeto] Criar projeto ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== CRIAR PROJETO ==========\n";
+
+    std::string codigo = lerLinha("Codigo do projeto: ");
+    std::string nome = lerLinha("Nome do projeto: ");
+    std::string inicio = lerLinha("Data de inicio [DD/MM/AAAA]: ");
+    std::string termino = lerLinha("Data de termino [DD/MM/AAAA]: ");
+    std::string emailMestreScrum = lerLinha("Email do Mestre Scrum associado: ");
+
+    try {
+        Projeto projeto;
+
+        projeto.setCodigo(codigo);
+        projeto.setNome(nome);
+        projeto.setInicio(inicio);
+        projeto.setTermino(termino);
+
+        bool sucesso = servicoProjeto->criar(projeto, emailMestreScrum);
+
+        if (sucesso) {
+            std::cout << "\nProjeto criado com sucesso.\n";
+        } else {
+            std::cout << "\nNao foi possivel criar o projeto.\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao criar projeto.\n";
+    }
 }
 
 void ControladoraApresentacaoProjeto::lerProjeto() {
@@ -376,7 +409,35 @@ void ControladoraApresentacaoProjeto::lerProjeto() {
         return;
     }
 
-    std::cout << "\n[Projeto] Ler projeto ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== LER PROJETO ==========\n";
+
+    std::string codigo = lerLinha("Codigo do projeto: ");
+
+    try {
+        Projeto projeto;
+
+        bool sucesso = servicoProjeto->ler(codigo, &projeto);
+
+        if (!sucesso) {
+            std::cout << "\nProjeto nao encontrado.\n";
+            return;
+        }
+
+        std::cout << "\nDados do projeto:\n";
+        std::cout << "Codigo : " << projeto.getCodigo() << "\n";
+        std::cout << "Nome   : " << projeto.getNome() << "\n";
+        std::cout << "Inicio : " << projeto.getInicio() << "\n";
+        std::cout << "Termino: " << projeto.getTermino() << "\n";
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao ler projeto.\n";
+    }
 }
 
 void ControladoraApresentacaoProjeto::atualizarProjeto() {
@@ -384,7 +445,57 @@ void ControladoraApresentacaoProjeto::atualizarProjeto() {
         return;
     }
 
-    std::cout << "\n[Projeto] Atualizar projeto ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== ATUALIZAR PROJETO ==========\n";
+
+    std::string codigo = lerLinha("Codigo do projeto que sera atualizado: ");
+
+    try {
+        Projeto projetoAtual;
+
+        bool encontrado = servicoProjeto->ler(codigo, &projetoAtual);
+
+        if (!encontrado) {
+            std::cout << "\nProjeto nao encontrado.\n";
+            return;
+        }
+
+        std::cout << "\nDados atuais:\n";
+        std::cout << "Codigo : " << projetoAtual.getCodigo() << "\n";
+        std::cout << "Nome   : " << projetoAtual.getNome() << "\n";
+        std::cout << "Inicio : " << projetoAtual.getInicio() << "\n";
+        std::cout << "Termino: " << projetoAtual.getTermino() << "\n";
+
+        std::cout << "\nInforme os novos dados.\n";
+        std::cout << "Observacao: o codigo nao sera alterado, pois e chave primaria.\n";
+
+        std::string novoNome = lerLinha("Novo nome: ");
+        std::string novoInicio = lerLinha("Nova data de inicio [DD/MM/AAAA]: ");
+        std::string novoTermino = lerLinha("Nova data de termino [DD/MM/AAAA]: ");
+
+        Projeto projetoAtualizado;
+
+        projetoAtualizado.setCodigo(codigo);
+        projetoAtualizado.setNome(novoNome);
+        projetoAtualizado.setInicio(novoInicio);
+        projetoAtualizado.setTermino(novoTermino);
+
+        bool sucesso = servicoProjeto->atualizar(projetoAtualizado);
+
+        if (sucesso) {
+            std::cout << "\nProjeto atualizado com sucesso.\n";
+        } else {
+            std::cout << "\nNao foi possivel atualizar o projeto.\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao atualizar projeto.\n";
+    }
 }
 
 void ControladoraApresentacaoProjeto::excluirProjeto() {
@@ -392,7 +503,50 @@ void ControladoraApresentacaoProjeto::excluirProjeto() {
         return;
     }
 
-    std::cout << "\n[Projeto] Excluir projeto ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== EXCLUIR PROJETO ==========\n";
+
+    std::string codigo = lerLinha("Codigo do projeto que sera excluido: ");
+
+    try {
+        Projeto projeto;
+
+        bool encontrado = servicoProjeto->ler(codigo, &projeto);
+
+        if (!encontrado) {
+            std::cout << "\nProjeto nao encontrado.\n";
+            return;
+        }
+
+        std::cout << "\nProjeto encontrado:\n";
+        std::cout << "Codigo : " << projeto.getCodigo() << "\n";
+        std::cout << "Nome   : " << projeto.getNome() << "\n";
+        std::cout << "Inicio : " << projeto.getInicio() << "\n";
+        std::cout << "Termino: " << projeto.getTermino() << "\n";
+
+        std::string confirmacao = lerLinha("\nConfirmar exclusao? [S/N]: ");
+
+        if (confirmacao != "S" && confirmacao != "s") {
+            std::cout << "\nExclusao cancelada.\n";
+            return;
+        }
+
+        bool sucesso = servicoProjeto->excluir(codigo);
+
+        if (sucesso) {
+            std::cout << "\nProjeto excluido com sucesso.\n";
+        } else {
+            std::cout << "\nNao foi possivel excluir o projeto.\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao excluir projeto.\n";
+    }
 }
 
 void ControladoraApresentacaoProjeto::listarProjetosPorPessoa() {
@@ -400,7 +554,43 @@ void ControladoraApresentacaoProjeto::listarProjetosPorPessoa() {
         return;
     }
 
-    std::cout << "\n[Projeto] Listar projetos por pessoa ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== LISTAR PROJETOS POR PESSOA ==========\n";
+
+    std::string emailPessoa = lerLinha("Email da pessoa: ");
+
+    try {
+        std::vector<std::string> codigosProjetos;
+
+        bool sucesso = servicoProjeto->listarProjetosAssociadosPessoa(
+            emailPessoa,
+            &codigosProjetos
+        );
+
+        if (!sucesso) {
+            std::cout << "\nNao foi possivel listar os projetos associados a pessoa.\n";
+            return;
+        }
+
+        if (codigosProjetos.empty()) {
+            std::cout << "\nNenhum projeto associado a esta pessoa.\n";
+            return;
+        }
+
+        std::cout << "\nProjetos associados:\n";
+
+        for (std::size_t i = 0; i < codigosProjetos.size(); ++i) {
+            std::cout << "- " << codigosProjetos[i] << "\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao listar projetos por pessoa.\n";
+    }
 }
 
 // -----------------------------------------------------------------------------
