@@ -967,7 +967,57 @@ void ControladoraApresentacaoHistoria::criarHistoria() {
         return;
     }
 
-    std::cout << "\n[Historia] Criar historia ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== CRIAR HISTORIA ==========\n";
+
+    std::string codigo = lerLinha("Codigo da historia: ");
+    std::string titulo = lerLinha("Titulo: ");
+    std::string papel = lerLinha("Papel [DESENVOLVEDOR, MESTRE SCRUM, PROPRIETARIO DE PRODUTO]: ");
+    std::string acao = lerLinha("Acao [eu quero...]: ");
+    std::string valor = lerLinha("Valor [para...]: ");
+    std::string estimativaTexto = lerLinha("Estimativa [1 a 365]: ");
+    std::string prioridade = lerLinha("Prioridade [ALTA, MEDIA, BAIXA]: ");
+    std::string codigoProjeto = lerLinha("Codigo do projeto associado: ");
+
+    try {
+        int estimativa = std::stoi(estimativaTexto);
+
+        Historia historia;
+
+        historia.setCodigo(codigo);
+        historia.setTitulo(titulo);
+        historia.setPapel(papel);
+        historia.setAcao(acao);
+        historia.setValor(valor);
+        historia.setEstimativa(estimativa);
+        historia.setPrioridade(prioridade);
+
+        /*
+         * Regra do trabalho:
+         * Ao criar historia, o estado inicial deve ser A FAZER.
+         * Portanto, a apresentacao ja envia esse estado inicial.
+         */
+        historia.setEstado("A FAZER");
+
+        bool sucesso = servicoHistoria->criar(historia, codigoProjeto);
+
+        if (sucesso) {
+            std::cout << "\nHistoria criada com sucesso.\n";
+        } else {
+            std::cout << "\nNao foi possivel criar a historia.\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::out_of_range& e) {
+        std::cout << "\nErro de validacao: estimativa fora do intervalo aceito.\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao criar historia.\n";
+    }
 }
 
 void ControladoraApresentacaoHistoria::lerHistoria() {
@@ -975,7 +1025,39 @@ void ControladoraApresentacaoHistoria::lerHistoria() {
         return;
     }
 
-    std::cout << "\n[Historia] Ler historia ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== LER HISTORIA ==========\n";
+
+    std::string codigo = lerLinha("Codigo da historia: ");
+
+    try {
+        Historia historia;
+
+        bool sucesso = servicoHistoria->ler(codigo, &historia);
+
+        if (!sucesso) {
+            std::cout << "\nHistoria nao encontrada.\n";
+            return;
+        }
+
+        std::cout << "\nDados da historia:\n";
+        std::cout << "Codigo    : " << historia.getCodigo() << "\n";
+        std::cout << "Titulo    : " << historia.getTitulo() << "\n";
+        std::cout << "Papel     : " << historia.getPapel() << "\n";
+        std::cout << "Acao      : " << historia.getAcao() << "\n";
+        std::cout << "Valor     : " << historia.getValor() << "\n";
+        std::cout << "Estimativa: " << historia.getEstimativa() << "\n";
+        std::cout << "Prioridade: " << historia.getPrioridade() << "\n";
+        std::cout << "Estado    : " << historia.getEstado() << "\n";
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao ler historia.\n";
+    }
 }
 
 void ControladoraApresentacaoHistoria::atualizarHistoria() {
@@ -983,7 +1065,78 @@ void ControladoraApresentacaoHistoria::atualizarHistoria() {
         return;
     }
 
-    std::cout << "\n[Historia] Atualizar historia ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== ATUALIZAR HISTORIA ==========\n";
+
+    std::string codigo = lerLinha("Codigo da historia que sera atualizada: ");
+
+    try {
+        Historia historiaAtual;
+
+        bool encontrada = servicoHistoria->ler(codigo, &historiaAtual);
+
+        if (!encontrada) {
+            std::cout << "\nHistoria nao encontrada.\n";
+            return;
+        }
+
+        std::cout << "\nDados atuais:\n";
+        std::cout << "Codigo    : " << historiaAtual.getCodigo() << "\n";
+        std::cout << "Titulo    : " << historiaAtual.getTitulo() << "\n";
+        std::cout << "Papel     : " << historiaAtual.getPapel() << "\n";
+        std::cout << "Acao      : " << historiaAtual.getAcao() << "\n";
+        std::cout << "Valor     : " << historiaAtual.getValor() << "\n";
+        std::cout << "Estimativa: " << historiaAtual.getEstimativa() << "\n";
+        std::cout << "Prioridade: " << historiaAtual.getPrioridade() << "\n";
+        std::cout << "Estado    : " << historiaAtual.getEstado() << "\n";
+
+        std::cout << "\nInforme os novos dados.\n";
+        std::cout << "Observacao: o codigo nao sera alterado, pois e chave primaria.\n";
+
+        std::string novoTitulo = lerLinha("Novo titulo: ");
+        std::string novoPapel = lerLinha("Novo papel [DESENVOLVEDOR, MESTRE SCRUM, PROPRIETARIO DE PRODUTO]: ");
+        std::string novaAcao = lerLinha("Nova acao [eu quero...]: ");
+        std::string novoValor = lerLinha("Novo valor [para...]: ");
+        std::string novaEstimativaTexto = lerLinha("Nova estimativa [1 a 365]: ");
+        std::string novaPrioridade = lerLinha("Nova prioridade [ALTA, MEDIA, BAIXA]: ");
+
+        int novaEstimativa = std::stoi(novaEstimativaTexto);
+
+        Historia historiaAtualizada;
+
+        historiaAtualizada.setCodigo(codigo);
+        historiaAtualizada.setTitulo(novoTitulo);
+        historiaAtualizada.setPapel(novoPapel);
+        historiaAtualizada.setAcao(novaAcao);
+        historiaAtualizada.setValor(novoValor);
+        historiaAtualizada.setEstimativa(novaEstimativa);
+        historiaAtualizada.setPrioridade(novaPrioridade);
+
+        /*
+         * O estado nao e alterado aqui.
+         * Para isso existe uma funcionalidade especifica: alterarEstadoHistoria().
+         */
+        historiaAtualizada.setEstado(historiaAtual.getEstado());
+
+        bool sucesso = servicoHistoria->atualizar(historiaAtualizada);
+
+        if (sucesso) {
+            std::cout << "\nHistoria atualizada com sucesso.\n";
+        } else {
+            std::cout << "\nNao foi possivel atualizar a historia.\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::out_of_range& e) {
+        std::cout << "\nErro de validacao: estimativa fora do intervalo aceito.\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao atualizar historia.\n";
+    }
 }
 
 void ControladoraApresentacaoHistoria::excluirHistoria() {
@@ -991,7 +1144,52 @@ void ControladoraApresentacaoHistoria::excluirHistoria() {
         return;
     }
 
-    std::cout << "\n[Historia] Excluir historia ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== EXCLUIR HISTORIA ==========\n";
+
+    std::string codigo = lerLinha("Codigo da historia que sera excluida: ");
+
+    try {
+        Historia historia;
+
+        bool encontrada = servicoHistoria->ler(codigo, &historia);
+
+        if (!encontrada) {
+            std::cout << "\nHistoria nao encontrada.\n";
+            return;
+        }
+
+        std::cout << "\nHistoria encontrada:\n";
+        std::cout << "Codigo    : " << historia.getCodigo() << "\n";
+        std::cout << "Titulo    : " << historia.getTitulo() << "\n";
+        std::cout << "Papel     : " << historia.getPapel() << "\n";
+        std::cout << "Estimativa: " << historia.getEstimativa() << "\n";
+        std::cout << "Prioridade: " << historia.getPrioridade() << "\n";
+        std::cout << "Estado    : " << historia.getEstado() << "\n";
+
+        std::string confirmacao = lerLinha("\nConfirmar exclusao? [S/N]: ");
+
+        if (confirmacao != "S" && confirmacao != "s") {
+            std::cout << "\nExclusao cancelada.\n";
+            return;
+        }
+
+        bool sucesso = servicoHistoria->excluir(codigo);
+
+        if (sucesso) {
+            std::cout << "\nHistoria excluida com sucesso.\n";
+        } else {
+            std::cout << "\nNao foi possivel excluir a historia.\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao excluir historia.\n";
+    }
 }
 
 void ControladoraApresentacaoHistoria::associarPessoa() {
@@ -999,7 +1197,29 @@ void ControladoraApresentacaoHistoria::associarPessoa() {
         return;
     }
 
-    std::cout << "\n[Historia] Associar pessoa ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== ASSOCIAR PESSOA A HISTORIA ==========\n";
+
+    std::string codigoHistoria = lerLinha("Codigo da historia: ");
+    std::string emailPessoa = lerLinha("Email da pessoa: ");
+
+    try {
+        bool sucesso = servicoHistoria->associarPessoa(codigoHistoria, emailPessoa);
+
+        if (sucesso) {
+            std::cout << "\nPessoa associada a historia com sucesso.\n";
+        } else {
+            std::cout << "\nNao foi possivel associar a pessoa a historia.\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao associar pessoa.\n";
+    }
 }
 
 void ControladoraApresentacaoHistoria::removerAssociacaoPessoa() {
@@ -1007,7 +1227,29 @@ void ControladoraApresentacaoHistoria::removerAssociacaoPessoa() {
         return;
     }
 
-    std::cout << "\n[Historia] Remover associacao de pessoa ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== REMOVER ASSOCIACAO DE PESSOA ==========\n";
+
+    std::string codigoHistoria = lerLinha("Codigo da historia: ");
+    std::string emailPessoa = lerLinha("Email da pessoa: ");
+
+    try {
+        bool sucesso = servicoHistoria->removerAssociacaoPessoa(codigoHistoria, emailPessoa);
+
+        if (sucesso) {
+            std::cout << "\nAssociacao removida com sucesso.\n";
+        } else {
+            std::cout << "\nNao foi possivel remover a associacao.\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao remover associacao.\n";
+    }
 }
 
 void ControladoraApresentacaoHistoria::listarHistoriasPorProjeto() {
@@ -1015,7 +1257,43 @@ void ControladoraApresentacaoHistoria::listarHistoriasPorProjeto() {
         return;
     }
 
-    std::cout << "\n[Historia] Listar historias por projeto ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== LISTAR HISTORIAS POR PROJETO ==========\n";
+
+    std::string codigoProjeto = lerLinha("Codigo do projeto: ");
+
+    try {
+        std::vector<std::string> codigosHistorias;
+
+        bool sucesso = servicoHistoria->listarHistoriasAssociadasProjeto(
+            codigoProjeto,
+            &codigosHistorias
+        );
+
+        if (!sucesso) {
+            std::cout << "\nNao foi possivel listar as historias associadas ao projeto.\n";
+            return;
+        }
+
+        if (codigosHistorias.empty()) {
+            std::cout << "\nNenhuma historia associada a este projeto.\n";
+            return;
+        }
+
+        std::cout << "\nHistorias associadas ao projeto:\n";
+
+        for (std::size_t i = 0; i < codigosHistorias.size(); ++i) {
+            std::cout << "- " << codigosHistorias[i] << "\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao listar historias por projeto.\n";
+    }
 }
 
 void ControladoraApresentacaoHistoria::listarHistoriasPorPlanoSprint() {
@@ -1023,7 +1301,43 @@ void ControladoraApresentacaoHistoria::listarHistoriasPorPlanoSprint() {
         return;
     }
 
-    std::cout << "\n[Historia] Listar historias por plano de sprint ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== LISTAR HISTORIAS POR PLANO DE SPRINT ==========\n";
+
+    std::string codigoPlanoSprint = lerLinha("Codigo do plano de sprint: ");
+
+    try {
+        std::vector<std::string> codigosHistorias;
+
+        bool sucesso = servicoHistoria->listarHistoriasAssociadasPlanoSprint(
+            codigoPlanoSprint,
+            &codigosHistorias
+        );
+
+        if (!sucesso) {
+            std::cout << "\nNao foi possivel listar as historias associadas ao plano de sprint.\n";
+            return;
+        }
+
+        if (codigosHistorias.empty()) {
+            std::cout << "\nNenhuma historia associada a este plano de sprint.\n";
+            return;
+        }
+
+        std::cout << "\nHistorias associadas ao plano de sprint:\n";
+
+        for (std::size_t i = 0; i < codigosHistorias.size(); ++i) {
+            std::cout << "- " << codigosHistorias[i] << "\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao listar historias por plano de sprint.\n";
+    }
 }
 
 void ControladoraApresentacaoHistoria::listarHistoriasPorPessoa() {
@@ -1031,7 +1345,43 @@ void ControladoraApresentacaoHistoria::listarHistoriasPorPessoa() {
         return;
     }
 
-    std::cout << "\n[Historia] Listar historias por pessoa ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== LISTAR HISTORIAS POR PESSOA ==========\n";
+
+    std::string emailPessoa = lerLinha("Email da pessoa: ");
+
+    try {
+        std::vector<std::string> codigosHistorias;
+
+        bool sucesso = servicoHistoria->listarHistoriasAssociadasPessoa(
+            emailPessoa,
+            &codigosHistorias
+        );
+
+        if (!sucesso) {
+            std::cout << "\nNao foi possivel listar as historias associadas a pessoa.\n";
+            return;
+        }
+
+        if (codigosHistorias.empty()) {
+            std::cout << "\nNenhuma historia associada a esta pessoa.\n";
+            return;
+        }
+
+        std::cout << "\nHistorias associadas a pessoa:\n";
+
+        for (std::size_t i = 0; i < codigosHistorias.size(); ++i) {
+            std::cout << "- " << codigosHistorias[i] << "\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao listar historias por pessoa.\n";
+    }
 }
 
 void ControladoraApresentacaoHistoria::moverHistoriaParaPlanoSprint() {
@@ -1039,7 +1389,34 @@ void ControladoraApresentacaoHistoria::moverHistoriaParaPlanoSprint() {
         return;
     }
 
-    std::cout << "\n[Historia] Mover historia para plano de sprint ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== MOVER HISTORIA PARA PLANO DE SPRINT ==========\n";
+
+    std::string codigoHistoria = lerLinha("Codigo da historia: ");
+    std::string codigoProjeto = lerLinha("Codigo do projeto de origem: ");
+    std::string codigoPlanoSprint = lerLinha("Codigo do plano de sprint de destino: ");
+
+    try {
+        bool sucesso = servicoHistoria->moverHistoriaParaPlanoSprint(
+            codigoHistoria,
+            codigoProjeto,
+            codigoPlanoSprint
+        );
+
+        if (sucesso) {
+            std::cout << "\nHistoria movida para o plano de sprint com sucesso.\n";
+        } else {
+            std::cout << "\nNao foi possivel mover a historia para o plano de sprint.\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao mover historia.\n";
+    }
 }
 
 void ControladoraApresentacaoHistoria::alterarEstadoHistoria() {
@@ -1047,7 +1424,29 @@ void ControladoraApresentacaoHistoria::alterarEstadoHistoria() {
         return;
     }
 
-    std::cout << "\n[Historia] Alterar estado da historia ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== ALTERAR ESTADO DA HISTORIA ==========\n";
+
+    std::string codigoHistoria = lerLinha("Codigo da historia: ");
+    std::string novoEstado = lerLinha("Novo estado [A FAZER, FAZENDO, FEITO]: ");
+
+    try {
+        bool sucesso = servicoHistoria->alterarEstado(codigoHistoria, novoEstado);
+
+        if (sucesso) {
+            std::cout << "\nEstado da historia alterado com sucesso.\n";
+        } else {
+            std::cout << "\nNao foi possivel alterar o estado da historia.\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao alterar estado da historia.\n";
+    }
 }
 
 // -----------------------------------------------------------------------------
