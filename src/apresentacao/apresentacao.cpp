@@ -44,14 +44,6 @@ int lerOpcao(const std::string& mensagem) {
 }
 
 /**
- * @brief Pausa simples para facilitar visualizacao no console.
- */
-void pausar() {
-    std::cout << "\nPressione ENTER para continuar...";
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-}
-
-/**
  * @brief Verifica se um ponteiro de servico foi configurado.
  *
  * @param ponteiro Ponteiro que sera verificado.
