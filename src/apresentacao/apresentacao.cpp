@@ -651,13 +651,42 @@ void ControladoraApresentacaoPlanoSprint::executar() {
 
     } while (opcao != 0);
 }
-
 void ControladoraApresentacaoPlanoSprint::criarPlanoSprint() {
     if (!verificarServico(servicoPlanoSprint)) {
         return;
     }
 
-    std::cout << "\n[Plano de Sprint] Criar plano de sprint ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== CRIAR PLANO DE SPRINT ==========\n";
+
+    std::string codigo = lerLinha("Codigo do plano de sprint: ");
+    std::string objetivo = lerLinha("Objetivo: ");
+    std::string capacidade = lerLinha("Capacidade [1 a 365]: ");
+    std::string codigoProjeto = lerLinha("Codigo do projeto associado: ");
+
+    try {
+        PlanoSprint planoSprint;
+
+        planoSprint.setCodigo(codigo);
+        planoSprint.setObjetivo(objetivo);
+        planoSprint.setCapacidade(std::stoi(capacidade));
+
+        bool sucesso = servicoPlanoSprint->criar(planoSprint, codigoProjeto);
+
+        if (sucesso) {
+            std::cout << "\nPlano de sprint criado com sucesso.\n";
+        } else {
+            std::cout << "\nNao foi possivel criar o plano de sprint.\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao criar plano de sprint.\n";
+    }
 }
 
 void ControladoraApresentacaoPlanoSprint::lerPlanoSprint() {
@@ -665,7 +694,34 @@ void ControladoraApresentacaoPlanoSprint::lerPlanoSprint() {
         return;
     }
 
-    std::cout << "\n[Plano de Sprint] Ler plano de sprint ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== LER PLANO DE SPRINT ==========\n";
+
+    std::string codigo = lerLinha("Codigo do plano de sprint: ");
+
+    try {
+        PlanoSprint planoSprint;
+
+        bool sucesso = servicoPlanoSprint->ler(codigo, &planoSprint);
+
+        if (!sucesso) {
+            std::cout << "\nPlano de sprint nao encontrado.\n";
+            return;
+        }
+
+        std::cout << "\nDados do plano de sprint:\n";
+        std::cout << "Codigo    : " << planoSprint.getCodigo() << "\n";
+        std::cout << "Objetivo  : " << planoSprint.getObjetivo() << "\n";
+        std::cout << "Capacidade: " << planoSprint.getCapacidade() << "\n";
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao ler plano de sprint.\n";
+    }
 }
 
 void ControladoraApresentacaoPlanoSprint::atualizarPlanoSprint() {
@@ -673,7 +729,54 @@ void ControladoraApresentacaoPlanoSprint::atualizarPlanoSprint() {
         return;
     }
 
-    std::cout << "\n[Plano de Sprint] Atualizar plano de sprint ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== ATUALIZAR PLANO DE SPRINT ==========\n";
+
+    std::string codigo = lerLinha("Codigo do plano de sprint que sera atualizado: ");
+
+    try {
+        PlanoSprint planoAtual;
+
+        bool encontrado = servicoPlanoSprint->ler(codigo, &planoAtual);
+
+        if (!encontrado) {
+            std::cout << "\nPlano de sprint nao encontrado.\n";
+            return;
+        }
+
+        std::cout << "\nDados atuais:\n";
+        std::cout << "Codigo    : " << planoAtual.getCodigo() << "\n";
+        std::cout << "Objetivo  : " << planoAtual.getObjetivo() << "\n";
+        std::cout << "Capacidade: " << planoAtual.getCapacidade() << "\n";
+
+        std::cout << "\nInforme os novos dados.\n";
+        std::cout << "Observacao: o codigo nao sera alterado, pois e chave primaria.\n";
+
+        std::string novoObjetivo = lerLinha("Novo objetivo: ");
+        std::string novaCapacidade = lerLinha("Nova capacidade [1 a 365]: ");
+
+        PlanoSprint planoAtualizado;
+
+        planoAtualizado.setCodigo(codigo);
+        planoAtualizado.setObjetivo(novoObjetivo);
+        planoAtualizado.setCapacidade(std::stoi(novaCapacidade));
+
+        bool sucesso = servicoPlanoSprint->atualizar(planoAtualizado);
+
+        if (sucesso) {
+            std::cout << "\nPlano de sprint atualizado com sucesso.\n";
+        } else {
+            std::cout << "\nNao foi possivel atualizar o plano de sprint.\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao atualizar plano de sprint.\n";
+    }
 }
 
 void ControladoraApresentacaoPlanoSprint::excluirPlanoSprint() {
@@ -681,7 +784,49 @@ void ControladoraApresentacaoPlanoSprint::excluirPlanoSprint() {
         return;
     }
 
-    std::cout << "\n[Plano de Sprint] Excluir plano de sprint ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== EXCLUIR PLANO DE SPRINT ==========\n";
+
+    std::string codigo = lerLinha("Codigo do plano de sprint que sera excluido: ");
+
+    try {
+        PlanoSprint planoSprint;
+
+        bool encontrado = servicoPlanoSprint->ler(codigo, &planoSprint);
+
+        if (!encontrado) {
+            std::cout << "\nPlano de sprint nao encontrado.\n";
+            return;
+        }
+
+        std::cout << "\nPlano de sprint encontrado:\n";
+        std::cout << "Codigo    : " << planoSprint.getCodigo() << "\n";
+        std::cout << "Objetivo  : " << planoSprint.getObjetivo() << "\n";
+        std::cout << "Capacidade: " << planoSprint.getCapacidade() << "\n";
+
+        std::string confirmacao = lerLinha("\nConfirmar exclusao? [S/N]: ");
+
+        if (confirmacao != "S" && confirmacao != "s") {
+            std::cout << "\nExclusao cancelada.\n";
+            return;
+        }
+
+        bool sucesso = servicoPlanoSprint->excluir(codigo);
+
+        if (sucesso) {
+            std::cout << "\nPlano de sprint excluido com sucesso.\n";
+        } else {
+            std::cout << "\nNao foi possivel excluir o plano de sprint.\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao excluir plano de sprint.\n";
+    }
 }
 
 void ControladoraApresentacaoPlanoSprint::listarPlanosPorProjeto() {
@@ -689,7 +834,43 @@ void ControladoraApresentacaoPlanoSprint::listarPlanosPorProjeto() {
         return;
     }
 
-    std::cout << "\n[Plano de Sprint] Listar planos por projeto ainda sera implementado em detalhe.\n";
+    std::cout << "\n========== LISTAR PLANOS POR PROJETO ==========\n";
+
+    std::string codigoProjeto = lerLinha("Codigo do projeto: ");
+
+    try {
+        std::vector<std::string> codigosPlanos;
+
+        bool sucesso = servicoPlanoSprint->listarPlanosSprintAssociadosProjeto(
+            codigoProjeto,
+            &codigosPlanos
+        );
+
+        if (!sucesso) {
+            std::cout << "\nNao foi possivel listar os planos associados ao projeto.\n";
+            return;
+        }
+
+        if (codigosPlanos.empty()) {
+            std::cout << "\nNenhum plano de sprint associado a este projeto.\n";
+            return;
+        }
+
+        std::cout << "\nPlanos de sprint associados:\n";
+
+        for (std::size_t i = 0; i < codigosPlanos.size(); ++i) {
+            std::cout << "- " << codigosPlanos[i] << "\n";
+        }
+
+    } catch (const std::invalid_argument& e) {
+        std::cout << "\nErro de validacao: " << e.what() << "\n";
+
+    } catch (const std::exception& e) {
+        std::cout << "\nErro: " << e.what() << "\n";
+
+    } catch (...) {
+        std::cout << "\nErro desconhecido ao listar planos por projeto.\n";
+    }
 }
 
 // -----------------------------------------------------------------------------
