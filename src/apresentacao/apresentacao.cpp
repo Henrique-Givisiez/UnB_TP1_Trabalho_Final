@@ -175,7 +175,6 @@ void ControladoraApresentacaoPessoa::lerPessoa() {
         std::cout << "\nDados da pessoa:\n";
         std::cout << "Email: " << pessoa.getEmail() << "\n";
         std::cout << "Nome : " << pessoa.getNome() << "\n";
-        std::cout << "Senha: " << pessoa.getSenha() << "\n";
         std::cout << "Papel: " << pessoa.getPapel() << "\n";
 
     } catch (const std::invalid_argument& e) {
@@ -215,6 +214,7 @@ void ControladoraApresentacaoPessoa::atualizarPessoa() {
         std::cout << "Papel: " << pessoaAtual.getPapel() << "\n";
 
         std::cout << "\nInforme os novos dados.\n";
+        std::cout << "Observacao: pressione ENTER para manter o valor atual.\n";
         std::cout << "Observacao: o email nao sera alterado, pois e chave primaria.\n";
 
         std::string novoNome  = lerLinha("Novo nome: ");
@@ -223,10 +223,30 @@ void ControladoraApresentacaoPessoa::atualizarPessoa() {
 
         Pessoa pessoaAtualizada;
 
-        pessoaAtualizada.setEmail(email);
-        pessoaAtualizada.setNome(novoNome);
-        pessoaAtualizada.setSenha(novaSenha);
-        pessoaAtualizada.setPapel(novoPapel);
+        /*
+         * Mantem sempre o mesmo email, pois email e chave primaria.
+         */
+        pessoaAtualizada.setEmail(pessoaAtual.getEmail());
+
+        /*
+         * Comeca preservando os dados atuais.
+         * Em seguida, altera apenas os campos preenchidos pelo usuario.
+         */
+        pessoaAtualizada.setNome(pessoaAtual.getNome());
+        pessoaAtualizada.setSenha(pessoaAtual.getSenha());
+        pessoaAtualizada.setPapel(pessoaAtual.getPapel());
+
+        if (!novoNome.empty()) {
+            pessoaAtualizada.setNome(novoNome);
+        }
+
+        if (!novaSenha.empty()) {
+            pessoaAtualizada.setSenha(novaSenha);
+        }
+
+        if (!novoPapel.empty()) {
+            pessoaAtualizada.setPapel(novoPapel);
+        }
 
         bool sucesso = servicoPessoa->atualizar(pessoaAtualizada);
 
