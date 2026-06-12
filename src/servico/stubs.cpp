@@ -59,9 +59,10 @@ bool StubPessoaServico::excluir(const string& email) {
 /* ========================================================= */
 
 bool StubProjetoServico::criar(const Projeto& projeto,
-                               const string& emailMestreScrum) {
+                               const std::string& emailMestreScrum,
+                               const std::string& emailUsuarioAutenticado) {
 
-    return !emailMestreScrum.empty();
+    return true;
 }
 
 bool StubProjetoServico::ler(const string& codigo,
@@ -79,12 +80,14 @@ bool StubProjetoServico::ler(const string& codigo,
     return true;
 }
 
-bool StubProjetoServico::atualizar(const Projeto& projeto) {
+bool StubProjetoServico::atualizar(const Projeto& projeto,
+                                  const string& emailUsuarioAutenticado) {
     return true;
 }
 
-bool StubProjetoServico::excluir(const string& codigo) {
-    return !codigo.empty();
+bool StubProjetoServico::excluir(const string& codigo,
+                                 const string& emailUsuarioAutenticado) {
+    return true;
 }
 
 bool StubProjetoServico::listarProjetosAssociadosPessoa(

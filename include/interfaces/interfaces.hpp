@@ -45,18 +45,64 @@ public:
 };
 
 /**
- * @brief Interface responsável pelos serviços relacionados a projetos.
+ * @brief Interface para serviços relacionados a Projeto.
  */
 class IProjetoServico {
 public:
-    virtual bool criar(const Projeto& projeto, const std::string& emailMestreScrum) = 0;
-    virtual bool ler(const std::string& codigo, Projeto* projeto) = 0;
-    virtual bool atualizar(const Projeto& projeto) = 0;
-    virtual bool excluir(const std::string& codigo) = 0;
+    /**
+     * @brief Cria um projeto.
+     *
+     * @param projeto Projeto a ser criado.
+     * @param emailMestreScrum Email do Mestre Scrum associado ao projeto.
+     * @param emailUsuarioAutenticado Email do usuário autenticado.
+     * @return true se o projeto foi criado; false caso contrário.
+     */
+    virtual bool criar(const Projeto& projeto,
+                       const std::string& emailMestreScrum,
+                       const std::string& emailUsuarioAutenticado) = 0;
 
+    /**
+     * @brief Lê um projeto.
+     *
+     * @param codigo Código do projeto.
+     * @param projeto Ponteiro para receber os dados do projeto.
+     * @return true se encontrou; false caso contrário.
+     */
+    virtual bool ler(const std::string& codigo, Projeto* projeto) = 0;
+
+    /**
+     * @brief Atualiza um projeto.
+     *
+     * @param projeto Projeto com os dados atualizados.
+     * @param emailUsuarioAutenticado Email do usuário autenticado.
+     * @return true se atualizou; false caso contrário.
+     */
+    virtual bool atualizar(const Projeto& projeto,
+                           const std::string& emailUsuarioAutenticado) = 0;
+
+    /**
+     * @brief Exclui um projeto.
+     *
+     * @param codigo Código do projeto.
+     * @param emailUsuarioAutenticado Email do usuário autenticado.
+     * @return true se excluiu; false caso contrário.
+     */
+    virtual bool excluir(const std::string& codigo,
+                         const std::string& emailUsuarioAutenticado) = 0;
+
+    /**
+     * @brief Lista os projetos associados a uma pessoa.
+     *
+     * @param emailPessoa Email da pessoa.
+     * @param codigosProjetos Ponteiro para receber os códigos dos projetos.
+     * @return true se a operação foi realizada; false caso contrário.
+     */
     virtual bool listarProjetosAssociadosPessoa(const std::string& emailPessoa,
                                                 std::vector<std::string>* codigosProjetos) = 0;
 
+    /**
+     * @brief Destrutor virtual.
+     */
     virtual ~IProjetoServico() {}
 };
 

@@ -196,4 +196,75 @@ public:
                     Pessoa* pessoaAutenticada) override;
 };
 
+/**
+ * @brief Serviço real responsável pelas operações de Projeto.
+ *
+ * Implementa a interface IProjetoServico usando armazenamento em memória
+ * e aplicando regras de negócio relacionadas a projetos.
+ */
+class ProjetoServico : public IProjetoServico {
+private:
+    BancoDadosMemoria* banco;
+
+public:
+    /**
+     * @brief Construtor.
+     *
+     * @param banco Ponteiro para o banco de dados em memória compartilhado.
+     */
+    explicit ProjetoServico(BancoDadosMemoria* banco);
+
+    /**
+     * @brief Cria um projeto.
+     *
+     * Apenas usuários com papel PROPRIETARIO DE PRODUTO podem criar projetos.
+     * O Mestre Scrum informado deve existir e possuir papel MESTRE SCRUM.
+     *
+     * @param projeto Projeto a ser criado.
+     * @param emailMestreScrum Email do Mestre Scrum associado ao projeto.
+     * @param emailUsuarioAutenticado Email do usuário autenticado que solicitou a criação.
+     * @return true se criou; false caso contrário.
+     */
+    bool criar(const Projeto& projeto,
+               const std::string& emailMestreScrum,
+               const std::string& emailUsuarioAutenticado) override;
+
+    /**
+     * @brief Lê um projeto cadastrado.
+     *
+     * @param codigo Código do projeto.
+     * @param projeto Ponteiro para receber os dados encontrados.
+     * @return true se encontrou; false caso contrário.
+     */
+    bool ler(const std::string& codigo, Projeto* projeto) override;
+
+    /**
+     * @brief Atualiza um projeto cadastrado.
+     *
+     * @param projeto Projeto com os novos dados.
+     * @param emailUsuarioAutenticado Email do usuário autenticado que solicitou a atualização.
+     * @return true se atualizou; false caso contrário.
+     */
+    bool atualizar(const Projeto& projeto, const std::string& emailUsuarioAutenticado) override;
+
+    /**
+     * @brief Exclui um projeto cadastrado.
+     *
+     * @param codigo Código do projeto.
+     * @param emailUsuarioAutenticado Email do usuário autenticado que solicitou a exclusão.
+     * @return true se excluiu; false caso contrário.
+     */
+    bool excluir(const std::string& codigo, const std::string& emailUsuarioAutenticado) override;
+
+    /**
+     * @brief Lista os projetos associados a uma pessoa.
+     *
+     * @param emailPessoa Email da pessoa.
+     * @param codigosProjetos Ponteiro para receber os códigos dos projetos.
+     * @return true se a operação foi realizada; false caso contrário.
+     */
+    bool listarProjetosAssociadosPessoa(const std::string& emailPessoa,
+                                        std::vector<std::string>* codigosProjetos) override;
+};
+
 #endif

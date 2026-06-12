@@ -139,7 +139,7 @@ void ControladoraApresentacaoPessoa::criarPessoa() {
         if (sucesso) {
             std::cout << "\nPessoa criada com sucesso.\n";
         } else {
-            std::cout << "\nNao foi possivel criar a pessoa.\n";
+            std::cout << "\nJa existe uma pessoa com esse email.\n";
         }
 
     } catch (const std::invalid_argument& e) {
@@ -323,6 +323,7 @@ void ControladoraApresentacaoPessoa::excluirPessoa() {
 
 ControladoraApresentacaoProjeto::ControladoraApresentacaoProjeto() {
     this->servicoProjeto = nullptr;
+    emailUsuarioAutenticado = "";
 }
 
 void ControladoraApresentacaoProjeto::setServicoProjeto(IProjetoServico* servicoProjeto) {
@@ -376,6 +377,10 @@ void ControladoraApresentacaoProjeto::executar() {
     } while (opcao != 0);
 }
 
+void ControladoraApresentacaoProjeto::setEmailUsuarioAutenticado(const std::string& emailUsuarioAutenticado) {
+    this->emailUsuarioAutenticado = emailUsuarioAutenticado;
+}
+
 void ControladoraApresentacaoProjeto::criarProjeto() {
     if (!verificarServico(servicoProjeto)) {
         return;
@@ -397,12 +402,16 @@ void ControladoraApresentacaoProjeto::criarProjeto() {
         projeto.setInicio(inicio);
         projeto.setTermino(termino);
 
-        bool sucesso = servicoProjeto->criar(projeto, emailMestreScrum);
+        bool sucesso = servicoProjeto->criar(projeto,
+                                            emailMestreScrum,
+                                            emailUsuarioAutenticado);
 
         if (sucesso) {
             std::cout << "\nProjeto criado com sucesso.\n";
         } else {
             std::cout << "\nNao foi possivel criar o projeto.\n";
+            std::cout << "Verifique se o usuario autenticado e PROPRIETARIO DE PRODUTO,\n";
+            std::cout << "se o Mestre Scrum informado existe e se o codigo do projeto ainda nao foi usado.\n";
         }
 
     } catch (const std::invalid_argument& e) {
@@ -478,25 +487,41 @@ void ControladoraApresentacaoProjeto::atualizarProjeto() {
         std::cout << "Termino: " << projetoAtual.getTermino() << "\n";
 
         std::cout << "\nInforme os novos dados.\n";
+        std::cout << "Observacao: pressione ENTER para manter o valor atual.\n";
         std::cout << "Observacao: o codigo nao sera alterado, pois e chave primaria.\n";
 
-        std::string novoNome = lerLinha("Novo nome: ");
-        std::string novoInicio = lerLinha("Nova data de inicio [DD/MM/AAAA]: ");
+        std::string novoNome    = lerLinha("Novo nome: ");
+        std::string novoInicio  = lerLinha("Nova data de inicio [DD/MM/AAAA]: ");
         std::string novoTermino = lerLinha("Nova data de termino [DD/MM/AAAA]: ");
 
         Projeto projetoAtualizado;
 
-        projetoAtualizado.setCodigo(codigo);
-        projetoAtualizado.setNome(novoNome);
-        projetoAtualizado.setInicio(novoInicio);
-        projetoAtualizado.setTermino(novoTermino);
+        projetoAtualizado.setCodigo(projetoAtual.getCodigo());
+        projetoAtualizado.setNome(projetoAtual.getNome());
+        projetoAtualizado.setInicio(projetoAtual.getInicio());
+        projetoAtualizado.setTermino(projetoAtual.getTermino());
+        
+        if (!novoNome.empty()) {
+            projetoAtualizado.setNome(novoNome);
+        }
 
-        bool sucesso = servicoProjeto->atualizar(projetoAtualizado);
+        if (!novoInicio.empty()) {
+            projetoAtualizado.setInicio(novoInicio);
+        }
+
+        if (!novoTermino.empty()) {
+            projetoAtualizado.setTermino(novoTermino);
+        }
+
+        bool sucesso = servicoProjeto->atualizar(projetoAtualizado, 
+                                                 emailUsuarioAutenticado);
 
         if (sucesso) {
             std::cout << "\nProjeto atualizado com sucesso.\n";
         } else {
             std::cout << "\nNao foi possivel atualizar o projeto.\n";
+            std::cout << "Verifique se o usuario autenticado e PROPRIETARIO DE PRODUTO,\n";
+            std::cout << "se o projeto existe e se as datas informadas sao validas.\n";
         }
 
     } catch (const std::invalid_argument& e) {
@@ -542,12 +567,15 @@ void ControladoraApresentacaoProjeto::excluirProjeto() {
             return;
         }
 
-        bool sucesso = servicoProjeto->excluir(codigo);
+        bool sucesso = servicoProjeto->excluir(codigo, 
+                                               emailUsuarioAutenticado);
 
         if (sucesso) {
             std::cout << "\nProjeto excluido com sucesso.\n";
         } else {
             std::cout << "\nNao foi possivel excluir o projeto.\n";
+            std::cout << "Verifique se o usuario autenticado e PROPRIETARIO DE PRODUTO,\n";
+            std::cout << "se o projeto existe e se nao ha planos de sprint ou historias associadas.\n";
         }
 
     } catch (const std::invalid_argument& e) {
@@ -1569,6 +1597,7 @@ void ControladoraApresentacao::mostrarMenuPrincipal() {
 
             case 2:
                 if (controladoraProjeto != nullptr) {
+                    controladoraProjeto->setEmailUsuarioAutenticado(pessoaAutenticada.getEmail());
                     controladoraProjeto->executar();
                 } else {
                     std::cout << "\nControladora de projeto nao configurada.\n";

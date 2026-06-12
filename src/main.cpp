@@ -10,8 +10,8 @@ int main() {
 
     PessoaServico pessoaServico(&banco);
     AuthServico authServico(&banco);
+    ProjetoServico projetoServico(&banco);
 
-    StubProjetoServico projetoServico;
     StubPlanoSprintServico planoSprintServico;
     StubHistoriaServico historiaServico;
 

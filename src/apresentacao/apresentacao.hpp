@@ -34,12 +34,20 @@ private:
 class ControladoraApresentacaoProjeto {
 private:
     IProjetoServico* servicoProjeto;
+    std::string emailUsuarioAutenticado;
 
 public:
     ControladoraApresentacaoProjeto();
 
     void setServicoProjeto(IProjetoServico* servicoProjeto);
-
+    
+    /**
+     * @brief Define o email do usuário autenticado.
+     *
+     * @param emailUsuarioAutenticado Email do usuário autenticado no sistema.
+     */
+    void setEmailUsuarioAutenticado(const std::string& emailUsuarioAutenticado);
+    
     void executar();
 
 private:

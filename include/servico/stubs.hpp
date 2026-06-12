@@ -34,14 +34,17 @@ public:
 class StubProjetoServico : public IProjetoServico {
 public:
     bool criar(const Projeto& projeto,
-               const std::string& emailMestreScrum) override;
+           const std::string& emailMestreScrum,
+           const std::string& emailUsuarioAutenticado) override;
 
     bool ler(const std::string& codigo,
              Projeto* projeto) override;
 
-    bool atualizar(const Projeto& projeto) override;
+    bool atualizar(const Projeto& projeto, 
+                   const std::string& emailUsuarioAutenticado) override;
 
-    bool excluir(const std::string& codigo) override;
+    bool excluir(const std::string& codigo, 
+                 const std::string& emailUsuarioAutenticado) override;
 
     bool listarProjetosAssociadosPessoa(
         const std::string& emailPessoa,
