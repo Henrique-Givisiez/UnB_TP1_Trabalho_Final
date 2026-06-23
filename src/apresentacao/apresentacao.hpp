@@ -64,11 +64,19 @@ private:
 class ControladoraApresentacaoPlanoSprint {
 private:
     IPlanoSprintServico* servicoPlanoSprint;
+    std::string emailUsuarioAutenticado;
 
 public:
     ControladoraApresentacaoPlanoSprint();
 
     void setServicoPlanoSprint(IPlanoSprintServico* servicoPlanoSprint);
+
+    /**
+     * @brief Define o email do usuário autenticado.
+     *
+     * @param emailUsuarioAutenticado Email do usuário autenticado no sistema.
+     */
+    void setEmailUsuarioAutenticado(const std::string& emailUsuarioAutenticado);
 
     void executar();
 
@@ -120,6 +128,7 @@ private:
 class ControladoraApresentacao {
 private:
     IAuthServico* servicoAuth;
+    IPessoaServico* servicoPessoa;
 
     ControladoraApresentacaoPessoa* controladoraPessoa;
     ControladoraApresentacaoProjeto* controladoraProjeto;
@@ -133,6 +142,8 @@ public:
 
     void setServicoAuth(IAuthServico* servicoAuth);
 
+    void setServicoPessoa(IPessoaServico* servicoPessoa);
+
     void setControladoraPessoa(ControladoraApresentacaoPessoa* controladoraPessoa);
     void setControladoraProjeto(ControladoraApresentacaoProjeto* controladoraProjeto);
     void setControladoraPlanoSprint(ControladoraApresentacaoPlanoSprint* controladoraPlanoSprint);
@@ -143,6 +154,8 @@ public:
 private:
     bool autenticar();
     void mostrarMenuPrincipal();
+
+    void atualizarPessoaAutenticada();
 };
 
 #endif

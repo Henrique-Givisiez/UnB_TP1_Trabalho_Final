@@ -267,4 +267,80 @@ public:
                                         std::vector<std::string>* codigosProjetos) override;
 };
 
+/**
+ * @brief Serviço real responsável pelas operações de Plano de Sprint.
+ *
+ * Implementa a interface IPlanoSprintServico usando armazenamento em memória
+ * e aplicando regras de negócio relacionadas aos planos de sprint.
+ */
+class PlanoSprintServico : public IPlanoSprintServico {
+private:
+    BancoDadosMemoria* banco;
+
+public:
+    /**
+     * @brief Construtor.
+     *
+     * @param banco Ponteiro para o banco de dados em memória compartilhado.
+     */
+    explicit PlanoSprintServico(BancoDadosMemoria* banco);
+
+    /**
+     * @brief Cria um plano de sprint associado a um projeto.
+     *
+     * Apenas usuários com papel MESTRE SCRUM podem criar planos de sprint.
+     *
+     * @param planoSprint Plano de sprint a ser criado.
+     * @param codigoProjeto Código do projeto associado.
+     * @param emailUsuarioAutenticado Email do usuário autenticado.
+     * @return true se criou; false caso contrário.
+     */
+    bool criar(const PlanoSprint& planoSprint,
+               const std::string& codigoProjeto,
+               const std::string& emailUsuarioAutenticado) override;
+
+    /**
+     * @brief Lê um plano de sprint cadastrado.
+     *
+     * @param codigo Código do plano de sprint.
+     * @param planoSprint Ponteiro para receber os dados encontrados.
+     * @return true se encontrou; false caso contrário.
+     */
+    bool ler(const std::string& codigo, PlanoSprint* planoSprint) override;
+
+    /**
+     * @brief Atualiza um plano de sprint cadastrado.
+     *
+     * Apenas usuários com papel MESTRE SCRUM podem atualizar planos de sprint.
+     *
+     * @param planoSprint Plano de sprint atualizado.
+     * @param emailUsuarioAutenticado Email do usuário autenticado.
+     * @return true se atualizou; false caso contrário.
+     */
+    bool atualizar(const PlanoSprint& planoSprint,
+                   const std::string& emailUsuarioAutenticado) override;
+
+    /**
+     * @brief Exclui um plano de sprint cadastrado.
+     *
+     * A exclusão só ocorre se não houver histórias associadas ao plano.
+     *
+     * @param codigo Código do plano de sprint.
+     * @param emailUsuarioAutenticado Email do usuário autenticado.
+     * @return true se excluiu; false caso contrário.
+     */
+    bool excluir(const std::string& codigo,
+                 const std::string& emailUsuarioAutenticado) override;
+
+    /**
+     * @brief Lista planos de sprint associados a um projeto.
+     *
+     * @param codigoProjeto Código do projeto.
+     * @param codigosPlanosSprint Ponteiro para receber os códigos dos planos.
+     * @return true se a operação foi realizada; false caso contrário.
+     */
+    bool listarPlanosSprintAssociadosProjeto(const std::string& codigoProjeto,
+                                             std::vector<std::string>* codigosPlanosSprint) override;
+};
+
 #endif

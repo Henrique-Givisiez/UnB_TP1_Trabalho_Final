@@ -57,14 +57,18 @@ public:
 class StubPlanoSprintServico : public IPlanoSprintServico {
 public:
     bool criar(const PlanoSprint& planoSprint,
-               const std::string& codigoProjeto) override;
+           const std::string& codigoProjeto,
+           const std::string& emailUsuarioAutenticado) override;
+
 
     bool ler(const std::string& codigo,
              PlanoSprint* planoSprint) override;
 
-    bool atualizar(const PlanoSprint& planoSprint) override;
-
-    bool excluir(const std::string& codigo) override;
+    bool atualizar(const PlanoSprint& planoSprint,
+               const std::string& emailUsuarioAutenticado) override;
+    
+    bool excluir(const std::string& codigo,
+                const std::string& emailUsuarioAutenticado) override;
 
     bool listarPlanosSprintAssociadosProjeto(
         const std::string& codigoProjeto,

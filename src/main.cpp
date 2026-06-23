@@ -11,8 +11,8 @@ int main() {
     PessoaServico pessoaServico(&banco);
     AuthServico authServico(&banco);
     ProjetoServico projetoServico(&banco);
+    PlanoSprintServico planoSprintServico(&banco);
 
-    StubPlanoSprintServico planoSprintServico;
     StubHistoriaServico historiaServico;
 
     /*
@@ -48,7 +48,8 @@ int main() {
     controladoraHistoria.setServicoHistoria(&historiaServico);
 
     controladoraApresentacao.setServicoAuth(&authServico);
-
+    controladoraApresentacao.setServicoPessoa(&pessoaServico);
+    
     controladoraApresentacao.setControladoraPessoa(&controladoraPessoa);
     controladoraApresentacao.setControladoraProjeto(&controladoraProjeto);
     controladoraApresentacao.setControladoraPlanoSprint(&controladoraPlanoSprint);

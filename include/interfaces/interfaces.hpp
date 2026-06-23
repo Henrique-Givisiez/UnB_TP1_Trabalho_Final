@@ -107,21 +107,27 @@ public:
 };
 
 /**
- * @brief Interface responsável pelos serviços relacionados a planos de sprint.
+ * @brief Interface para serviços relacionados a Plano de Sprint.
  */
 class IPlanoSprintServico {
 public:
-    virtual bool criar(const PlanoSprint& planoSprint, const std::string& codigoProjeto) = 0;
+    virtual bool criar(const PlanoSprint& planoSprint,
+                       const std::string& codigoProjeto,
+                       const std::string& emailUsuarioAutenticado) = 0;
+
     virtual bool ler(const std::string& codigo, PlanoSprint* planoSprint) = 0;
-    virtual bool atualizar(const PlanoSprint& planoSprint) = 0;
-    virtual bool excluir(const std::string& codigo) = 0;
+
+    virtual bool atualizar(const PlanoSprint& planoSprint,
+                           const std::string& emailUsuarioAutenticado) = 0;
+
+    virtual bool excluir(const std::string& codigo,
+                         const std::string& emailUsuarioAutenticado) = 0;
 
     virtual bool listarPlanosSprintAssociadosProjeto(const std::string& codigoProjeto,
-                                                     std::vector<std::string>* codigosPlanos) = 0;
+                                                     std::vector<std::string>* codigosPlanosSprint) = 0;
 
     virtual ~IPlanoSprintServico() {}
 };
-
 /**
  * @brief Interface responsável pelos serviços relacionados a histórias de usuário.
  */

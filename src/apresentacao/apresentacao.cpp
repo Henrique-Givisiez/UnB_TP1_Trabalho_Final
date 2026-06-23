@@ -638,7 +638,12 @@ void ControladoraApresentacaoProjeto::listarProjetosPorPessoa() {
 // -----------------------------------------------------------------------------
 
 ControladoraApresentacaoPlanoSprint::ControladoraApresentacaoPlanoSprint() {
-    this->servicoPlanoSprint = nullptr;
+    servicoPlanoSprint = nullptr;
+    emailUsuarioAutenticado = "";
+}
+
+void ControladoraApresentacaoPlanoSprint::setEmailUsuarioAutenticado(const std::string& emailUsuarioAutenticado) {
+    this->emailUsuarioAutenticado = emailUsuarioAutenticado;
 }
 
 void ControladoraApresentacaoPlanoSprint::setServicoPlanoSprint(IPlanoSprintServico* servicoPlanoSprint) {
@@ -710,7 +715,9 @@ void ControladoraApresentacaoPlanoSprint::criarPlanoSprint() {
         planoSprint.setObjetivo(objetivo);
         planoSprint.setCapacidade(std::stoi(capacidade));
 
-        bool sucesso = servicoPlanoSprint->criar(planoSprint, codigoProjeto);
+        bool sucesso = servicoPlanoSprint->criar(planoSprint,
+                                         codigoProjeto,
+                                         emailUsuarioAutenticado);
 
         if (sucesso) {
             std::cout << "\nPlano de sprint criado com sucesso.\n";
@@ -789,23 +796,35 @@ void ControladoraApresentacaoPlanoSprint::atualizarPlanoSprint() {
         std::cout << "Capacidade: " << planoAtual.getCapacidade() << "\n";
 
         std::cout << "\nInforme os novos dados.\n";
+        std::cout << "Observacao: pressione ENTER para manter o valor atual.\n";
         std::cout << "Observacao: o codigo nao sera alterado, pois e chave primaria.\n";
 
         std::string novoObjetivo = lerLinha("Novo objetivo: ");
-        std::string novaCapacidade = lerLinha("Nova capacidade [1 a 365]: ");
+        std::string novaCapacidadeTexto = lerLinha("Nova capacidade [1 a 365]: ");
 
         PlanoSprint planoAtualizado;
 
-        planoAtualizado.setCodigo(codigo);
-        planoAtualizado.setObjetivo(novoObjetivo);
-        planoAtualizado.setCapacidade(std::stoi(novaCapacidade));
+        planoAtualizado.setCodigo(planoAtual.getCodigo());
+        planoAtualizado.setObjetivo(planoAtual.getObjetivo());
+        planoAtualizado.setCapacidade(planoAtual.getCapacidade());
 
-        bool sucesso = servicoPlanoSprint->atualizar(planoAtualizado);
+        if (!novoObjetivo.empty()) {
+            planoAtualizado.setObjetivo(novoObjetivo);
+        }
+
+        if (!novaCapacidadeTexto.empty()) {
+            int novaCapacidade = std::stoi(novaCapacidadeTexto);
+            planoAtualizado.setCapacidade(novaCapacidade);
+        }
+
+        bool sucesso = servicoPlanoSprint->atualizar(planoAtualizado, emailUsuarioAutenticado);
 
         if (sucesso) {
             std::cout << "\nPlano de sprint atualizado com sucesso.\n";
         } else {
             std::cout << "\nNao foi possivel atualizar o plano de sprint.\n";
+            std::cout << "Verifique se o usuario autenticado e MESTRE SCRUM,\n";
+            std::cout << "se o plano existe e se a capacidade nao viola a duracao do projeto.\n";
         }
 
     } catch (const std::invalid_argument& e) {
@@ -850,7 +869,7 @@ void ControladoraApresentacaoPlanoSprint::excluirPlanoSprint() {
             return;
         }
 
-        bool sucesso = servicoPlanoSprint->excluir(codigo);
+        bool sucesso = servicoPlanoSprint->excluir(codigo, emailUsuarioAutenticado);
 
         if (sucesso) {
             std::cout << "\nPlano de sprint excluido com sucesso.\n";
@@ -1495,6 +1514,7 @@ void ControladoraApresentacaoHistoria::alterarEstadoHistoria() {
 
 ControladoraApresentacao::ControladoraApresentacao() {
     this->servicoAuth = nullptr;
+    this->servicoPessoa = nullptr;
 
     this->controladoraPessoa = nullptr;
     this->controladoraProjeto = nullptr;
@@ -1504,6 +1524,10 @@ ControladoraApresentacao::ControladoraApresentacao() {
 
 void ControladoraApresentacao::setServicoAuth(IAuthServico* servicoAuth) {
     this->servicoAuth = servicoAuth;
+}
+
+void ControladoraApresentacao::setServicoPessoa(IPessoaServico* servicoPessoa) {
+    this->servicoPessoa = servicoPessoa;
 }
 
 void ControladoraApresentacao::setControladoraPessoa(ControladoraApresentacaoPessoa* controladoraPessoa) {
@@ -1520,6 +1544,20 @@ void ControladoraApresentacao::setControladoraPlanoSprint(ControladoraApresentac
 
 void ControladoraApresentacao::setControladoraHistoria(ControladoraApresentacaoHistoria* controladoraHistoria) {
     this->controladoraHistoria = controladoraHistoria;
+}
+
+void ControladoraApresentacao::atualizarPessoaAutenticada() {
+    if (servicoPessoa == nullptr) {
+        return;
+    }
+
+    Pessoa pessoaAtualizada;
+
+    bool encontrada = servicoPessoa->ler(pessoaAutenticada.getEmail(), &pessoaAtualizada);
+
+    if (encontrada) {
+        pessoaAutenticada = pessoaAtualizada;
+    }
 }
 
 void ControladoraApresentacao::executar() {
@@ -1574,6 +1612,8 @@ void ControladoraApresentacao::mostrarMenuPrincipal() {
     int opcao;
 
     do {
+        atualizarPessoaAutenticada();
+        
         std::cout << "\n========== MENU PRINCIPAL ==========\n";
         std::cout << "Usuario: " << pessoaAutenticada.getEmail() << "\n";
         std::cout << "Papel: " << pessoaAutenticada.getPapel() << "\n\n";
@@ -1606,6 +1646,7 @@ void ControladoraApresentacao::mostrarMenuPrincipal() {
 
             case 3:
                 if (controladoraPlanoSprint != nullptr) {
+                    controladoraPlanoSprint->setEmailUsuarioAutenticado(pessoaAutenticada.getEmail());
                     controladoraPlanoSprint->executar();
                 } else {
                     std::cout << "\nControladora de plano de sprint nao configurada.\n";

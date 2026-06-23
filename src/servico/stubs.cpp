@@ -109,9 +109,9 @@ bool StubProjetoServico::listarProjetosAssociadosPessoa(
 /* ========================================================= */
 
 bool StubPlanoSprintServico::criar(const PlanoSprint& planoSprint,
-                                   const string& codigoProjeto) {
-
-    return !codigoProjeto.empty();
+                                   const string& codigoProjeto,
+                                   const std::string& emailUsuarioAutenticado) {
+    return true;
 }
 
 bool StubPlanoSprintServico::ler(const string& codigo,
@@ -128,12 +128,14 @@ bool StubPlanoSprintServico::ler(const string& codigo,
     return true;
 }
 
-bool StubPlanoSprintServico::atualizar(const PlanoSprint& planoSprint) {
+bool StubPlanoSprintServico::atualizar(const PlanoSprint& planoSprint,
+                                      const std::string& emailUsuarioAutenticado) {
     return true;
 }
 
-bool StubPlanoSprintServico::excluir(const string& codigo) {
-    return !codigo.empty();
+bool StubPlanoSprintServico::excluir(const std::string& codigo,
+                                    const std::string& emailUsuarioAutenticado) {
+    return true;
 }
 
 bool StubPlanoSprintServico::listarPlanosSprintAssociadosProjeto(
