@@ -1578,9 +1578,9 @@ void ControladoraApresentacao::setControladoraHistoria(ControladoraApresentacaoH
     this->controladoraHistoria = controladoraHistoria;
 }
 
-void ControladoraApresentacao::atualizarPessoaAutenticada() {
+bool ControladoraApresentacao::atualizarPessoaAutenticada() {
     if (servicoPessoa == nullptr) {
-        return;
+        return true;
     }
 
     Pessoa pessoaAtualizada;
@@ -1589,7 +1589,9 @@ void ControladoraApresentacao::atualizarPessoaAutenticada() {
 
     if (encontrada) {
         pessoaAutenticada = pessoaAtualizada;
+        return true;
     }
+    return false;
 }
 
 void ControladoraApresentacao::executar() {
@@ -1661,8 +1663,11 @@ bool ControladoraApresentacao::mostrarMenuPrincipal() {
     int opcao;
 
     do {
-        atualizarPessoaAutenticada();
-
+        if (!atualizarPessoaAutenticada()) {
+            std::cout << "\nA conta autenticada foi excluida. Logout realizado automaticamente.\n";
+            return false;
+        }
+        
         std::cout << "\n========== MENU PRINCIPAL ==========\n";
         std::cout << "Usuario: " << pessoaAutenticada.getEmail() << "\n";
         std::cout << "Papel: " << pessoaAutenticada.getPapel() << "\n\n";

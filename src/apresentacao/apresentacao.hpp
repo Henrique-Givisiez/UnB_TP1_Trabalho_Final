@@ -158,7 +158,7 @@ private:
     bool autenticar();
     bool mostrarMenuPrincipal();
 
-    void atualizarPessoaAutenticada();
+    bool atualizarPessoaAutenticada();
 };
 
 #endif
