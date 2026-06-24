@@ -4,10 +4,12 @@
 #include <string>
 #include <stdexcept>
 
-/// @brief Domínio que representa um valor de tempo em dias.
-///
-/// Formato válido:
-/// - Valor inteiro entre 1 e 365 inclusive.
+/**
+ * @brief Representa um valor de tempo válido em dias.
+ *
+ * Essa classe encapsula a validação e o armazenamento de um tempo inteiro,
+ * aceitando valores de 1 a 365 dias, inclusive.
+ */
 class Tempo {
 private:
     int valor;
@@ -15,14 +17,29 @@ private:
     void validar(int tempo);
 
 public:
-    /// @brief Define o valor do tempo após validação.
-    /// @param tempo Inteiro entre 1 e 365.
-    /// @throws std::invalid_argument se o valor estiver fora do intervalo permitido.
+    /**
+     * @brief Define o tempo armazenado.
+     *
+     * @param tempo Novo valor inteiro entre 1 e 365.
+     * @throws std::invalid_argument Caso o valor informado seja inválido.
+     */
     void set(int tempo);
-    void set(double) = delete; // Impede atribuição de valores decimais
 
-    /// @brief Retorna o valor do tempo.
-    /// @return Inteiro com o valor do tempo.
+    /**
+     * @brief Impede a definição de tempo com valor decimal.
+     *
+     * Este método é removido da interface utilizável para evitar valores não
+     * inteiros.
+     *
+     * @param tempo Valor decimal rejeitado pela interface.
+     */
+    void set(double tempo) = delete;
+
+    /**
+     * @brief Retorna o tempo armazenado.
+     *
+     * @return Tempo atual em dias.
+     */
     int get() const;
 };
 

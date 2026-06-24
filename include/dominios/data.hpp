@@ -4,13 +4,18 @@
 #include <string>
 #include <stdexcept>
 
-/// @brief Domínio que representa uma data no formato DIA/MES/ANO.
-///
-/// Formato válido: DIA/MES/ANO
-/// - DIA: 1 a 31
-/// - MES: 01, 02, ..., 12
-/// - ANO: 2000 a 2999
-/// Data deve ser válida considerando anos bissextos.
+/**
+ * @brief Representa uma data válida no sistema.
+ *
+ * Essa classe encapsula a validação e o armazenamento de uma data no formato
+ * DIA/MES/ANO.
+ *
+ * Formato válido:
+ * - DIA: 1 a 31.
+ * - MES: 01, 02, ..., 12.
+ * - ANO: 2000 a 2999.
+ * - A data deve ser válida considerando anos bissextos.
+ */
 class Data {
 private:
     std::string valor;
@@ -20,13 +25,19 @@ private:
     int diasNoMes(int mes, int ano) const;
 
 public:
-    /// @brief Define o valor da data após validação.
-    /// @param data String no formato DIA/MES/ANO.
-    /// @throws std::invalid_argument se o formato ou valor for inválido.
+    /**
+     * @brief Define a data armazenada.
+     *
+     * @param data Nova data no formato DIA/MES/ANO.
+     * @throws std::invalid_argument Caso o valor informado seja inválido.
+     */
     void set(const std::string& data);
 
-    /// @brief Retorna o valor da data.
-    /// @return String no formato DIA/MES/ANO.
+    /**
+     * @brief Retorna a data armazenada.
+     *
+     * @return Data atual no formato DIA/MES/ANO.
+     */
     std::string get() const { return valor; }
 };
 

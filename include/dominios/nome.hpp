@@ -2,20 +2,36 @@
 #define NOME_HPP_INCLUDED
 #include <string>
 
-using namespace std;
-
+/**
+ * @brief Representa um nome textual válido no sistema.
+ *
+ * Essa classe encapsula a validação e o armazenamento de nomes aceitos pelos
+ * campos textuais de identificação do trabalho.
+ */
 class Nome {
 private:
-    string nome;
+    std::string nome;
     static const int LIMITE = 10;
-    void validar(const string&);
+    void validar(const std::string& nome);
 
 public:
-    void set(const string&);
-    string get() const;
+    /**
+     * @brief Define o nome armazenado.
+     *
+     * @param nome Novo nome a ser armazenado.
+     * @throws std::invalid_argument Caso o valor informado seja inválido.
+     */
+    void set(const std::string& nome);
+
+    /**
+     * @brief Retorna o nome armazenado.
+     *
+     * @return Nome atual em formato textual.
+     */
+    std::string get() const;
 };
 
-inline string Nome::get() const {
+inline std::string Nome::get() const {
     return nome;
 }
 

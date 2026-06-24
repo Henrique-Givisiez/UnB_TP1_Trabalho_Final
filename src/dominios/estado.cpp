@@ -17,7 +17,7 @@ void Estado::set(const std::string& novoEstado) {
     } else if (novoEstado == "FEITO") {
         estado = FEITO;
     } else {
-        throw invalid_argument("Estado invalido");
+        throw std::invalid_argument("Estado invalido");
     }
 }
 
