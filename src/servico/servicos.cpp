@@ -7,6 +7,8 @@ namespace {
 /**
  * @brief Verifica se uma pessoa cadastrada possui determinado papel.
  *
+ * Função auxiliar usada pelas regras de controle de acesso dos serviços.
+ *
  * @param banco Ponteiro para o banco em memória.
  * @param email Email da pessoa.
  * @param papelEsperado Papel esperado.
@@ -31,6 +33,8 @@ bool pessoaPossuiPapel(BancoDadosMemoria* banco,
 
 /**
  * @brief Converte data no formato DD/MM/AAAA ou D/MM/AAAA para inteiro comparável.
+ *
+ * A conversão permite comparar datas preservando a ordem cronológica.
  *
  * @param data Data validada pelo domínio Data.
  * @return Valor no formato AAAAMMDD.
@@ -59,6 +63,7 @@ bool intervaloDatasValido(const std::string& dataInicio,
     return converterDataParaInteiro(dataInicio) <=
            converterDataParaInteiro(dataTermino);
 }
+
 /**
  * @brief Verifica se um ano é bissexto.
  *
@@ -93,6 +98,8 @@ int diasAntesDoMes(int mes, int ano) {
 /**
  * @brief Converte data validada no formato DD/MM/AAAA para número absoluto de dias.
  *
+ * A contagem é usada para calcular a duração aproximada de projetos em dias.
+ *
  * @param data Data validada pelo domínio Data.
  * @return Quantidade aproximada de dias desde o ano zero.
  */
@@ -121,6 +128,9 @@ int converterDataParaDias(const std::string& data) {
 /**
  * @brief Calcula o número de dias entre duas datas.
  *
+ * Função usada para validar se a soma das capacidades dos planos de sprint
+ * não excede a duração do projeto.
+ *
  * @param dataInicio Data de início.
  * @param dataTermino Data de término.
  * @return Quantidade de dias entre as datas.
@@ -133,6 +143,9 @@ int calcularDiasEntreDatas(const std::string& dataInicio,
 
 /**
  * @brief Calcula a soma das capacidades dos planos de sprint de um projeto.
+ *
+ * O plano informado em codigoPlanoIgnorado é desconsiderado para permitir a
+ * validação durante atualizações.
  *
  * @param banco Ponteiro para o banco em memória.
  * @param codigoProjeto Código do projeto.
@@ -176,6 +189,9 @@ int somarCapacidadesPlanosProjeto(BancoDadosMemoria* banco,
 /**
  * @brief Obtém o código do projeto associado a um plano de sprint.
  *
+ * Consulta o relacionamento plano de sprint -> projeto armazenado no banco em
+ * memória.
+ *
  * @param banco Ponteiro para o banco em memória.
  * @param codigoPlanoSprint Código do plano de sprint.
  * @param codigoProjeto Ponteiro para receber o código do projeto.
@@ -198,8 +214,12 @@ bool obterProjetoDoPlano(BancoDadosMemoria* banco,
     *codigoProjeto = it->second;
     return true;
 }
+
 /**
  * @brief Soma as estimativas das histórias associadas a um plano de sprint.
+ *
+ * A história informada em codigoHistoriaIgnorada é desconsiderada para permitir
+ * a validação durante atualizações.
  *
  * @param banco Ponteiro para o banco em memória.
  * @param codigoPlanoSprint Código do plano de sprint.

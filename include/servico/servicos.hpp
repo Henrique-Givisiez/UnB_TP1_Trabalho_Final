@@ -107,6 +107,9 @@ public:
  */
 class PessoaServico : public IPessoaServico {
 private:
+    /**
+     * @brief Banco de dados em memória compartilhado pelos serviços.
+     */
     BancoDadosMemoria* banco;
 
     /**
@@ -173,6 +176,9 @@ public:
  */
 class AuthServico : public IAuthServico {
 private:
+    /**
+     * @brief Banco de dados em memória compartilhado pelos serviços.
+     */
     BancoDadosMemoria* banco;
 
 public:
@@ -204,6 +210,9 @@ public:
  */
 class ProjetoServico : public IProjetoServico {
 private:
+    /**
+     * @brief Banco de dados em memória compartilhado pelos serviços.
+     */
     BancoDadosMemoria* banco;
 
 public:
@@ -241,6 +250,9 @@ public:
     /**
      * @brief Atualiza um projeto cadastrado.
      *
+     * Apenas usuários com papel PROPRIETARIO DE PRODUTO podem atualizar
+     * projetos. O intervalo de datas deve permanecer válido.
+     *
      * @param projeto Projeto com os novos dados.
      * @param emailUsuarioAutenticado Email do usuário autenticado que solicitou a atualização.
      * @return true se atualizou; false caso contrário.
@@ -249,6 +261,10 @@ public:
 
     /**
      * @brief Exclui um projeto cadastrado.
+     *
+     * Apenas usuários com papel PROPRIETARIO DE PRODUTO podem excluir
+     * projetos. A exclusão não ocorre se houver planos de sprint ou histórias
+     * associadas.
      *
      * @param codigo Código do projeto.
      * @param emailUsuarioAutenticado Email do usuário autenticado que solicitou a exclusão.
@@ -275,6 +291,9 @@ public:
  */
 class PlanoSprintServico : public IPlanoSprintServico {
 private:
+    /**
+     * @brief Banco de dados em memória compartilhado pelos serviços.
+     */
     BancoDadosMemoria* banco;
 
 public:
@@ -289,6 +308,8 @@ public:
      * @brief Cria um plano de sprint associado a um projeto.
      *
      * Apenas usuários com papel MESTRE SCRUM podem criar planos de sprint.
+     * A soma das capacidades dos planos de sprint não pode exceder a duração
+     * do projeto.
      *
      * @param planoSprint Plano de sprint a ser criado.
      * @param codigoProjeto Código do projeto associado.
@@ -351,6 +372,9 @@ public:
  */
 class HistoriaServico : public IHistoriaServico {
 private:
+    /**
+     * @brief Banco de dados em memória compartilhado pelos serviços.
+     */
     BancoDadosMemoria* banco;
 
 public:
@@ -376,39 +400,133 @@ public:
                const std::string& codigoProjeto,
                const std::string& emailUsuarioAutenticado) override;
 
+    /**
+     * @brief Lê uma história cadastrada.
+     *
+     * @param codigo Código da história.
+     * @param historia Ponteiro para receber os dados encontrados.
+     * @return true se encontrou; false caso contrário.
+     */
     bool ler(const std::string& codigo, Historia* historia) override;
 
+    /**
+     * @brief Atualiza uma história cadastrada.
+     *
+     * Apenas usuários com papel PROPRIETARIO DE PRODUTO podem atualizar
+     * histórias. O estado atual é preservado e deve ser alterado pela operação
+     * específica de alteração de estado. Se a história estiver em um plano de
+     * sprint, a nova estimativa não pode exceder a capacidade do plano.
+     *
+     * @param historia História com os novos dados.
+     * @param emailUsuarioAutenticado Email do usuário autenticado.
+     * @return true se atualizou; false caso contrário.
+     */
     bool atualizar(const Historia& historia,
                    const std::string& emailUsuarioAutenticado) override;
 
+    /**
+     * @brief Exclui uma história cadastrada.
+     *
+     * Apenas usuários com papel PROPRIETARIO DE PRODUTO podem excluir
+     * histórias. As associações da história são removidas junto com o cadastro.
+     *
+     * @param codigo Código da história.
+     * @param emailUsuarioAutenticado Email do usuário autenticado.
+     * @return true se excluiu; false caso contrário.
+     */
     bool excluir(const std::string& codigo,
                  const std::string& emailUsuarioAutenticado) override;
 
+    /**
+     * @brief Associa uma pessoa a uma história.
+     *
+     * Apenas usuários com papel MESTRE SCRUM podem realizar a associação.
+     *
+     * @param codigoHistoria Código da história.
+     * @param emailPessoa Email da pessoa a ser associada.
+     * @param emailUsuarioAutenticado Email do usuário autenticado.
+     * @return true se associou; false caso contrário.
+     */
     bool associarPessoa(const std::string& codigoHistoria,
-                    const std::string& emailPessoa,
-                    const std::string& emailUsuarioAutenticado) override;
+                        const std::string& emailPessoa,
+                        const std::string& emailUsuarioAutenticado) override;
 
+    /**
+     * @brief Remove a associação entre uma pessoa e uma história.
+     *
+     * Apenas usuários com papel MESTRE SCRUM podem remover a associação.
+     *
+     * @param codigoHistoria Código da história.
+     * @param emailPessoa Email da pessoa que será desassociada.
+     * @param emailUsuarioAutenticado Email do usuário autenticado.
+     * @return true se removeu a associação; false caso contrário.
+     */
     bool removerAssociacaoPessoa(const std::string& codigoHistoria,
-                             const std::string& emailPessoa,
-                             const std::string& emailUsuarioAutenticado) override;
+                                 const std::string& emailPessoa,
+                                 const std::string& emailUsuarioAutenticado) override;
 
+    /**
+     * @brief Lista histórias associadas diretamente a um projeto.
+     *
+     * @param codigoProjeto Código do projeto.
+     * @param codigosHistorias Ponteiro para receber os códigos das histórias.
+     * @return true se a operação foi realizada; false caso contrário.
+     */
     bool listarHistoriasAssociadasProjeto(const std::string& codigoProjeto,
                                           std::vector<std::string>* codigosHistorias) override;
 
+    /**
+     * @brief Lista histórias associadas a um plano de sprint.
+     *
+     * @param codigoPlanoSprint Código do plano de sprint.
+     * @param codigosHistorias Ponteiro para receber os códigos das histórias.
+     * @return true se a operação foi realizada; false caso contrário.
+     */
     bool listarHistoriasAssociadasPlanoSprint(const std::string& codigoPlanoSprint,
                                               std::vector<std::string>* codigosHistorias) override;
 
+    /**
+     * @brief Lista histórias associadas a uma pessoa.
+     *
+     * @param emailPessoa Email da pessoa.
+     * @param codigosHistorias Ponteiro para receber os códigos das histórias.
+     * @return true se a operação foi realizada; false caso contrário.
+     */
     bool listarHistoriasAssociadasPessoa(const std::string& emailPessoa,
                                          std::vector<std::string>* codigosHistorias) override;
 
+    /**
+     * @brief Move uma história de um projeto para um plano de sprint.
+     *
+     * Apenas usuários com papel MESTRE SCRUM podem mover histórias. A história
+     * deve estar associada diretamente ao projeto informado, o plano deve
+     * pertencer ao mesmo projeto e a capacidade do plano não pode ser excedida.
+     *
+     * @param codigoHistoria Código da história.
+     * @param codigoProjeto Código do projeto de origem.
+     * @param codigoPlanoSprint Código do plano de sprint de destino.
+     * @param emailUsuarioAutenticado Email do usuário autenticado.
+     * @return true se moveu; false caso contrário.
+     */
     bool moverHistoriaParaPlanoSprint(const std::string& codigoHistoria,
-                                  const std::string& codigoProjeto,
-                                  const std::string& codigoPlanoSprint,
-                                  const std::string& emailUsuarioAutenticado) override;
+                                      const std::string& codigoProjeto,
+                                      const std::string& codigoPlanoSprint,
+                                      const std::string& emailUsuarioAutenticado) override;
 
+    /**
+     * @brief Altera o estado de uma história.
+     *
+     * Apenas usuários com papel PROPRIETARIO DE PRODUTO ou MESTRE SCRUM podem
+     * alterar o estado da história.
+     *
+     * @param codigoHistoria Código da história.
+     * @param novoEstado Novo estado da história.
+     * @param emailUsuarioAutenticado Email do usuário autenticado.
+     * @return true se alterou o estado; false caso contrário.
+     */
     bool alterarEstado(const std::string& codigoHistoria,
-                   const std::string& novoEstado,
-                   const std::string& emailUsuarioAutenticado) override;
+                       const std::string& novoEstado,
+                       const std::string& emailUsuarioAutenticado) override;
 };
 
 #endif
