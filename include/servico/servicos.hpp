@@ -385,10 +385,12 @@ public:
                  const std::string& emailUsuarioAutenticado) override;
 
     bool associarPessoa(const std::string& codigoHistoria,
-                        const std::string& emailPessoa) override;
+                    const std::string& emailPessoa,
+                    const std::string& emailUsuarioAutenticado) override;
 
     bool removerAssociacaoPessoa(const std::string& codigoHistoria,
-                                 const std::string& emailPessoa) override;
+                             const std::string& emailPessoa,
+                             const std::string& emailUsuarioAutenticado) override;
 
     bool listarHistoriasAssociadasProjeto(const std::string& codigoProjeto,
                                           std::vector<std::string>* codigosHistorias) override;
@@ -400,11 +402,13 @@ public:
                                          std::vector<std::string>* codigosHistorias) override;
 
     bool moverHistoriaParaPlanoSprint(const std::string& codigoHistoria,
-                                      const std::string& codigoProjeto,
-                                      const std::string& codigoPlanoSprint) override;
+                                  const std::string& codigoProjeto,
+                                  const std::string& codigoPlanoSprint,
+                                  const std::string& emailUsuarioAutenticado) override;
 
     bool alterarEstado(const std::string& codigoHistoria,
-                       const std::string& novoEstado) override;
+                   const std::string& novoEstado,
+                   const std::string& emailUsuarioAutenticado) override;
 };
 
 #endif

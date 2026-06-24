@@ -198,6 +198,49 @@ bool obterProjetoDoPlano(BancoDadosMemoria* banco,
     *codigoProjeto = it->second;
     return true;
 }
+/**
+ * @brief Soma as estimativas das histórias associadas a um plano de sprint.
+ *
+ * @param banco Ponteiro para o banco em memória.
+ * @param codigoPlanoSprint Código do plano de sprint.
+ * @param codigoHistoriaIgnorada Código de história que deve ser ignorada na soma.
+ * @return Soma das estimativas.
+ */
+int somarEstimativasHistoriasPlano(BancoDadosMemoria* banco,
+                                   const std::string& codigoPlanoSprint,
+                                   const std::string& codigoHistoriaIgnorada) {
+    if (banco == nullptr) {
+        return 0;
+    }
+
+    int soma = 0;
+
+    std::map<std::string, std::string>::iterator itAssociacao;
+
+    for (itAssociacao = banco->historiaParaPlanoSprint.begin();
+         itAssociacao != banco->historiaParaPlanoSprint.end();
+         ++itAssociacao) {
+        const std::string& codigoHistoria = itAssociacao->first;
+        const std::string& codigoPlano = itAssociacao->second;
+
+        if (codigoPlano != codigoPlanoSprint) {
+            continue;
+        }
+
+        if (codigoHistoria == codigoHistoriaIgnorada) {
+            continue;
+        }
+
+        std::map<std::string, Historia>::iterator itHistoria;
+        itHistoria = banco->historias.find(codigoHistoria);
+
+        if (itHistoria != banco->historias.end()) {
+            soma += itHistoria->second.getEstimativa();
+        }
+    }
+
+    return soma;
+}
 }
 
 PessoaServico::PessoaServico(BancoDadosMemoria* banco) {
@@ -801,20 +844,49 @@ bool HistoriaServico::atualizar(const Historia& historia,
 
     const std::string codigoHistoria = historia.getCodigo();
 
-    std::map<std::string, Historia>::iterator it;
-    it = banco->historias.find(codigoHistoria);
+    std::map<std::string, Historia>::iterator itHistoria;
+    itHistoria = banco->historias.find(codigoHistoria);
 
-    if (it == banco->historias.end()) {
+    if (itHistoria == banco->historias.end()) {
         return false;
     }
+
+    Historia historiaAtualizada = historia;
 
     /*
      * O estado é preservado porque existe serviço específico para alterar estado.
      */
-    Historia historiaAtualizada = historia;
-    historiaAtualizada.setEstado(it->second.getEstado());
+    historiaAtualizada.setEstado(itHistoria->second.getEstado());
 
-    it->second = historiaAtualizada;
+    /*
+     * Se a história já está em um plano de sprint, a estimativa atualizada
+     * não pode fazer a soma ultrapassar a capacidade do sprint.
+     */
+    std::map<std::string, std::string>::iterator itPlanoAssociado;
+    itPlanoAssociado = banco->historiaParaPlanoSprint.find(codigoHistoria);
+
+    if (itPlanoAssociado != banco->historiaParaPlanoSprint.end()) {
+        const std::string codigoPlanoSprint = itPlanoAssociado->second;
+
+        std::map<std::string, PlanoSprint>::iterator itPlano;
+        itPlano = banco->planosSprint.find(codigoPlanoSprint);
+
+        if (itPlano == banco->planosSprint.end()) {
+            return false;
+        }
+
+        int somaOutrasHistorias = somarEstimativasHistoriasPlano(banco,
+                                                                 codigoPlanoSprint,
+                                                                 codigoHistoria);
+
+        int novaSoma = somaOutrasHistorias + historiaAtualizada.getEstimativa();
+
+        if (novaSoma > itPlano->second.getCapacidade()) {
+            return false;
+        }
+    }
+
+    itHistoria->second = historiaAtualizada;
     return true;
 }
 
@@ -924,22 +996,193 @@ bool HistoriaServico::listarHistoriasAssociadasPessoa(const std::string& emailPe
 }
 
 bool HistoriaServico::associarPessoa(const std::string& codigoHistoria,
-                                     const std::string& emailPessoa) {
-    return false;
+                                     const std::string& emailPessoa,
+                                     const std::string& emailUsuarioAutenticado) {
+    if (banco == nullptr) {
+        return false;
+    }
+
+    if (!pessoaPossuiPapel(banco, emailUsuarioAutenticado, "MESTRE SCRUM")) {
+        return false;
+    }
+
+    if (banco->historias.find(codigoHistoria) == banco->historias.end()) {
+        return false;
+    }
+
+    if (banco->pessoas.find(emailPessoa) == banco->pessoas.end()) {
+        return false;
+    }
+
+    std::vector<std::string>& pessoasAssociadas = banco->historiaParaPessoas[codigoHistoria];
+
+    if (std::find(pessoasAssociadas.begin(),
+                  pessoasAssociadas.end(),
+                  emailPessoa) != pessoasAssociadas.end()) {
+        return false;
+    }
+
+    pessoasAssociadas.push_back(emailPessoa);
+    return true;
 }
 
 bool HistoriaServico::removerAssociacaoPessoa(const std::string& codigoHistoria,
-                                              const std::string& emailPessoa) {
-    return false;
+                                              const std::string& emailPessoa,
+                                              const std::string& emailUsuarioAutenticado) {
+    if (banco == nullptr) {
+        return false;
+    }
+
+    if (!pessoaPossuiPapel(banco, emailUsuarioAutenticado, "MESTRE SCRUM")) {
+        return false;
+    }
+
+    if (banco->historias.find(codigoHistoria) == banco->historias.end()) {
+        return false;
+    }
+
+    if (banco->pessoas.find(emailPessoa) == banco->pessoas.end()) {
+        return false;
+    }
+
+    std::map<std::string, std::vector<std::string> >::iterator it;
+    it = banco->historiaParaPessoas.find(codigoHistoria);
+
+    if (it == banco->historiaParaPessoas.end()) {
+        return false;
+    }
+
+    std::vector<std::string>& pessoasAssociadas = it->second;
+
+    std::vector<std::string>::iterator itPessoa;
+    itPessoa = std::find(pessoasAssociadas.begin(),
+                         pessoasAssociadas.end(),
+                         emailPessoa);
+
+    if (itPessoa == pessoasAssociadas.end()) {
+        return false;
+    }
+
+    pessoasAssociadas.erase(itPessoa);
+
+    if (pessoasAssociadas.empty()) {
+        banco->historiaParaPessoas.erase(it);
+    }
+
+    return true;
 }
 
 bool HistoriaServico::moverHistoriaParaPlanoSprint(const std::string& codigoHistoria,
                                                    const std::string& codigoProjeto,
-                                                   const std::string& codigoPlanoSprint) {
-    return false;
+                                                   const std::string& codigoPlanoSprint,
+                                                   const std::string& emailUsuarioAutenticado) {
+    if (banco == nullptr) {
+        return false;
+    }
+
+    if (!pessoaPossuiPapel(banco, emailUsuarioAutenticado, "MESTRE SCRUM")) {
+        return false;
+    }
+
+    std::map<std::string, Historia>::iterator itHistoria;
+    itHistoria = banco->historias.find(codigoHistoria);
+
+    if (itHistoria == banco->historias.end()) {
+        return false;
+    }
+
+    if (banco->projetos.find(codigoProjeto) == banco->projetos.end()) {
+        return false;
+    }
+
+    std::map<std::string, PlanoSprint>::iterator itPlano;
+    itPlano = banco->planosSprint.find(codigoPlanoSprint);
+
+    if (itPlano == banco->planosSprint.end()) {
+        return false;
+    }
+
+    /*
+     * A história deve estar associada diretamente ao projeto informado.
+     */
+    std::map<std::string, std::string>::iterator itHistoriaProjeto;
+    itHistoriaProjeto = banco->historiaParaProjeto.find(codigoHistoria);
+
+    if (itHistoriaProjeto == banco->historiaParaProjeto.end()) {
+        return false;
+    }
+
+    if (itHistoriaProjeto->second != codigoProjeto) {
+        return false;
+    }
+
+    /*
+     * Se já está em plano de sprint, não pode ser movida novamente por esta operação.
+     */
+    if (banco->historiaParaPlanoSprint.find(codigoHistoria) != banco->historiaParaPlanoSprint.end()) {
+        return false;
+    }
+
+    /*
+     * O plano de sprint precisa pertencer ao mesmo projeto informado.
+     */
+    std::string codigoProjetoDoPlano;
+
+    if (!obterProjetoDoPlano(banco, codigoPlanoSprint, &codigoProjetoDoPlano)) {
+        return false;
+    }
+
+    if (codigoProjetoDoPlano != codigoProjeto) {
+        return false;
+    }
+
+    /*
+     * Valida capacidade do plano de sprint.
+     */
+    int somaAtual = somarEstimativasHistoriasPlano(banco,
+                                                  codigoPlanoSprint,
+                                                  "");
+
+    int novaSoma = somaAtual + itHistoria->second.getEstimativa();
+
+    if (novaSoma > itPlano->second.getCapacidade()) {
+        return false;
+    }
+
+    /*
+     * Restrição {OU}: remove associação com projeto e cria associação com sprint.
+     */
+    banco->historiaParaProjeto.erase(codigoHistoria);
+    banco->historiaParaPlanoSprint[codigoHistoria] = codigoPlanoSprint;
+
+    return true;
 }
 
 bool HistoriaServico::alterarEstado(const std::string& codigoHistoria,
-                                    const std::string& novoEstado) {
-    return false;
+                                    const std::string& novoEstado,
+                                    const std::string& emailUsuarioAutenticado) {
+    if (banco == nullptr) {
+        return false;
+    }
+
+    bool usuarioPodeAlterar =
+        pessoaPossuiPapel(banco, emailUsuarioAutenticado, "PROPRIETARIO DE PRODUTO") ||
+        pessoaPossuiPapel(banco, emailUsuarioAutenticado, "MESTRE SCRUM");
+
+    if (!usuarioPodeAlterar) {
+        return false;
+    }
+
+    std::map<std::string, Historia>::iterator itHistoria;
+    itHistoria = banco->historias.find(codigoHistoria);
+
+    if (itHistoria == banco->historias.end()) {
+        return false;
+    }
+
+    Historia historiaAtualizada = itHistoria->second;
+    historiaAtualizada.setEstado(novoEstado);
+
+    itHistoria->second = historiaAtualizada;
+    return true;
 }

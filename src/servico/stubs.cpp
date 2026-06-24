@@ -191,20 +191,16 @@ bool StubHistoriaServico::excluir(const std::string& codigo,
     return true;
 }
 
-bool StubHistoriaServico::associarPessoa(
-    const string& codigoHistoria,
-    const string& emailPessoa) {
-
-    return (!codigoHistoria.empty() &&
-            !emailPessoa.empty());
+bool StubHistoriaServico::associarPessoa(const std::string& codigoHistoria,
+                                  const std::string& emailPessoa,
+                                  const std::string& emailUsuarioAutenticado) {
+    return true;
 }
 
-bool StubHistoriaServico::removerAssociacaoPessoa(
-    const string& codigoHistoria,
-    const string& emailPessoa) {
-
-    return (!codigoHistoria.empty() &&
-            !emailPessoa.empty());
+bool StubHistoriaServico::removerAssociacaoPessoa(const std::string& codigoHistoria,
+                                           const std::string& emailPessoa,
+                                           const std::string& emailUsuarioAutenticado) {
+    return true;
 }
 
 bool StubHistoriaServico::listarHistoriasAssociadasProjeto(
@@ -249,20 +245,15 @@ bool StubHistoriaServico::listarHistoriasAssociadasPessoa(
     return true;
 }
 
-bool StubHistoriaServico::moverHistoriaParaPlanoSprint(
-    const string& codigoHistoria,
-    const string& codigoProjeto,
-    const string& codigoPlanoSprint) {
-
-    return (!codigoHistoria.empty() &&
-            !codigoProjeto.empty() &&
-            !codigoPlanoSprint.empty());
+bool StubHistoriaServico::moverHistoriaParaPlanoSprint(const std::string& codigoHistoria,
+                                                const std::string& codigoProjeto,
+                                                const std::string& codigoPlanoSprint,
+                                                const std::string& emailUsuarioAutenticado) {
+    return true;
 }
 
-bool StubHistoriaServico::alterarEstado(
-    const string& codigoHistoria,
-    const string& novoEstado) {
-
-    return (!codigoHistoria.empty() &&
-            !novoEstado.empty());
+bool StubHistoriaServico::alterarEstado(const std::string& codigoHistoria,
+                                 const std::string& novoEstado,
+                                 const std::string& emailUsuarioAutenticado) {
+    return true;
 }

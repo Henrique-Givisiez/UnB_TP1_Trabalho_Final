@@ -1293,7 +1293,7 @@ void ControladoraApresentacaoHistoria::associarPessoa() {
     std::string emailPessoa = lerLinha("Email da pessoa: ");
 
     try {
-        bool sucesso = servicoHistoria->associarPessoa(codigoHistoria, emailPessoa);
+        bool sucesso = servicoHistoria->associarPessoa(codigoHistoria, emailPessoa, emailUsuarioAutenticado);
 
         if (sucesso) {
             std::cout << "\nPessoa associada a historia com sucesso.\n";
@@ -1323,7 +1323,7 @@ void ControladoraApresentacaoHistoria::removerAssociacaoPessoa() {
     std::string emailPessoa = lerLinha("Email da pessoa: ");
 
     try {
-        bool sucesso = servicoHistoria->removerAssociacaoPessoa(codigoHistoria, emailPessoa);
+        bool sucesso = servicoHistoria->removerAssociacaoPessoa(codigoHistoria, emailPessoa, emailUsuarioAutenticado);
 
         if (sucesso) {
             std::cout << "\nAssociacao removida com sucesso.\n";
@@ -1489,7 +1489,8 @@ void ControladoraApresentacaoHistoria::moverHistoriaParaPlanoSprint() {
         bool sucesso = servicoHistoria->moverHistoriaParaPlanoSprint(
             codigoHistoria,
             codigoProjeto,
-            codigoPlanoSprint
+            codigoPlanoSprint,
+            emailUsuarioAutenticado
         );
 
         if (sucesso) {
@@ -1520,7 +1521,7 @@ void ControladoraApresentacaoHistoria::alterarEstadoHistoria() {
     std::string novoEstado = lerLinha("Novo estado [A FAZER, FAZENDO, FEITO]: ");
 
     try {
-        bool sucesso = servicoHistoria->alterarEstado(codigoHistoria, novoEstado);
+        bool sucesso = servicoHistoria->alterarEstado(codigoHistoria, novoEstado, emailUsuarioAutenticado);
 
         if (sucesso) {
             std::cout << "\nEstado da historia alterado com sucesso.\n";
@@ -1596,12 +1597,29 @@ void ControladoraApresentacao::executar() {
     std::cout << "    GERENCIADOR SCRUM - TP1\n";
     std::cout << "=====================================\n";
 
-    if (!autenticar()) {
-        std::cout << "\nNao foi possivel autenticar o usuario.\n";
-        return;
+    bool continuarSistema = true;
+
+    while (continuarSistema) {
+        if (!autenticar()) {
+            std::cout << "\nNao foi possivel autenticar o usuario.\n";
+
+            int opcao = lerOpcao("Digite 1 para tentar novamente ou 0 para sair: ");
+
+            if (opcao == 0) {
+                continuarSistema = false;
+            }
+
+            continue;
+        }
+
+        bool usuarioQuerSair = mostrarMenuPrincipal();
+
+        if (usuarioQuerSair) {
+            continuarSistema = false;
+        }
     }
 
-    mostrarMenuPrincipal();
+    std::cout << "\nEncerrando sistema...\n";
 }
 
 bool ControladoraApresentacao::autenticar() {
@@ -1639,12 +1657,12 @@ bool ControladoraApresentacao::autenticar() {
     }
 }
 
-void ControladoraApresentacao::mostrarMenuPrincipal() {
+bool ControladoraApresentacao::mostrarMenuPrincipal() {
     int opcao;
 
     do {
         atualizarPessoaAutenticada();
-        
+
         std::cout << "\n========== MENU PRINCIPAL ==========\n";
         std::cout << "Usuario: " << pessoaAutenticada.getEmail() << "\n";
         std::cout << "Papel: " << pessoaAutenticada.getPapel() << "\n\n";
@@ -1653,7 +1671,8 @@ void ControladoraApresentacao::mostrarMenuPrincipal() {
         std::cout << "2 - Projetos\n";
         std::cout << "3 - Planos de Sprint\n";
         std::cout << "4 - Historias de Usuario\n";
-        std::cout << "0 - Sair\n";
+        std::cout << "5 - Logout\n";
+        std::cout << "0 - Sair do sistema\n";
 
         opcao = lerOpcao("Opcao: ");
 
@@ -1693,14 +1712,17 @@ void ControladoraApresentacao::mostrarMenuPrincipal() {
                 }
                 break;
 
+            case 5:
+                std::cout << "\nLogout realizado com sucesso.\n";
+                return false;
+
             case 0:
-                std::cout << "\nEncerrando sistema...\n";
-                break;
+                return true;
 
             default:
                 std::cout << "\nOpcao invalida.\n";
                 break;
         }
 
-    } while (opcao != 0);
+    } while (true);
 }

@@ -131,6 +131,9 @@ public:
 /**
  * @brief Interface responsável pelos serviços relacionados a histórias de usuário.
  */
+/**
+ * @brief Interface para serviços relacionados a História de Usuário.
+ */
 class IHistoriaServico {
 public:
     virtual bool criar(const Historia& historia,
@@ -146,10 +149,12 @@ public:
                          const std::string& emailUsuarioAutenticado) = 0;
 
     virtual bool associarPessoa(const std::string& codigoHistoria,
-                                const std::string& emailPessoa) = 0;
+                                const std::string& emailPessoa,
+                                const std::string& emailUsuarioAutenticado) = 0;
 
     virtual bool removerAssociacaoPessoa(const std::string& codigoHistoria,
-                                         const std::string& emailPessoa) = 0;
+                                         const std::string& emailPessoa,
+                                         const std::string& emailUsuarioAutenticado) = 0;
 
     virtual bool listarHistoriasAssociadasProjeto(const std::string& codigoProjeto,
                                                   std::vector<std::string>* codigosHistorias) = 0;
@@ -162,10 +167,12 @@ public:
 
     virtual bool moverHistoriaParaPlanoSprint(const std::string& codigoHistoria,
                                               const std::string& codigoProjeto,
-                                              const std::string& codigoPlanoSprint) = 0;
+                                              const std::string& codigoPlanoSprint,
+                                              const std::string& emailUsuarioAutenticado) = 0;
 
     virtual bool alterarEstado(const std::string& codigoHistoria,
-                               const std::string& novoEstado) = 0;
+                               const std::string& novoEstado,
+                               const std::string& emailUsuarioAutenticado) = 0;
 
     virtual ~IHistoriaServico() {}
 };
