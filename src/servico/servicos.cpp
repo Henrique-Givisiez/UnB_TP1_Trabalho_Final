@@ -732,3 +732,214 @@ bool PlanoSprintServico::listarPlanosSprintAssociadosProjeto(const std::string& 
     *codigosPlanosSprint = it->second;
     return true;
 }
+
+HistoriaServico::HistoriaServico(BancoDadosMemoria* banco) {
+    this->banco = banco;
+}
+
+bool HistoriaServico::criar(const Historia& historia,
+                            const std::string& codigoProjeto,
+                            const std::string& emailUsuarioAutenticado) {
+    if (banco == nullptr) {
+        return false;
+    }
+
+    if (!pessoaPossuiPapel(banco, emailUsuarioAutenticado, "PROPRIETARIO DE PRODUTO")) {
+        return false;
+    }
+
+    if (banco->projetos.find(codigoProjeto) == banco->projetos.end()) {
+        return false;
+    }
+
+    const std::string codigoHistoria = historia.getCodigo();
+
+    if (banco->historias.find(codigoHistoria) != banco->historias.end()) {
+        return false;
+    }
+
+    if (historia.getEstado() != "A FAZER") {
+        return false;
+    }
+
+    banco->historias[codigoHistoria] = historia;
+
+    /*
+     * Restrição {OU}: neste momento a história fica associada somente ao projeto.
+     */
+    banco->historiaParaProjeto[codigoHistoria] = codigoProjeto;
+    banco->historiaParaPlanoSprint.erase(codigoHistoria);
+
+    return true;
+}
+
+bool HistoriaServico::ler(const std::string& codigo, Historia* historia) {
+    if (banco == nullptr || historia == nullptr) {
+        return false;
+    }
+
+    std::map<std::string, Historia>::iterator it;
+    it = banco->historias.find(codigo);
+
+    if (it == banco->historias.end()) {
+        return false;
+    }
+
+    *historia = it->second;
+    return true;
+}
+
+bool HistoriaServico::atualizar(const Historia& historia,
+                                const std::string& emailUsuarioAutenticado) {
+    if (banco == nullptr) {
+        return false;
+    }
+
+    if (!pessoaPossuiPapel(banco, emailUsuarioAutenticado, "PROPRIETARIO DE PRODUTO")) {
+        return false;
+    }
+
+    const std::string codigoHistoria = historia.getCodigo();
+
+    std::map<std::string, Historia>::iterator it;
+    it = banco->historias.find(codigoHistoria);
+
+    if (it == banco->historias.end()) {
+        return false;
+    }
+
+    /*
+     * O estado é preservado porque existe serviço específico para alterar estado.
+     */
+    Historia historiaAtualizada = historia;
+    historiaAtualizada.setEstado(it->second.getEstado());
+
+    it->second = historiaAtualizada;
+    return true;
+}
+
+bool HistoriaServico::excluir(const std::string& codigo,
+                              const std::string& emailUsuarioAutenticado) {
+    if (banco == nullptr) {
+        return false;
+    }
+
+    if (!pessoaPossuiPapel(banco, emailUsuarioAutenticado, "PROPRIETARIO DE PRODUTO")) {
+        return false;
+    }
+
+    std::map<std::string, Historia>::iterator it;
+    it = banco->historias.find(codigo);
+
+    if (it == banco->historias.end()) {
+        return false;
+    }
+
+    /*
+     * Remove todas as associações para evitar inconsistência.
+     */
+    banco->historiaParaProjeto.erase(codigo);
+    banco->historiaParaPlanoSprint.erase(codigo);
+    banco->historiaParaPessoas.erase(codigo);
+
+    banco->historias.erase(it);
+    return true;
+}
+
+bool HistoriaServico::listarHistoriasAssociadasProjeto(const std::string& codigoProjeto,
+                                                       std::vector<std::string>* codigosHistorias) {
+    if (banco == nullptr || codigosHistorias == nullptr) {
+        return false;
+    }
+
+    codigosHistorias->clear();
+
+    if (banco->projetos.find(codigoProjeto) == banco->projetos.end()) {
+        return false;
+    }
+
+    std::map<std::string, std::string>::iterator it;
+
+    for (it = banco->historiaParaProjeto.begin();
+         it != banco->historiaParaProjeto.end();
+         ++it) {
+        if (it->second == codigoProjeto) {
+            codigosHistorias->push_back(it->first);
+        }
+    }
+
+    return true;
+}
+
+bool HistoriaServico::listarHistoriasAssociadasPlanoSprint(const std::string& codigoPlanoSprint,
+                                                           std::vector<std::string>* codigosHistorias) {
+    if (banco == nullptr || codigosHistorias == nullptr) {
+        return false;
+    }
+
+    codigosHistorias->clear();
+
+    if (banco->planosSprint.find(codigoPlanoSprint) == banco->planosSprint.end()) {
+        return false;
+    }
+
+    std::map<std::string, std::string>::iterator it;
+
+    for (it = banco->historiaParaPlanoSprint.begin();
+         it != banco->historiaParaPlanoSprint.end();
+         ++it) {
+        if (it->second == codigoPlanoSprint) {
+            codigosHistorias->push_back(it->first);
+        }
+    }
+
+    return true;
+}
+
+bool HistoriaServico::listarHistoriasAssociadasPessoa(const std::string& emailPessoa,
+                                                      std::vector<std::string>* codigosHistorias) {
+    if (banco == nullptr || codigosHistorias == nullptr) {
+        return false;
+    }
+
+    codigosHistorias->clear();
+
+    if (banco->pessoas.find(emailPessoa) == banco->pessoas.end()) {
+        return false;
+    }
+
+    std::map<std::string, std::vector<std::string> >::iterator it;
+
+    for (it = banco->historiaParaPessoas.begin();
+         it != banco->historiaParaPessoas.end();
+         ++it) {
+        const std::vector<std::string>& emails = it->second;
+
+        if (std::find(emails.begin(), emails.end(), emailPessoa) != emails.end()) {
+            codigosHistorias->push_back(it->first);
+        }
+    }
+
+    return true;
+}
+
+bool HistoriaServico::associarPessoa(const std::string& codigoHistoria,
+                                     const std::string& emailPessoa) {
+    return false;
+}
+
+bool HistoriaServico::removerAssociacaoPessoa(const std::string& codigoHistoria,
+                                              const std::string& emailPessoa) {
+    return false;
+}
+
+bool HistoriaServico::moverHistoriaParaPlanoSprint(const std::string& codigoHistoria,
+                                                   const std::string& codigoProjeto,
+                                                   const std::string& codigoPlanoSprint) {
+    return false;
+}
+
+bool HistoriaServico::alterarEstado(const std::string& codigoHistoria,
+                                    const std::string& novoEstado) {
+    return false;
+}

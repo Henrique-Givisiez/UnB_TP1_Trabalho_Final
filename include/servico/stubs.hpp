@@ -81,14 +81,17 @@ public:
 class StubHistoriaServico : public IHistoriaServico {
 public:
     bool criar(const Historia& historia,
-               const std::string& codigoProjeto) override;
+           const std::string& codigoProjeto,
+           const std::string& emailUsuarioAutenticado) override;
 
     bool ler(const std::string& codigo,
              Historia* historia) override;
 
-    bool atualizar(const Historia& historia) override;
+    bool atualizar(const Historia& historia,
+            const std::string& emailUsuarioAutenticado) override;
 
-    bool excluir(const std::string& codigo) override;
+    bool excluir(const std::string& codigo,
+            const std::string& emailUsuarioAutenticado) override;
 
     bool associarPessoa(const std::string& codigoHistoria,
                         const std::string& emailPessoa) override;

@@ -343,4 +343,68 @@ public:
                                              std::vector<std::string>* codigosPlanosSprint) override;
 };
 
+/**
+ * @brief Serviço real responsável pelas operações de História de Usuário.
+ *
+ * Implementa a interface IHistoriaServico usando armazenamento em memória
+ * e aplicando regras de negócio relacionadas às histórias.
+ */
+class HistoriaServico : public IHistoriaServico {
+private:
+    BancoDadosMemoria* banco;
+
+public:
+    /**
+     * @brief Construtor.
+     *
+     * @param banco Ponteiro para o banco de dados em memória compartilhado.
+     */
+    explicit HistoriaServico(BancoDadosMemoria* banco);
+
+    /**
+     * @brief Cria uma história associada diretamente a um projeto.
+     *
+     * Apenas usuários com papel PROPRIETARIO DE PRODUTO podem criar histórias.
+     * A história deve iniciar com estado A FAZER.
+     *
+     * @param historia História a ser criada.
+     * @param codigoProjeto Código do projeto associado.
+     * @param emailUsuarioAutenticado Email do usuário autenticado.
+     * @return true se criou; false caso contrário.
+     */
+    bool criar(const Historia& historia,
+               const std::string& codigoProjeto,
+               const std::string& emailUsuarioAutenticado) override;
+
+    bool ler(const std::string& codigo, Historia* historia) override;
+
+    bool atualizar(const Historia& historia,
+                   const std::string& emailUsuarioAutenticado) override;
+
+    bool excluir(const std::string& codigo,
+                 const std::string& emailUsuarioAutenticado) override;
+
+    bool associarPessoa(const std::string& codigoHistoria,
+                        const std::string& emailPessoa) override;
+
+    bool removerAssociacaoPessoa(const std::string& codigoHistoria,
+                                 const std::string& emailPessoa) override;
+
+    bool listarHistoriasAssociadasProjeto(const std::string& codigoProjeto,
+                                          std::vector<std::string>* codigosHistorias) override;
+
+    bool listarHistoriasAssociadasPlanoSprint(const std::string& codigoPlanoSprint,
+                                              std::vector<std::string>* codigosHistorias) override;
+
+    bool listarHistoriasAssociadasPessoa(const std::string& emailPessoa,
+                                         std::vector<std::string>* codigosHistorias) override;
+
+    bool moverHistoriaParaPlanoSprint(const std::string& codigoHistoria,
+                                      const std::string& codigoProjeto,
+                                      const std::string& codigoPlanoSprint) override;
+
+    bool alterarEstado(const std::string& codigoHistoria,
+                       const std::string& novoEstado) override;
+};
+
 #endif

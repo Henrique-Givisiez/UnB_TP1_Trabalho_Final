@@ -133,10 +133,17 @@ public:
  */
 class IHistoriaServico {
 public:
-    virtual bool criar(const Historia& historia, const std::string& codigoProjeto) = 0;
+    virtual bool criar(const Historia& historia,
+                       const std::string& codigoProjeto,
+                       const std::string& emailUsuarioAutenticado) = 0;
+
     virtual bool ler(const std::string& codigo, Historia* historia) = 0;
-    virtual bool atualizar(const Historia& historia) = 0;
-    virtual bool excluir(const std::string& codigo) = 0;
+
+    virtual bool atualizar(const Historia& historia,
+                           const std::string& emailUsuarioAutenticado) = 0;
+
+    virtual bool excluir(const std::string& codigo,
+                         const std::string& emailUsuarioAutenticado) = 0;
 
     virtual bool associarPessoa(const std::string& codigoHistoria,
                                 const std::string& emailPessoa) = 0;

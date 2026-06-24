@@ -94,11 +94,14 @@ private:
 class ControladoraApresentacaoHistoria {
 private:
     IHistoriaServico* servicoHistoria;
+    std::string emailUsuarioAutenticado;
 
 public:
     ControladoraApresentacaoHistoria();
 
     void setServicoHistoria(IHistoriaServico* servicoHistoria);
+
+    void setEmailUsuarioAutenticado(const std::string& emailUsuarioAutenticado);
 
     void executar();
 

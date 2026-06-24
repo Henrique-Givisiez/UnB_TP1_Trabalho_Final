@@ -938,10 +938,15 @@ void ControladoraApresentacaoPlanoSprint::listarPlanosPorProjeto() {
 
 ControladoraApresentacaoHistoria::ControladoraApresentacaoHistoria() {
     this->servicoHistoria = nullptr;
+    emailUsuarioAutenticado = "";
 }
 
 void ControladoraApresentacaoHistoria::setServicoHistoria(IHistoriaServico* servicoHistoria) {
     this->servicoHistoria = servicoHistoria;
+}
+
+void ControladoraApresentacaoHistoria::setEmailUsuarioAutenticado(const std::string& emailUsuarioAutenticado) {
+    this->emailUsuarioAutenticado = emailUsuarioAutenticado;
 }
 
 void ControladoraApresentacaoHistoria::executar() {
@@ -1026,13 +1031,13 @@ void ControladoraApresentacaoHistoria::criarHistoria() {
         return;
     }
 
-    std::cout << "\n========== CRIAR HISTORIA ==========\n";
+    std::cout << "\n========== CRIAR HISTORIA DE USUARIO ==========\n";
 
     std::string codigo = lerLinha("Codigo da historia: ");
     std::string titulo = lerLinha("Titulo: ");
     std::string papel = lerLinha("Papel [DESENVOLVEDOR, MESTRE SCRUM, PROPRIETARIO DE PRODUTO]: ");
-    std::string acao = lerLinha("Acao [eu quero...]: ");
-    std::string valor = lerLinha("Valor [para...]: ");
+    std::string acao = lerLinha("Acao: ");
+    std::string valor = lerLinha("Valor: ");
     std::string estimativaTexto = lerLinha("Estimativa [1 a 365]: ");
     std::string prioridade = lerLinha("Prioridade [ALTA, MEDIA, BAIXA]: ");
     std::string codigoProjeto = lerLinha("Codigo do projeto associado: ");
@@ -1057,12 +1062,15 @@ void ControladoraApresentacaoHistoria::criarHistoria() {
          */
         historia.setEstado("A FAZER");
 
-        bool sucesso = servicoHistoria->criar(historia, codigoProjeto);
+        bool sucesso = servicoHistoria->criar(historia, codigoProjeto, emailUsuarioAutenticado);
 
         if (sucesso) {
             std::cout << "\nHistoria criada com sucesso.\n";
         } else {
             std::cout << "\nNao foi possivel criar a historia.\n";
+            std::cout << "Verifique se o usuario autenticado e PROPRIETARIO DE PRODUTO,\n";
+            std::cout << "se o projeto existe, se o codigo ainda nao foi usado\n";
+            std::cout << "e se o estado inicial da historia e A FAZER.\n";
         }
 
     } catch (const std::invalid_argument& e) {
@@ -1124,7 +1132,7 @@ void ControladoraApresentacaoHistoria::atualizarHistoria() {
         return;
     }
 
-    std::cout << "\n========== ATUALIZAR HISTORIA ==========\n";
+    std::cout << "\n========== ATUALIZAR HISTORIA DE USUARIO ==========\n";
 
     std::string codigo = lerLinha("Codigo da historia que sera atualizada: ");
 
@@ -1149,7 +1157,9 @@ void ControladoraApresentacaoHistoria::atualizarHistoria() {
         std::cout << "Estado    : " << historiaAtual.getEstado() << "\n";
 
         std::cout << "\nInforme os novos dados.\n";
+        std::cout << "Observacao: pressione ENTER para manter o valor atual.\n";
         std::cout << "Observacao: o codigo nao sera alterado, pois e chave primaria.\n";
+        std::cout << "Observacao: o estado deve ser alterado pela opcao propria do menu.\n";
 
         std::string novoTitulo = lerLinha("Novo titulo: ");
         std::string novoPapel = lerLinha("Novo papel [DESENVOLVEDOR, MESTRE SCRUM, PROPRIETARIO DE PRODUTO]: ");
@@ -1162,26 +1172,47 @@ void ControladoraApresentacaoHistoria::atualizarHistoria() {
 
         Historia historiaAtualizada;
 
-        historiaAtualizada.setCodigo(codigo);
-        historiaAtualizada.setTitulo(novoTitulo);
-        historiaAtualizada.setPapel(novoPapel);
-        historiaAtualizada.setAcao(novaAcao);
-        historiaAtualizada.setValor(novoValor);
-        historiaAtualizada.setEstimativa(novaEstimativa);
-        historiaAtualizada.setPrioridade(novaPrioridade);
-
-        /*
-         * O estado nao e alterado aqui.
-         * Para isso existe uma funcionalidade especifica: alterarEstadoHistoria().
-         */
+        historiaAtualizada.setCodigo(historiaAtual.getCodigo());
+        historiaAtualizada.setTitulo(historiaAtual.getTitulo());
+        historiaAtualizada.setPapel(historiaAtual.getPapel());
+        historiaAtualizada.setAcao(historiaAtual.getAcao());
+        historiaAtualizada.setValor(historiaAtual.getValor());
+        historiaAtualizada.setEstimativa(historiaAtual.getEstimativa());
+        historiaAtualizada.setPrioridade(historiaAtual.getPrioridade());
         historiaAtualizada.setEstado(historiaAtual.getEstado());
 
-        bool sucesso = servicoHistoria->atualizar(historiaAtualizada);
+        if (!novoTitulo.empty()) {
+            historiaAtualizada.setTitulo(novoTitulo);
+        }
+
+        if (!novoPapel.empty()) {
+            historiaAtualizada.setPapel(novoPapel);
+        }
+
+        if (!novaAcao.empty()) {
+            historiaAtualizada.setAcao(novaAcao);
+        }
+
+        if (!novoValor.empty()) {
+            historiaAtualizada.setValor(novoValor);
+        }
+
+        if (!novaEstimativaTexto.empty()) {
+            historiaAtualizada.setEstimativa(std::stoi(novaEstimativaTexto));
+        }
+
+        if (!novaPrioridade.empty()) {
+            historiaAtualizada.setPrioridade(novaPrioridade);
+        }
+
+        bool sucesso = servicoHistoria->atualizar(historiaAtualizada, emailUsuarioAutenticado);
 
         if (sucesso) {
             std::cout << "\nHistoria atualizada com sucesso.\n";
         } else {
             std::cout << "\nNao foi possivel atualizar a historia.\n";
+            std::cout << "Verifique se o usuario autenticado e PROPRIETARIO DE PRODUTO\n";
+            std::cout << "e se a historia existe.\n";
         }
 
     } catch (const std::invalid_argument& e) {
@@ -1232,7 +1263,7 @@ void ControladoraApresentacaoHistoria::excluirHistoria() {
             return;
         }
 
-        bool sucesso = servicoHistoria->excluir(codigo);
+        bool sucesso = servicoHistoria->excluir(codigo, emailUsuarioAutenticado);
 
         if (sucesso) {
             std::cout << "\nHistoria excluida com sucesso.\n";
@@ -1655,6 +1686,7 @@ void ControladoraApresentacao::mostrarMenuPrincipal() {
 
             case 4:
                 if (controladoraHistoria != nullptr) {
+                    controladoraHistoria->setEmailUsuarioAutenticado(pessoaAutenticada.getEmail());
                     controladoraHistoria->executar();
                 } else {
                     std::cout << "\nControladora de historia nao configurada.\n";

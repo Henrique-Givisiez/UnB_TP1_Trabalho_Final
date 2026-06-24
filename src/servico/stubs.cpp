@@ -157,9 +157,9 @@ bool StubPlanoSprintServico::listarPlanosSprintAssociadosProjeto(
 /* ========================================================= */
 
 bool StubHistoriaServico::criar(const Historia& historia,
-                                const string& codigoProjeto) {
-
-    return !codigoProjeto.empty();
+                         const std::string& codigoProjeto,
+                         const std::string& emailUsuarioAutenticado) {
+    return true;
 }
 
 bool StubHistoriaServico::ler(const string& codigo,
@@ -181,12 +181,14 @@ bool StubHistoriaServico::ler(const string& codigo,
     return true;
 }
 
-bool StubHistoriaServico::atualizar(const Historia& historia) {
+bool StubHistoriaServico::atualizar(const Historia& historia,
+                                   const std::string& emailUsuarioAutenticado) {
     return true;
 }
 
-bool StubHistoriaServico::excluir(const string& codigo) {
-    return !codigo.empty();
+bool StubHistoriaServico::excluir(const std::string& codigo,
+                                 const std::string& emailUsuarioAutenticado) {
+    return true;
 }
 
 bool StubHistoriaServico::associarPessoa(
