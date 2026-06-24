@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TP1 - Gerenciador Scrum: Main Page</title>
+<title>TP1 - Gerenciador Scrum: TP1 - Gerenciador Scrum</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -60,11 +60,101 @@ $(function() {
 </iframe>
 </div>
 
-<div class="header">
+<div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">TP1 - Gerenciador Scrum Documentation</div>  </div>
+<div class="title">TP1 - Gerenciador Scrum </div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><h1><a class="anchor" id="introducao"></a>
+Introdução</h1>
+<p>Este projeto foi desenvolvido para a disciplina Técnicas de Programação 1 (TP1) da Universidade de Brasília.</p>
+<p>O sistema tem como objetivo fornecer suporte ao gerenciamento de projetos utilizando conceitos do framework Scrum, permitindo o cadastro e o gerenciamento de pessoas, projetos, planos de sprint e histórias de usuário.</p>
+<p>A aplicação foi implementada em C++17 seguindo os princípios de Programação Orientada a Objetos e uma arquitetura em camadas, promovendo separação de responsabilidades e baixo acoplamento entre os módulos.</p>
+<h1><a class="anchor" id="funcionalidades"></a>
+Funcionalidades Implementadas</h1>
+<p>O sistema oferece suporte às seguintes funcionalidades:</p>
+<ul>
+<li>Cadastro, consulta, atualização e exclusão de pessoas.</li>
+<li>Cadastro, consulta, atualização e exclusão de projetos.</li>
+<li>Cadastro, consulta, atualização e exclusão de planos de sprint.</li>
+<li>Cadastro, consulta, atualização e exclusão de histórias de usuário.</li>
+<li>Associação de histórias de usuário a pessoas.</li>
+<li>Remoção de associações entre histórias e pessoas.</li>
+<li>Listagem de entidades relacionadas.</li>
+<li>Alteração de estado de histórias de usuário.</li>
+<li>Movimentação de histórias de usuário entre projeto e plano de sprint.</li>
+<li>Controle de acesso baseado nos papéis definidos pelo Scrum.</li>
+</ul>
+<h1><a class="anchor" id="arquitetura"></a>
+Arquitetura do Sistema</h1>
+<p>O software foi organizado utilizando uma arquitetura em camadas.</p>
+<h2><a class="anchor" id="camada_apresentacao"></a>
+Camada de Apresentação</h2>
+<p>Responsável pela interação com o usuário, coleta de dados de entrada, exibição de informações e encaminhamento das solicitações para os serviços apropriados.</p>
+<h2><a class="anchor" id="camada_servico"></a>
+Camada de Serviço</h2>
+<p>Responsável pela implementação das regras de negócio, controle de acesso, validação de operações e gerenciamento das entidades do sistema.</p>
+<h2><a class="anchor" id="camada_dominios"></a>
+Domínios</h2>
+<p>Responsável por encapsular as regras de validação dos tipos básicos do sistema, garantindo a integridade dos dados utilizados pelas entidades.</p>
+<p>Domínios implementados:</p>
+<ul>
+<li><a class="el" href="classCodigo.html" title="Representa um código válido no sistema.">Codigo</a></li>
+<li><a class="el" href="classData.html" title="Representa uma data válida no sistema.">Data</a></li>
+<li><a class="el" href="classEmail.html" title="Representa um endereço de email válido.">Email</a></li>
+<li><a class="el" href="classEstado.html" title="Representa um estado válido de história de usuário no sistema.">Estado</a></li>
+<li><a class="el" href="classNome.html" title="Representa um nome textual válido no sistema.">Nome</a></li>
+<li><a class="el" href="classPapel.html" title="Representa um papel válido de pessoa no sistema.">Papel</a></li>
+<li><a class="el" href="classPrioridade.html" title="Representa uma prioridade válida de história de usuário no sistema.">Prioridade</a></li>
+<li><a class="el" href="classSenha.html" title="Representa uma senha válida para autenticação.">Senha</a></li>
+<li><a class="el" href="classTempo.html" title="Representa um valor de tempo válido em dias.">Tempo</a></li>
+<li><a class="el" href="classTexto.html" title="Representa um texto válido usado nos campos textuais do sistema.">Texto</a></li>
+</ul>
+<h2><a class="anchor" id="camada_entidades"></a>
+Entidades</h2>
+<p>Representam os objetos centrais do sistema e agregam os domínios que compõem cada informação armazenada.</p>
+<p>Entidades implementadas:</p>
+<ul>
+<li><a class="el" href="classPessoa.html" title="Entidade que representa um usuário do sistema.">Pessoa</a></li>
+<li><a class="el" href="classProjeto.html" title="Representa um projeto no sistema Scrum.">Projeto</a></li>
+<li><a class="el" href="classPlanoSprint.html" title="Entidade que representa um Plano de Sprint no sistema Scrum.">PlanoSprint</a></li>
+<li><a class="el" href="classHistoria.html" title="Entidade que representa uma História de Usuário no sistema Scrum.">Historia</a></li>
+</ul>
+<h1><a class="anchor" id="regras"></a>
+Regras de Negócio Relevantes</h1>
+<p>O sistema implementa as principais restrições especificadas para o trabalho:</p>
+<ul>
+<li>Uma história de usuário pertence a um projeto ou a um plano de sprint, nunca aos dois simultaneamente.</li>
+<li>A soma das estimativas das histórias associadas a um plano de sprint deve ser menor ou igual à capacidade do sprint.</li>
+<li>A soma das capacidades dos planos de sprint associados a um projeto deve ser menor ou igual à duração do projeto.</li>
+<li>Chaves primárias não podem ser alteradas após o cadastro.</li>
+<li>Exclusões não devem gerar inconsistências no sistema.</li>
+<li>O controle de acesso considera os papéis:</li>
+<li>Proprietário de Produto;</li>
+<li>Mestre Scrum;</li>
+<li>Desenvolvedor.</li>
+</ul>
+<h1><a class="anchor" id="organizacao"></a>
+Organização da Documentação</h1>
+<p>A documentação está organizada nas seguintes categorias:</p>
+<ul>
+<li>Domínios: tipos responsáveis pela validação dos dados.</li>
+<li>Entidades: objetos principais do sistema.</li>
+<li>Interfaces: contratos de comunicação entre módulos.</li>
+<li>Serviços: implementação das regras de negócio.</li>
+<li>Apresentação: controladoras e interação com o usuário.</li>
+</ul>
+<p>Utilize o menu superior para navegar entre as classes e arquivos do projeto.</p>
+<h1><a class="anchor" id="tecnologias"></a>
+Tecnologias Utilizadas</h1>
+<ul>
+<li>Linguagem C++17.</li>
+<li>Programação Orientada a Objetos.</li>
+<li>Doxygen para documentação.</li>
+<li>Compatibilidade com Code::Blocks.</li>
+</ul>
+<p>Trabalho desenvolvido para a disciplina Técnicas de Programação 1. </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

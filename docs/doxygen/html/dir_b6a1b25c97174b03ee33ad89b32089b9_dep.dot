@@ -7,5 +7,5 @@ digraph "include/interfaces" {
   dir_b6a1b25c97174b03ee33ad89b32089b9 [shape=box, label="interfaces", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_b6a1b25c97174b03ee33ad89b32089b9.html"];
   }
   dir_b6fe58feaf6db8197458bb99298aea1c [shape=box label="entidades" URL="dir_b6fe58feaf6db8197458bb99298aea1c.html"];
-  dir_b6a1b25c97174b03ee33ad89b32089b9->dir_b6fe58feaf6db8197458bb99298aea1c [headlabel="1", labeldistance=1.5 headhref="dir_000003_000002.html"];
+  dir_b6a1b25c97174b03ee33ad89b32089b9->dir_b6fe58feaf6db8197458bb99298aea1c [headlabel="4", labeldistance=1.5 headhref="dir_000004_000003.html"];
 }

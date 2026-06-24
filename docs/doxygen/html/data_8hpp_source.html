@@ -69,31 +69,32 @@ $(function() {
 <div class="title">data.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef DATA_HPP</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define DATA_HPP</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classData.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="classData.html">Data</a> {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    std::string valor;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">void</span> validar(<span class="keyword">const</span> std::string&amp; data);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">bool</span> bissexto(<span class="keywordtype">int</span> ano) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">int</span> diasNoMes(<span class="keywordtype">int</span> mes, <span class="keywordtype">int</span> ano) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classData.html#af72fc4685ba46ed8a516e7a8fb936fe1">set</a>(<span class="keyword">const</span> std::string&amp; data);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classData.html#a13042edd58b844028045baf9aa4d58fb">   30</a></span>&#160;    std::string <a class="code" href="classData.html#a13042edd58b844028045baf9aa4d58fb">get</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> valor; }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;};</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif</span></div>
+<a href="data_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef DATA_HPP</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define DATA_HPP</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classData.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="classData.html">Data</a> {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    std::string valor;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">void</span> validar(<span class="keyword">const</span> std::string&amp; data);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">bool</span> bissexto(<span class="keywordtype">int</span> ano) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">int</span> diasNoMes(<span class="keywordtype">int</span> mes, <span class="keywordtype">int</span> ano) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classData.html#af72fc4685ba46ed8a516e7a8fb936fe1">set</a>(<span class="keyword">const</span> std::string&amp; data);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classData.html#a13042edd58b844028045baf9aa4d58fb">   45</a></span>&#160;    std::string <a class="code" href="classData.html#a13042edd58b844028045baf9aa4d58fb">get</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> valor; }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassData_html"><div class="ttname"><a href="classData.html">Data</a></div><div class="ttdoc">Domínio que representa uma data no formato DIA/MES/ANO.</div><div class="ttdef"><b>Definition:</b> data.hpp:14</div></div>
-<div class="ttc" id="aclassData_html_af72fc4685ba46ed8a516e7a8fb936fe1"><div class="ttname"><a href="classData.html#af72fc4685ba46ed8a516e7a8fb936fe1">Data::set</a></div><div class="ttdeci">void set(const std::string &amp;data)</div><div class="ttdoc">Define o valor da data após validação.</div><div class="ttdef"><b>Definition:</b> data.cpp:76</div></div>
-<div class="ttc" id="aclassData_html_a13042edd58b844028045baf9aa4d58fb"><div class="ttname"><a href="classData.html#a13042edd58b844028045baf9aa4d58fb">Data::get</a></div><div class="ttdeci">std::string get() const</div><div class="ttdoc">Retorna o valor da data.</div><div class="ttdef"><b>Definition:</b> data.hpp:30</div></div>
+<div class="ttc" id="aclassData_html"><div class="ttname"><a href="classData.html">Data</a></div><div class="ttdoc">Representa uma data válida no sistema.</div><div class="ttdef"><b>Definition:</b> data.hpp:23</div></div>
+<div class="ttc" id="aclassData_html_af72fc4685ba46ed8a516e7a8fb936fe1"><div class="ttname"><a href="classData.html#af72fc4685ba46ed8a516e7a8fb936fe1">Data::set</a></div><div class="ttdeci">void set(const std::string &amp;data)</div><div class="ttdoc">Define a data armazenada.</div><div class="ttdef"><b>Definition:</b> data.cpp:76</div></div>
+<div class="ttc" id="aclassData_html_a13042edd58b844028045baf9aa4d58fb"><div class="ttname"><a href="classData.html#a13042edd58b844028045baf9aa4d58fb">Data::get</a></div><div class="ttdeci">std::string get() const</div><div class="ttdoc">Retorna a data armazenada.</div><div class="ttdef"><b>Definition:</b> data.hpp:45</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

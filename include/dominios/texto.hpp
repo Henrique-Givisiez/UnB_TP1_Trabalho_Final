@@ -1,3 +1,7 @@
+/**
+ * @file texto.hpp
+ * @brief Declaração do domínio Texto.
+ */
 #ifndef TEXTO_HPP
 #define TEXTO_HPP
 

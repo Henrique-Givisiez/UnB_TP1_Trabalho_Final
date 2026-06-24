@@ -1,3 +1,7 @@
+/**
+ * @file historia.hpp
+ * @brief Declaração da entidade Historia.
+ */
 #ifndef HISTORIA_HPP
 #define HISTORIA_HPP
 

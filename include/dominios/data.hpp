@@ -1,3 +1,7 @@
+/**
+ * @file data.hpp
+ * @brief Declaração do domínio Data.
+ */
 #ifndef DATA_HPP
 #define DATA_HPP
 

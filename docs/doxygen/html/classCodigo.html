@@ -68,16 +68,85 @@ $(function() {
 <div class="title">Codigo Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Representa um código válido no sistema.  
+ <a href="classCodigo.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="codigo_8hpp_source.html">codigo.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad3c724fbec03b1022a99ed90262f74b3"><td class="memItemLeft" align="right" valign="top"><a id="ad3c724fbec03b1022a99ed90262f74b3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (std::string)</td></tr>
-<tr class="separator:ad3c724fbec03b1022a99ed90262f74b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c78807f07bb1e9232b171690a930c96"><td class="memItemLeft" align="right" valign="top"><a id="a0c78807f07bb1e9232b171690a930c96"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> () const</td></tr>
+<tr class="memitem:aa298e1475f72e4ec978bb190e6150f44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCodigo.html#aa298e1475f72e4ec978bb190e6150f44">set</a> (std::string codigo)</td></tr>
+<tr class="memdesc:aa298e1475f72e4ec978bb190e6150f44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define o código armazenado.  <a href="classCodigo.html#aa298e1475f72e4ec978bb190e6150f44">More...</a><br /></td></tr>
+<tr class="separator:aa298e1475f72e4ec978bb190e6150f44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c78807f07bb1e9232b171690a930c96"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCodigo.html#a0c78807f07bb1e9232b171690a930c96">get</a> () const</td></tr>
+<tr class="memdesc:a0c78807f07bb1e9232b171690a930c96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna o código armazenado.  <a href="classCodigo.html#a0c78807f07bb1e9232b171690a930c96">More...</a><br /></td></tr>
 <tr class="separator:a0c78807f07bb1e9232b171690a930c96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Representa um código válido no sistema. </p>
+<p>Essa classe encapsula a validação e o armazenamento de um código composto por 5 caracteres, sendo 2 letras maiúsculas seguidas de 3 dígitos. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0c78807f07bb1e9232b171690a930c96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c78807f07bb1e9232b171690a930c96">&#9670;&nbsp;</a></span>get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Codigo::get </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retorna o código armazenado. </p>
+<dl class="section return"><dt>Returns</dt><dd>Código atual em formato textual. </dd></dl>
+
+</div>
+</div>
+<a id="aa298e1475f72e4ec978bb190e6150f44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa298e1475f72e4ec978bb190e6150f44">&#9670;&nbsp;</a></span>set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Codigo::set </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>codigo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define o código armazenado. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">codigo</td><td>Novo código a ser armazenado. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>Caso o valor informado seja inválido. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/dominios/<a class="el" href="codigo_8hpp_source.html">codigo.hpp</a></li>
 <li>src/dominios/codigo.cpp</li>

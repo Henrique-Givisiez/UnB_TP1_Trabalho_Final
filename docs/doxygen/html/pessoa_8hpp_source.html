@@ -69,54 +69,59 @@ $(function() {
 <div class="title">pessoa.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef PESSOA_HPP</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define PESSOA_HPP</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;dominios/email.hpp&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;dominios/nome.hpp&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;dominios/senha.hpp&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;dominios/papel.hpp&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classPessoa.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPessoa.html">Pessoa</a> {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="classEmail.html">Email</a>  email;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="classNome.html">Nome</a>   nome;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classSenha.html">Senha</a>  senha;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="classPapel.html">Papel</a>  papel;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classPessoa.html#ade6c7ecf339f07b33019cfcf79424623">setEmail</a>(<span class="keyword">const</span> std::string&amp; email);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classPessoa.html#ae98c4c602cdcdd692cee7afedb8a42cd">setNome</a>(<span class="keyword">const</span> std::string&amp; nome);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classPessoa.html#a253c84395494e27a8796696b3fb8497b">setSenha</a>(<span class="keyword">const</span> std::string&amp; senha);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classPessoa.html#a67383d5e3ff03279391e16f8fb8cc123">setPapel</a>(<span class="keyword">const</span> std::string&amp; papel);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    std::string <a class="code" href="classPessoa.html#aa1870ca4f33348dcdc1cd05476e66905">getEmail</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    std::string <a class="code" href="classPessoa.html#a309bd1dada952c5c9b6aa27c163d1e53">getNome</a>()  <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    std::string <a class="code" href="classPessoa.html#a714a3939ba5eb36c28a27678245c1d39">getSenha</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::string <a class="code" href="classPessoa.html#ad3cbd8a1b61a0823a62dcf8d04c05f7b">getPapel</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
+<a href="pessoa_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef PESSOA_HPP</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define PESSOA_HPP</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="email_8hpp.html">dominios/email.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nome_8hpp.html">dominios/nome.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="senha_8hpp.html">dominios/senha.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="papel_8hpp.html">dominios/papel.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classPessoa.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPessoa.html">Pessoa</a> {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classEmail.html">Email</a>  email;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classNome.html">Nome</a>   nome;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classSenha.html">Senha</a>  senha;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classPapel.html">Papel</a>  papel;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classPessoa.html#ade6c7ecf339f07b33019cfcf79424623">setEmail</a>(<span class="keyword">const</span> std::string&amp; email);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classPessoa.html#ae98c4c602cdcdd692cee7afedb8a42cd">setNome</a>(<span class="keyword">const</span> std::string&amp; nome);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classPessoa.html#a253c84395494e27a8796696b3fb8497b">setSenha</a>(<span class="keyword">const</span> std::string&amp; senha);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classPessoa.html#a67383d5e3ff03279391e16f8fb8cc123">setPapel</a>(<span class="keyword">const</span> std::string&amp; papel);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    std::string <a class="code" href="classPessoa.html#aa1870ca4f33348dcdc1cd05476e66905">getEmail</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    std::string <a class="code" href="classPessoa.html#a309bd1dada952c5c9b6aa27c163d1e53">getNome</a>()  <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::string <a class="code" href="classPessoa.html#a714a3939ba5eb36c28a27678245c1d39">getSenha</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::string <a class="code" href="classPessoa.html#ad3cbd8a1b61a0823a62dcf8d04c05f7b">getPapel</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassPessoa_html_aa1870ca4f33348dcdc1cd05476e66905"><div class="ttname"><a href="classPessoa.html#aa1870ca4f33348dcdc1cd05476e66905">Pessoa::getEmail</a></div><div class="ttdeci">std::string getEmail() const</div><div class="ttdoc">Retorna o email da pessoa.</div><div class="ttdef"><b>Definition:</b> pessoa.cpp:27</div></div>
-<div class="ttc" id="aclassSenha_html"><div class="ttname"><a href="classSenha.html">Senha</a></div><div class="ttdoc">Domínio que representa uma senha de acesso.</div><div class="ttdef"><b>Definition:</b> senha.hpp:16</div></div>
-<div class="ttc" id="aclassPessoa_html"><div class="ttname"><a href="classPessoa.html">Pessoa</a></div><div class="ttdoc">Entidade que representa um usuário do sistema.</div><div class="ttdef"><b>Definition:</b> pessoa.hpp:13</div></div>
+<div class="ttc" id="aclassSenha_html"><div class="ttname"><a href="classSenha.html">Senha</a></div><div class="ttdoc">Representa uma senha válida para autenticação.</div><div class="ttdef"><b>Definition:</b> senha.hpp:25</div></div>
+<div class="ttc" id="aclassPessoa_html"><div class="ttname"><a href="classPessoa.html">Pessoa</a></div><div class="ttdoc">Entidade que representa um usuário do sistema.</div><div class="ttdef"><b>Definition:</b> pessoa.hpp:17</div></div>
 <div class="ttc" id="aclassPessoa_html_ad3cbd8a1b61a0823a62dcf8d04c05f7b"><div class="ttname"><a href="classPessoa.html#ad3cbd8a1b61a0823a62dcf8d04c05f7b">Pessoa::getPapel</a></div><div class="ttdeci">std::string getPapel() const</div><div class="ttdoc">Retorna o papel da pessoa.</div><div class="ttdef"><b>Definition:</b> pessoa.cpp:39</div></div>
+<div class="ttc" id="aemail_8hpp_html"><div class="ttname"><a href="email_8hpp.html">email.hpp</a></div><div class="ttdoc">Declaração do domínio Email.</div></div>
 <div class="ttc" id="aclassPessoa_html_a253c84395494e27a8796696b3fb8497b"><div class="ttname"><a href="classPessoa.html#a253c84395494e27a8796696b3fb8497b">Pessoa::setSenha</a></div><div class="ttdeci">void setSenha(const std::string &amp;senha)</div><div class="ttdoc">Define a senha da pessoa.</div><div class="ttdef"><b>Definition:</b> pessoa.cpp:15</div></div>
 <div class="ttc" id="aclassPessoa_html_ade6c7ecf339f07b33019cfcf79424623"><div class="ttname"><a href="classPessoa.html#ade6c7ecf339f07b33019cfcf79424623">Pessoa::setEmail</a></div><div class="ttdeci">void setEmail(const std::string &amp;email)</div><div class="ttdoc">Define o email da pessoa.</div><div class="ttdef"><b>Definition:</b> pessoa.cpp:7</div></div>
-<div class="ttc" id="aclassPapel_html"><div class="ttname"><a href="classPapel.html">Papel</a></div><div class="ttdef"><b>Definition:</b> papel.hpp:7</div></div>
+<div class="ttc" id="anome_8hpp_html"><div class="ttname"><a href="nome_8hpp.html">nome.hpp</a></div><div class="ttdoc">Declaração do domínio Nome.</div></div>
+<div class="ttc" id="aclassPapel_html"><div class="ttname"><a href="classPapel.html">Papel</a></div><div class="ttdoc">Representa um papel válido de pessoa no sistema.</div><div class="ttdef"><b>Definition:</b> papel.hpp:15</div></div>
+<div class="ttc" id="asenha_8hpp_html"><div class="ttname"><a href="senha_8hpp.html">senha.hpp</a></div><div class="ttdoc">Declaração do domínio Senha.</div></div>
+<div class="ttc" id="apapel_8hpp_html"><div class="ttname"><a href="papel_8hpp.html">papel.hpp</a></div><div class="ttdoc">Declaração do domínio Papel.</div></div>
 <div class="ttc" id="aclassPessoa_html_a67383d5e3ff03279391e16f8fb8cc123"><div class="ttname"><a href="classPessoa.html#a67383d5e3ff03279391e16f8fb8cc123">Pessoa::setPapel</a></div><div class="ttdeci">void setPapel(const std::string &amp;papel)</div><div class="ttdoc">Define o papel da pessoa no projeto.</div><div class="ttdef"><b>Definition:</b> pessoa.cpp:19</div></div>
 <div class="ttc" id="aclassPessoa_html_a309bd1dada952c5c9b6aa27c163d1e53"><div class="ttname"><a href="classPessoa.html#a309bd1dada952c5c9b6aa27c163d1e53">Pessoa::getNome</a></div><div class="ttdeci">std::string getNome() const</div><div class="ttdoc">Retorna o nome da pessoa.</div><div class="ttdef"><b>Definition:</b> pessoa.cpp:31</div></div>
 <div class="ttc" id="aclassPessoa_html_ae98c4c602cdcdd692cee7afedb8a42cd"><div class="ttname"><a href="classPessoa.html#ae98c4c602cdcdd692cee7afedb8a42cd">Pessoa::setNome</a></div><div class="ttdeci">void setNome(const std::string &amp;nome)</div><div class="ttdoc">Define o nome da pessoa.</div><div class="ttdef"><b>Definition:</b> pessoa.cpp:11</div></div>
-<div class="ttc" id="aclassNome_html"><div class="ttname"><a href="classNome.html">Nome</a></div><div class="ttdef"><b>Definition:</b> nome.hpp:7</div></div>
+<div class="ttc" id="aclassNome_html"><div class="ttname"><a href="classNome.html">Nome</a></div><div class="ttdoc">Representa um nome textual válido no sistema.</div><div class="ttdef"><b>Definition:</b> nome.hpp:15</div></div>
 <div class="ttc" id="aclassPessoa_html_a714a3939ba5eb36c28a27678245c1d39"><div class="ttname"><a href="classPessoa.html#a714a3939ba5eb36c28a27678245c1d39">Pessoa::getSenha</a></div><div class="ttdeci">std::string getSenha() const</div><div class="ttdoc">Retorna a senha da pessoa.</div><div class="ttdef"><b>Definition:</b> pessoa.cpp:35</div></div>
-<div class="ttc" id="aclassEmail_html"><div class="ttname"><a href="classEmail.html">Email</a></div><div class="ttdoc">Domínio que representa um endereço de email no formato parte-local@dominio.</div><div class="ttdef"><b>Definition:</b> email.hpp:20</div></div>
+<div class="ttc" id="aclassEmail_html"><div class="ttname"><a href="classEmail.html">Email</a></div><div class="ttdoc">Representa um endereço de email válido.</div><div class="ttdef"><b>Definition:</b> email.hpp:29</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

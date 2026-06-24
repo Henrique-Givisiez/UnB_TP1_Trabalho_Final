@@ -69,31 +69,38 @@ $(function() {
 <div class="title">papel.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef PAPEL_HPP_INCLUDED</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define PAPEL_HPP_INCLUDED</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using namespace </span>std;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="classPapel.html">    7</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPapel.html">Papel</a> {</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keyword">enum</span> PapelEnum {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        DESENVOLVEDOR,</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        MESTRE_SCRUM,</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        PROPRIETARIO_PROD</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    };</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    PapelEnum papel;</div>
+<a href="papel_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef PAPEL_HPP_INCLUDED</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define PAPEL_HPP_INCLUDED</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classPapel.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPapel.html">Papel</a> {</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">void</span> set(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; novoPapel);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">string</span> get() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    PapelEnum getPapelInterno() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;};</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif // PAPEL_HPP_INCLUDED</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classPapel.html#a1e29fabc0b15ec240088d4aeaee7d388">   20</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="classPapel.html#a1e29fabc0b15ec240088d4aeaee7d388">PapelEnum</a> {</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classPapel.html#a1e29fabc0b15ec240088d4aeaee7d388a4230465a2cec3e9e8188b79fcfa11ab0">   21</a></span>&#160;        <a class="code" href="classPapel.html#a1e29fabc0b15ec240088d4aeaee7d388a4230465a2cec3e9e8188b79fcfa11ab0">DESENVOLVEDOR</a>,     </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classPapel.html#a1e29fabc0b15ec240088d4aeaee7d388aa6f59a18779eb88c28c97c124980dfd9">   22</a></span>&#160;        <a class="code" href="classPapel.html#a1e29fabc0b15ec240088d4aeaee7d388aa6f59a18779eb88c28c97c124980dfd9">MESTRE_SCRUM</a>,      </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classPapel.html#a1e29fabc0b15ec240088d4aeaee7d388aaf315b7d60d07cbfe2fffacc464096d2">   23</a></span>&#160;        <a class="code" href="classPapel.html#a1e29fabc0b15ec240088d4aeaee7d388aaf315b7d60d07cbfe2fffacc464096d2">PROPRIETARIO_PROD</a>  </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    };</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="classPapel.html#a1e29fabc0b15ec240088d4aeaee7d388">PapelEnum</a> papel;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classPapel.html#aa858da7bdb228ab5042afe819dd251b3">set</a>(<span class="keyword">const</span> std::string&amp; novoPapel);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    std::string <a class="code" href="classPapel.html#af05b46b524bbe1d1252c841529a5ad5e">get</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classPapel.html#a1e29fabc0b15ec240088d4aeaee7d388">PapelEnum</a> <a class="code" href="classPapel.html#a7a26647dedb4a939e218042976f308fc">getPapelInterno</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif // PAPEL_HPP_INCLUDED</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassPapel_html"><div class="ttname"><a href="classPapel.html">Papel</a></div><div class="ttdef"><b>Definition:</b> papel.hpp:7</div></div>
+<div class="ttc" id="aclassPapel_html_a7a26647dedb4a939e218042976f308fc"><div class="ttname"><a href="classPapel.html#a7a26647dedb4a939e218042976f308fc">Papel::getPapelInterno</a></div><div class="ttdeci">PapelEnum getPapelInterno() const</div><div class="ttdoc">Retorna o valor interno do papel.</div><div class="ttdef"><b>Definition:</b> papel.cpp:29</div></div>
+<div class="ttc" id="aclassPapel_html_a1e29fabc0b15ec240088d4aeaee7d388aa6f59a18779eb88c28c97c124980dfd9"><div class="ttname"><a href="classPapel.html#a1e29fabc0b15ec240088d4aeaee7d388aa6f59a18779eb88c28c97c124980dfd9">Papel::MESTRE_SCRUM</a></div><div class="ttdeci">@ MESTRE_SCRUM</div><div class="ttdef"><b>Definition:</b> papel.hpp:22</div></div>
+<div class="ttc" id="aclassPapel_html_a1e29fabc0b15ec240088d4aeaee7d388aaf315b7d60d07cbfe2fffacc464096d2"><div class="ttname"><a href="classPapel.html#a1e29fabc0b15ec240088d4aeaee7d388aaf315b7d60d07cbfe2fffacc464096d2">Papel::PROPRIETARIO_PROD</a></div><div class="ttdeci">@ PROPRIETARIO_PROD</div><div class="ttdef"><b>Definition:</b> papel.hpp:23</div></div>
+<div class="ttc" id="aclassPapel_html_aa858da7bdb228ab5042afe819dd251b3"><div class="ttname"><a href="classPapel.html#aa858da7bdb228ab5042afe819dd251b3">Papel::set</a></div><div class="ttdeci">void set(const std::string &amp;novoPapel)</div><div class="ttdoc">Define o papel da pessoa.</div><div class="ttdef"><b>Definition:</b> papel.cpp:8</div></div>
+<div class="ttc" id="aclassPapel_html_af05b46b524bbe1d1252c841529a5ad5e"><div class="ttname"><a href="classPapel.html#af05b46b524bbe1d1252c841529a5ad5e">Papel::get</a></div><div class="ttdeci">std::string get() const</div><div class="ttdoc">Retorna o papel armazenado.</div><div class="ttdef"><b>Definition:</b> papel.cpp:20</div></div>
+<div class="ttc" id="aclassPapel_html"><div class="ttname"><a href="classPapel.html">Papel</a></div><div class="ttdoc">Representa um papel válido de pessoa no sistema.</div><div class="ttdef"><b>Definition:</b> papel.hpp:15</div></div>
+<div class="ttc" id="aclassPapel_html_a1e29fabc0b15ec240088d4aeaee7d388"><div class="ttname"><a href="classPapel.html#a1e29fabc0b15ec240088d4aeaee7d388">Papel::PapelEnum</a></div><div class="ttdeci">PapelEnum</div><div class="ttdoc">Valores internos aceitos para o papel da pessoa.</div><div class="ttdef"><b>Definition:</b> papel.hpp:20</div></div>
+<div class="ttc" id="aclassPapel_html_a1e29fabc0b15ec240088d4aeaee7d388a4230465a2cec3e9e8188b79fcfa11ab0"><div class="ttname"><a href="classPapel.html#a1e29fabc0b15ec240088d4aeaee7d388a4230465a2cec3e9e8188b79fcfa11ab0">Papel::DESENVOLVEDOR</a></div><div class="ttdeci">@ DESENVOLVEDOR</div><div class="ttdef"><b>Definition:</b> papel.hpp:21</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

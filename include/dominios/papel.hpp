@@ -1,3 +1,7 @@
+/**
+ * @file papel.hpp
+ * @brief Declaração do domínio Papel.
+ */
 #ifndef PAPEL_HPP_INCLUDED
 #define PAPEL_HPP_INCLUDED
 #include <string>

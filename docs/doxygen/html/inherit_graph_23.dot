@@ -4,5 +4,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="Tempo",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTempo.html",tooltip="Domínio que representa um valor de tempo em dias."];
+  Node0 [label="Tempo",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTempo.html",tooltip="Representa um valor de tempo válido em dias."];
 }

@@ -69,28 +69,32 @@ $(function() {
 <div class="title">codigo.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef CODIGO_HPP_INCLUDED</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define CODIGO_HPP_INCLUDED</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="classCodigo.html">    6</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCodigo.html">Codigo</a> {</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    std::string codigo;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordtype">void</span> validar(std::string);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> TAMANHO = 5;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordtype">void</span> set(std::string);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    std::string get() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;};</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">inline</span> std::string Codigo::get()<span class="keyword"> const</span>{</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordflow">return</span> codigo;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif // CODIGO_HPP_INCLUDED</span></div>
+<a href="codigo_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef CODIGO_HPP_INCLUDED</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define CODIGO_HPP_INCLUDED</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classCodigo.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCodigo.html">Codigo</a> {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    std::string codigo;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> validar(std::string);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> TAMANHO = 5;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCodigo.html#aa298e1475f72e4ec978bb190e6150f44">set</a>(std::string codigo);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    std::string <a class="code" href="classCodigo.html#a0c78807f07bb1e9232b171690a930c96">get</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;};</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCodigo.html#a0c78807f07bb1e9232b171690a930c96">   38</a></span>&#160;<span class="keyword">inline</span> std::string <a class="code" href="classCodigo.html#a0c78807f07bb1e9232b171690a930c96">Codigo::get</a>()<span class="keyword"> const</span>{</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">return</span> codigo;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#endif // CODIGO_HPP_INCLUDED</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassCodigo_html"><div class="ttname"><a href="classCodigo.html">Codigo</a></div><div class="ttdef"><b>Definition:</b> codigo.hpp:6</div></div>
+<div class="ttc" id="aclassCodigo_html"><div class="ttname"><a href="classCodigo.html">Codigo</a></div><div class="ttdoc">Representa um código válido no sistema.</div><div class="ttdef"><b>Definition:</b> codigo.hpp:16</div></div>
+<div class="ttc" id="aclassCodigo_html_a0c78807f07bb1e9232b171690a930c96"><div class="ttname"><a href="classCodigo.html#a0c78807f07bb1e9232b171690a930c96">Codigo::get</a></div><div class="ttdeci">std::string get() const</div><div class="ttdoc">Retorna o código armazenado.</div><div class="ttdef"><b>Definition:</b> codigo.hpp:38</div></div>
+<div class="ttc" id="aclassCodigo_html_aa298e1475f72e4ec978bb190e6150f44"><div class="ttname"><a href="classCodigo.html#aa298e1475f72e4ec978bb190e6150f44">Codigo::set</a></div><div class="ttdeci">void set(std::string codigo)</div><div class="ttdoc">Define o código armazenado.</div><div class="ttdef"><b>Definition:</b> codigo.cpp:6</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

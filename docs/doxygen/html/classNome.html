@@ -68,16 +68,85 @@ $(function() {
 <div class="title">Nome Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Representa um nome textual válido no sistema.  
+ <a href="classNome.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="nome_8hpp_source.html">nome.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aadccc7dfdc1427fad02a386540e6f7b6"><td class="memItemLeft" align="right" valign="top"><a id="aadccc7dfdc1427fad02a386540e6f7b6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const string &amp;)</td></tr>
-<tr class="separator:aadccc7dfdc1427fad02a386540e6f7b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac018899c816fa4f4f5fcf3375132360b"><td class="memItemLeft" align="right" valign="top"><a id="ac018899c816fa4f4f5fcf3375132360b"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> () const</td></tr>
-<tr class="separator:ac018899c816fa4f4f5fcf3375132360b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f410daf6dba683eb2534d80c316dfc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNome.html#a5f410daf6dba683eb2534d80c316dfc9">set</a> (const std::string &amp;nome)</td></tr>
+<tr class="memdesc:a5f410daf6dba683eb2534d80c316dfc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define o nome armazenado.  <a href="classNome.html#a5f410daf6dba683eb2534d80c316dfc9">More...</a><br /></td></tr>
+<tr class="separator:a5f410daf6dba683eb2534d80c316dfc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf50e5c94c6af7702f4f1937114d0a19"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNome.html#adf50e5c94c6af7702f4f1937114d0a19">get</a> () const</td></tr>
+<tr class="memdesc:adf50e5c94c6af7702f4f1937114d0a19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna o nome armazenado.  <a href="classNome.html#adf50e5c94c6af7702f4f1937114d0a19">More...</a><br /></td></tr>
+<tr class="separator:adf50e5c94c6af7702f4f1937114d0a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Representa um nome textual válido no sistema. </p>
+<p>Essa classe encapsula a validação e o armazenamento de nomes aceitos pelos campos textuais de identificação do trabalho. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="adf50e5c94c6af7702f4f1937114d0a19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf50e5c94c6af7702f4f1937114d0a19">&#9670;&nbsp;</a></span>get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Nome::get </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retorna o nome armazenado. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classNome.html" title="Representa um nome textual válido no sistema.">Nome</a> atual em formato textual. </dd></dl>
+
+</div>
+</div>
+<a id="a5f410daf6dba683eb2534d80c316dfc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f410daf6dba683eb2534d80c316dfc9">&#9670;&nbsp;</a></span>set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Nome::set </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>nome</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define o nome armazenado. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nome</td><td>Novo nome a ser armazenado. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>Caso o valor informado seja inválido. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/dominios/<a class="el" href="nome_8hpp_source.html">nome.hpp</a></li>
 <li>src/dominios/nome.cpp</li>

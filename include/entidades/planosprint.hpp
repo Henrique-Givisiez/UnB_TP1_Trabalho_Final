@@ -1,3 +1,7 @@
+/**
+ * @file planosprint.hpp
+ * @brief Declaração da entidade PlanoSprint.
+ */
 #ifndef PLANOSPRINT_HPP
 #define PLANOSPRINT_HPP
 

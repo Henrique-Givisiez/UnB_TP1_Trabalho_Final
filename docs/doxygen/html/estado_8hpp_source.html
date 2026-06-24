@@ -69,31 +69,40 @@ $(function() {
 <div class="title">estado.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef ESTADO_HPP_INCLUDED</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define ESTADO_HPP_INCLUDED</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using namespace </span>std;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="classEstado.html">    7</a></span>&#160;<span class="keyword">class </span><a class="code" href="classEstado.html">Estado</a> {</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keyword">enum</span> EstadoEnum {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        A_FAZER,</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        FAZENDO,</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        FEITO</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    };</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    EstadoEnum estado;</div>
+<a href="estado_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef ESTADO_HPP_INCLUDED</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define ESTADO_HPP_INCLUDED</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classEstado.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="classEstado.html">Estado</a> {</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classEstado.html">Estado</a>();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">void</span> set(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; novoEstado);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">string</span> get() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    EstadoEnum getEstadoInterno() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;};</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif // ESTADO_HPP_INCLUDED</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classEstado.html#a4fb69a375cd130e48a440c52601fe240">   20</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="classEstado.html#a4fb69a375cd130e48a440c52601fe240">EstadoEnum</a> {</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classEstado.html#a4fb69a375cd130e48a440c52601fe240a0a6ddb6894c121dc4c803457b782a6d0">   21</a></span>&#160;        <a class="code" href="classEstado.html#a4fb69a375cd130e48a440c52601fe240a0a6ddb6894c121dc4c803457b782a6d0">A_FAZER</a>, </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classEstado.html#a4fb69a375cd130e48a440c52601fe240ad02879d0831112791500c6932eb092be">   22</a></span>&#160;        <a class="code" href="classEstado.html#a4fb69a375cd130e48a440c52601fe240ad02879d0831112791500c6932eb092be">FAZENDO</a>, </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classEstado.html#a4fb69a375cd130e48a440c52601fe240ace7ac74607c2adf8202888cae70269d3">   23</a></span>&#160;        <a class="code" href="classEstado.html#a4fb69a375cd130e48a440c52601fe240ace7ac74607c2adf8202888cae70269d3">FEITO</a>    </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    };</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="classEstado.html#a4fb69a375cd130e48a440c52601fe240">EstadoEnum</a> estado;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="classEstado.html#aa956f333e0d0b9c54bc8c94055966ea2">Estado</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classEstado.html#aef43756fef7d5d8668e84ce0b1506c86">set</a>(<span class="keyword">const</span> std::string&amp; novoEstado);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    std::string <a class="code" href="classEstado.html#ad63e3eeade21403caa62985941dcc0d4">get</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="classEstado.html#a4fb69a375cd130e48a440c52601fe240">EstadoEnum</a> <a class="code" href="classEstado.html#ae8a085e99d6f517e1f15c530a895ebae">getEstadoInterno</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif // ESTADO_HPP_INCLUDED</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassEstado_html"><div class="ttname"><a href="classEstado.html">Estado</a></div><div class="ttdef"><b>Definition:</b> estado.hpp:7</div></div>
+<div class="ttc" id="aclassEstado_html_a4fb69a375cd130e48a440c52601fe240ace7ac74607c2adf8202888cae70269d3"><div class="ttname"><a href="classEstado.html#a4fb69a375cd130e48a440c52601fe240ace7ac74607c2adf8202888cae70269d3">Estado::FEITO</a></div><div class="ttdeci">@ FEITO</div><div class="ttdef"><b>Definition:</b> estado.hpp:23</div></div>
+<div class="ttc" id="aclassEstado_html"><div class="ttname"><a href="classEstado.html">Estado</a></div><div class="ttdoc">Representa um estado válido de história de usuário no sistema.</div><div class="ttdef"><b>Definition:</b> estado.hpp:15</div></div>
+<div class="ttc" id="aclassEstado_html_ae8a085e99d6f517e1f15c530a895ebae"><div class="ttname"><a href="classEstado.html#ae8a085e99d6f517e1f15c530a895ebae">Estado::getEstadoInterno</a></div><div class="ttdeci">EstadoEnum getEstadoInterno() const</div><div class="ttdoc">Retorna o valor interno do estado.</div><div class="ttdef"><b>Definition:</b> estado.cpp:33</div></div>
+<div class="ttc" id="aclassEstado_html_aa956f333e0d0b9c54bc8c94055966ea2"><div class="ttname"><a href="classEstado.html#aa956f333e0d0b9c54bc8c94055966ea2">Estado::Estado</a></div><div class="ttdeci">Estado()</div><div class="ttdoc">Inicializa o estado com o valor padrão.</div><div class="ttdef"><b>Definition:</b> estado.cpp:7</div></div>
+<div class="ttc" id="aclassEstado_html_ad63e3eeade21403caa62985941dcc0d4"><div class="ttname"><a href="classEstado.html#ad63e3eeade21403caa62985941dcc0d4">Estado::get</a></div><div class="ttdeci">std::string get() const</div><div class="ttdoc">Retorna o estado armazenado.</div><div class="ttdef"><b>Definition:</b> estado.cpp:24</div></div>
+<div class="ttc" id="aclassEstado_html_a4fb69a375cd130e48a440c52601fe240ad02879d0831112791500c6932eb092be"><div class="ttname"><a href="classEstado.html#a4fb69a375cd130e48a440c52601fe240ad02879d0831112791500c6932eb092be">Estado::FAZENDO</a></div><div class="ttdeci">@ FAZENDO</div><div class="ttdef"><b>Definition:</b> estado.hpp:22</div></div>
+<div class="ttc" id="aclassEstado_html_a4fb69a375cd130e48a440c52601fe240"><div class="ttname"><a href="classEstado.html#a4fb69a375cd130e48a440c52601fe240">Estado::EstadoEnum</a></div><div class="ttdeci">EstadoEnum</div><div class="ttdoc">Valores internos aceitos para o estado da história de usuário.</div><div class="ttdef"><b>Definition:</b> estado.hpp:20</div></div>
+<div class="ttc" id="aclassEstado_html_a4fb69a375cd130e48a440c52601fe240a0a6ddb6894c121dc4c803457b782a6d0"><div class="ttname"><a href="classEstado.html#a4fb69a375cd130e48a440c52601fe240a0a6ddb6894c121dc4c803457b782a6d0">Estado::A_FAZER</a></div><div class="ttdeci">@ A_FAZER</div><div class="ttdef"><b>Definition:</b> estado.hpp:21</div></div>
+<div class="ttc" id="aclassEstado_html_aef43756fef7d5d8668e84ce0b1506c86"><div class="ttname"><a href="classEstado.html#aef43756fef7d5d8668e84ce0b1506c86">Estado::set</a></div><div class="ttdeci">void set(const std::string &amp;novoEstado)</div><div class="ttdoc">Define o estado da história de usuário.</div><div class="ttdef"><b>Definition:</b> estado.cpp:12</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

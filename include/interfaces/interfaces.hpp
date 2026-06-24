@@ -1,3 +1,7 @@
+/**
+ * @file interfaces.hpp
+ * @brief Declaração das interfaces entre as camadas do sistema.
+ */
 #ifndef INTERFACES_HPP_INCLUDED
 #define INTERFACES_HPP_INCLUDED
 

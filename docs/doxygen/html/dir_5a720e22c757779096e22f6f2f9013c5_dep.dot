@@ -1,0 +1,11 @@
+digraph "src/servico" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_68267d1309a1af8e8297ef4c3efbcdba {
+    graph [ bgcolor="#ddddee", pencolor="black", label="src" fontname="Helvetica", fontsize="10", URL="dir_68267d1309a1af8e8297ef4c3efbcdba.html"]
+  dir_5a720e22c757779096e22f6f2f9013c5 [shape=box, label="servico", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_5a720e22c757779096e22f6f2f9013c5.html"];
+  }
+  dir_d44c64559bbebec7f509842c48db8b23 [shape=box label="include" fillcolor="white" style="filled" color="red" URL="dir_d44c64559bbebec7f509842c48db8b23.html"];
+  dir_5a720e22c757779096e22f6f2f9013c5->dir_d44c64559bbebec7f509842c48db8b23 [headlabel="2", labeldistance=1.5 headhref="dir_000010_000001.html"];
+}

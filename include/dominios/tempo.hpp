@@ -1,3 +1,7 @@
+/**
+ * @file tempo.hpp
+ * @brief Declaração do domínio Tempo.
+ */
 #ifndef TEMPO_HPP
 #define TEMPO_HPP
 

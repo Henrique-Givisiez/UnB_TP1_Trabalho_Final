@@ -1,0 +1,120 @@
+/**
+
+* @mainpage TP1 - Gerenciador Scrum
+*
+* @section introducao Introdução
+*
+* Este projeto foi desenvolvido para a disciplina Técnicas de Programação 1
+* (TP1) da Universidade de Brasília.
+*
+* O sistema tem como objetivo fornecer suporte ao gerenciamento de projetos
+* utilizando conceitos do framework Scrum, permitindo o cadastro e o
+* gerenciamento de pessoas, projetos, planos de sprint e histórias de usuário.
+*
+* A aplicação foi implementada em C++17 seguindo os princípios de Programação
+* Orientada a Objetos e uma arquitetura em camadas, promovendo separação de
+* responsabilidades e baixo acoplamento entre os módulos.
+*
+* @section funcionalidades Funcionalidades Implementadas
+*
+* O sistema oferece suporte às seguintes funcionalidades:
+*
+* * Cadastro, consulta, atualização e exclusão de pessoas.
+* * Cadastro, consulta, atualização e exclusão de projetos.
+* * Cadastro, consulta, atualização e exclusão de planos de sprint.
+* * Cadastro, consulta, atualização e exclusão de histórias de usuário.
+* * Associação de histórias de usuário a pessoas.
+* * Remoção de associações entre histórias e pessoas.
+* * Listagem de entidades relacionadas.
+* * Alteração de estado de histórias de usuário.
+* * Movimentação de histórias de usuário entre projeto e plano de sprint.
+* * Controle de acesso baseado nos papéis definidos pelo Scrum.
+*
+* @section arquitetura Arquitetura do Sistema
+*
+* O software foi organizado utilizando uma arquitetura em camadas.
+*
+* @subsection camada_apresentacao Camada de Apresentação
+*
+* Responsável pela interação com o usuário, coleta de dados de entrada,
+* exibição de informações e encaminhamento das solicitações para os serviços
+* apropriados.
+*
+* @subsection camada_servico Camada de Serviço
+*
+* Responsável pela implementação das regras de negócio, controle de acesso,
+* validação de operações e gerenciamento das entidades do sistema.
+*
+* @subsection camada_dominios Domínios
+*
+* Responsável por encapsular as regras de validação dos tipos básicos do
+* sistema, garantindo a integridade dos dados utilizados pelas entidades.
+*
+* Domínios implementados:
+*
+* * Codigo
+* * Data
+* * Email
+* * Estado
+* * Nome
+* * Papel
+* * Prioridade
+* * Senha
+* * Tempo
+* * Texto
+*
+* @subsection camada_entidades Entidades
+*
+* Representam os objetos centrais do sistema e agregam os domínios que
+* compõem cada informação armazenada.
+*
+* Entidades implementadas:
+*
+* * Pessoa
+* * Projeto
+* * PlanoSprint
+* * Historia
+*
+* @section regras Regras de Negócio Relevantes
+*
+* O sistema implementa as principais restrições especificadas para o trabalho:
+*
+* * Uma história de usuário pertence a um projeto ou a um plano de sprint,
+* nunca aos dois simultaneamente.
+*
+* * A soma das estimativas das histórias associadas a um plano de sprint deve
+* ser menor ou igual à capacidade do sprint.
+*
+* * A soma das capacidades dos planos de sprint associados a um projeto deve
+* ser menor ou igual à duração do projeto.
+*
+* * Chaves primárias não podem ser alteradas após o cadastro.
+*
+* * Exclusões não devem gerar inconsistências no sistema.
+*
+* * O controle de acesso considera os papéis:
+* * Proprietário de Produto;
+* * Mestre Scrum;
+* * Desenvolvedor.
+*
+* @section organizacao Organização da Documentação
+*
+* A documentação está organizada nas seguintes categorias:
+*
+* * Domínios: tipos responsáveis pela validação dos dados.
+* * Entidades: objetos principais do sistema.
+* * Interfaces: contratos de comunicação entre módulos.
+* * Serviços: implementação das regras de negócio.
+* * Apresentação: controladoras e interação com o usuário.
+*
+* Utilize o menu superior para navegar entre as classes e arquivos do projeto.
+*
+* @section tecnologias Tecnologias Utilizadas
+*
+* * Linguagem C++17.
+* * Programação Orientada a Objetos.
+* * Doxygen para documentação.
+* * Compatibilidade com Code::Blocks.
+*
+* Trabalho desenvolvido para a disciplina Técnicas de Programação 1.
+  */

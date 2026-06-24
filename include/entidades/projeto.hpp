@@ -1,14 +1,13 @@
+/**
+ * @file projeto.hpp
+ * @brief Declaração da entidade Projeto.
+ */
 #ifndef PROJETO_HPP
 #define PROJETO_HPP
 
 #include "dominios/codigo.hpp"
 #include "dominios/nome.hpp"
 #include "dominios/data.hpp"
-
-/**
- * @file projeto.hpp
- * @brief Declaração da entidade Projeto.
- */
 
 /**
  * @class Projeto

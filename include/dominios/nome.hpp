@@ -1,3 +1,7 @@
+/**
+ * @file nome.hpp
+ * @brief Declaração do domínio Nome.
+ */
 #ifndef NOME_HPP_INCLUDED
 #define NOME_HPP_INCLUDED
 #include <string>

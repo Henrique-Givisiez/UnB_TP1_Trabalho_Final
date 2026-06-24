@@ -69,31 +69,42 @@ $(function() {
 <div class="title">prioridade.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef PRIORIDADE_HPP_INCLUDED</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define PRIORIDADE_HPP_INCLUDED</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="classPrioridade.html">    5</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPrioridade.html">Prioridade</a> {</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keyword">enum</span> PrioridadeEnum {</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        BAIXA,</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        MEDIA,</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        ALTA</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    };</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    PrioridadeEnum prioridade;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="classPrioridade.html">Prioridade</a>();</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">void</span> set(<span class="keyword">const</span> std::string&amp; novaProridade);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::string get() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    PrioridadeEnum getPrioridadeInterno() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;};</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif // PRIORIDADE_HPP_INCLUDED</span></div>
+<a href="prioridade_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef PRIORIDADE_HPP_INCLUDED</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define PRIORIDADE_HPP_INCLUDED</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classPrioridade.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPrioridade.html">Prioridade</a> {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classPrioridade.html#a2d9fa9137934cb1265f472c77dd94b6c">   21</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="classPrioridade.html#a2d9fa9137934cb1265f472c77dd94b6c">PrioridadeEnum</a> {</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classPrioridade.html#a2d9fa9137934cb1265f472c77dd94b6ca9f4d3f6bda9ed11f2bb0ae269ea73a35">   22</a></span>&#160;        <a class="code" href="classPrioridade.html#a2d9fa9137934cb1265f472c77dd94b6ca9f4d3f6bda9ed11f2bb0ae269ea73a35">BAIXA</a>, </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classPrioridade.html#a2d9fa9137934cb1265f472c77dd94b6ca7a2ddc3425cd1e8bb47f23b6cc5a1173">   23</a></span>&#160;        <a class="code" href="classPrioridade.html#a2d9fa9137934cb1265f472c77dd94b6ca7a2ddc3425cd1e8bb47f23b6cc5a1173">MEDIA</a>, </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classPrioridade.html#a2d9fa9137934cb1265f472c77dd94b6caa54b6d49b47720a4fd47db6b0872bfac">   24</a></span>&#160;        <a class="code" href="classPrioridade.html#a2d9fa9137934cb1265f472c77dd94b6caa54b6d49b47720a4fd47db6b0872bfac">ALTA</a>   </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    };</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classPrioridade.html#a2d9fa9137934cb1265f472c77dd94b6c">PrioridadeEnum</a> prioridade;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classPrioridade.html#a2f0c29ab6796a1b4688b89b9912faffb">Prioridade</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classPrioridade.html#a5e0df9558912cdc1e8b5d63392b14489">set</a>(<span class="keyword">const</span> std::string&amp; novaPrioridade);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    std::string <a class="code" href="classPrioridade.html#ac8eabba7e12a770407f19da1e51675f6">get</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="classPrioridade.html#a2d9fa9137934cb1265f472c77dd94b6c">PrioridadeEnum</a> <a class="code" href="classPrioridade.html#a0aad41256a4a162744ee27e343299d32">getPrioridadeInterno</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;};</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif // PRIORIDADE_HPP_INCLUDED</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassPrioridade_html"><div class="ttname"><a href="classPrioridade.html">Prioridade</a></div><div class="ttdef"><b>Definition:</b> prioridade.hpp:5</div></div>
+<div class="ttc" id="aclassPrioridade_html_a0aad41256a4a162744ee27e343299d32"><div class="ttname"><a href="classPrioridade.html#a0aad41256a4a162744ee27e343299d32">Prioridade::getPrioridadeInterno</a></div><div class="ttdeci">PrioridadeEnum getPrioridadeInterno() const</div><div class="ttdoc">Retorna o valor interno da prioridade.</div><div class="ttdef"><b>Definition:</b> prioridade.cpp:33</div></div>
+<div class="ttc" id="aclassPrioridade_html_a2d9fa9137934cb1265f472c77dd94b6ca7a2ddc3425cd1e8bb47f23b6cc5a1173"><div class="ttname"><a href="classPrioridade.html#a2d9fa9137934cb1265f472c77dd94b6ca7a2ddc3425cd1e8bb47f23b6cc5a1173">Prioridade::MEDIA</a></div><div class="ttdeci">@ MEDIA</div><div class="ttdef"><b>Definition:</b> prioridade.hpp:23</div></div>
+<div class="ttc" id="aclassPrioridade_html_a2d9fa9137934cb1265f472c77dd94b6ca9f4d3f6bda9ed11f2bb0ae269ea73a35"><div class="ttname"><a href="classPrioridade.html#a2d9fa9137934cb1265f472c77dd94b6ca9f4d3f6bda9ed11f2bb0ae269ea73a35">Prioridade::BAIXA</a></div><div class="ttdeci">@ BAIXA</div><div class="ttdef"><b>Definition:</b> prioridade.hpp:22</div></div>
+<div class="ttc" id="aclassPrioridade_html_a2d9fa9137934cb1265f472c77dd94b6caa54b6d49b47720a4fd47db6b0872bfac"><div class="ttname"><a href="classPrioridade.html#a2d9fa9137934cb1265f472c77dd94b6caa54b6d49b47720a4fd47db6b0872bfac">Prioridade::ALTA</a></div><div class="ttdeci">@ ALTA</div><div class="ttdef"><b>Definition:</b> prioridade.hpp:24</div></div>
+<div class="ttc" id="aclassPrioridade_html_a5e0df9558912cdc1e8b5d63392b14489"><div class="ttname"><a href="classPrioridade.html#a5e0df9558912cdc1e8b5d63392b14489">Prioridade::set</a></div><div class="ttdeci">void set(const std::string &amp;novaPrioridade)</div><div class="ttdoc">Define a prioridade da história de usuário.</div><div class="ttdef"><b>Definition:</b> prioridade.cpp:12</div></div>
+<div class="ttc" id="aclassPrioridade_html"><div class="ttname"><a href="classPrioridade.html">Prioridade</a></div><div class="ttdoc">Representa uma prioridade válida de história de usuário no sistema.</div><div class="ttdef"><b>Definition:</b> prioridade.hpp:16</div></div>
+<div class="ttc" id="aclassPrioridade_html_a2d9fa9137934cb1265f472c77dd94b6c"><div class="ttname"><a href="classPrioridade.html#a2d9fa9137934cb1265f472c77dd94b6c">Prioridade::PrioridadeEnum</a></div><div class="ttdeci">PrioridadeEnum</div><div class="ttdoc">Valores internos aceitos para a prioridade da história de usuário.</div><div class="ttdef"><b>Definition:</b> prioridade.hpp:21</div></div>
+<div class="ttc" id="aclassPrioridade_html_a2f0c29ab6796a1b4688b89b9912faffb"><div class="ttname"><a href="classPrioridade.html#a2f0c29ab6796a1b4688b89b9912faffb">Prioridade::Prioridade</a></div><div class="ttdeci">Prioridade()</div><div class="ttdoc">Inicializa a prioridade com o valor padrão.</div><div class="ttdef"><b>Definition:</b> prioridade.cpp:7</div></div>
+<div class="ttc" id="aclassPrioridade_html_ac8eabba7e12a770407f19da1e51675f6"><div class="ttname"><a href="classPrioridade.html#ac8eabba7e12a770407f19da1e51675f6">Prioridade::get</a></div><div class="ttdeci">std::string get() const</div><div class="ttdoc">Retorna a prioridade armazenada.</div><div class="ttdef"><b>Definition:</b> prioridade.cpp:24</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

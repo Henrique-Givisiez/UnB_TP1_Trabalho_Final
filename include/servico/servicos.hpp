@@ -1,3 +1,7 @@
+/**
+ * @file servicos.hpp
+ * @brief Declaração dos serviços da camada de negócio.
+ */
 #ifndef SERVICOS_HPP_INCLUDED
 #define SERVICOS_HPP_INCLUDED
 

@@ -1,3 +1,7 @@
+/**
+ * @file senha.hpp
+ * @brief Declaração do domínio Senha.
+ */
 #ifndef SENHA_HPP
 #define SENHA_HPP
 

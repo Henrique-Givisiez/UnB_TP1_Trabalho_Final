@@ -1,3 +1,7 @@
+/**
+ * @file email.hpp
+ * @brief Declaração do domínio Email.
+ */
 #ifndef EMAIL_HPP
 #define EMAIL_HPP
 

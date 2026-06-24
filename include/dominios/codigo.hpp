@@ -1,3 +1,7 @@
+/**
+ * @file codigo.hpp
+ * @brief Declaração do domínio Codigo.
+ */
 #ifndef CODIGO_HPP_INCLUDED
 #define CODIGO_HPP_INCLUDED
 #include <string>

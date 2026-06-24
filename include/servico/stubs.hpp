@@ -1,3 +1,7 @@
+/**
+ * @file stubs.hpp
+ * @brief Declaração dos stubs utilizados para testes e integração.
+ */
 #ifndef STUBS_HPP_INCLUDED
 #define STUBS_HPP_INCLUDED
 

@@ -1,3 +1,7 @@
+/**
+ * @file estado.hpp
+ * @brief Declaração do domínio Estado.
+ */
 #ifndef ESTADO_HPP_INCLUDED
 #define ESTADO_HPP_INCLUDED
 #include <string>

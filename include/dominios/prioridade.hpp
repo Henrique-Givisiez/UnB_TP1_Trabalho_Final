@@ -1,3 +1,7 @@
+/**
+ * @file prioridade.hpp
+ * @brief Declaração do domínio Prioridade.
+ */
 #ifndef PRIORIDADE_HPP_INCLUDED
 #define PRIORIDADE_HPP_INCLUDED
 #include <string>

@@ -4,5 +4,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="Data",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classData.html",tooltip="Domínio que representa uma data no formato DIA/MES/ANO."];
+  Node0 [label="Data",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classData.html",tooltip="Representa uma data válida no sistema."];
 }

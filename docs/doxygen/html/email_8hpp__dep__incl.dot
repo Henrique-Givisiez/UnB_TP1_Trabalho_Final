@@ -1,0 +1,18 @@
+digraph "include/dominios/email.hpp"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="include/dominios/email.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Declaração do domínio Email."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="include/entidades/pessoa.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pessoa_8hpp.html",tooltip="Declaração da entidade Pessoa."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="include/interfaces\l/interfaces.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaces_8hpp.html",tooltip="Declaração das interfaces entre as camadas do sistema."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="include/servico/servicos.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$servicos_8hpp.html",tooltip="Declaração dos serviços da camada de negócio."];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="include/servico/stubs.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$stubs_8hpp.html",tooltip="Declaração dos stubs utilizados para testes e integração."];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="src/apresentacao/apresentacao.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$apresentacao_8hpp.html",tooltip="Declaração das controladoras da camada de apresentação."];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

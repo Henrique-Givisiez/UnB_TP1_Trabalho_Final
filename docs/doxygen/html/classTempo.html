@@ -69,7 +69,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Domínio que representa um valor de tempo em dias.  
+<p>Representa um valor de tempo válido em dias.  
  <a href="classTempo.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="tempo_8hpp_source.html">tempo.hpp</a>&gt;</code></p>
@@ -77,20 +77,18 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6cab635420c04688c5ea8b9f1be44280"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTempo.html#a6cab635420c04688c5ea8b9f1be44280">set</a> (int tempo)</td></tr>
-<tr class="memdesc:a6cab635420c04688c5ea8b9f1be44280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define o valor do tempo após validação.  <a href="classTempo.html#a6cab635420c04688c5ea8b9f1be44280">More...</a><br /></td></tr>
+<tr class="memdesc:a6cab635420c04688c5ea8b9f1be44280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define o tempo armazenado.  <a href="classTempo.html#a6cab635420c04688c5ea8b9f1be44280">More...</a><br /></td></tr>
 <tr class="separator:a6cab635420c04688c5ea8b9f1be44280"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf4c8d08a4b9e0418db7552117bf1069"><td class="memItemLeft" align="right" valign="top"><a id="adf4c8d08a4b9e0418db7552117bf1069"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (double)=delete</td></tr>
-<tr class="separator:adf4c8d08a4b9e0418db7552117bf1069"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a802416a93a491edc6d1f57581bc6286f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTempo.html#a802416a93a491edc6d1f57581bc6286f">set</a> (double tempo)=delete</td></tr>
+<tr class="memdesc:a802416a93a491edc6d1f57581bc6286f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Impede a definição de tempo com valor decimal.  <a href="classTempo.html#a802416a93a491edc6d1f57581bc6286f">More...</a><br /></td></tr>
+<tr class="separator:a802416a93a491edc6d1f57581bc6286f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e1c553f2b4436f3a823c22014daef03"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTempo.html#a3e1c553f2b4436f3a823c22014daef03">get</a> () const</td></tr>
-<tr class="memdesc:a3e1c553f2b4436f3a823c22014daef03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna o valor do tempo.  <a href="classTempo.html#a3e1c553f2b4436f3a823c22014daef03">More...</a><br /></td></tr>
+<tr class="memdesc:a3e1c553f2b4436f3a823c22014daef03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna o tempo armazenado.  <a href="classTempo.html#a3e1c553f2b4436f3a823c22014daef03">More...</a><br /></td></tr>
 <tr class="separator:a3e1c553f2b4436f3a823c22014daef03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Domínio que representa um valor de tempo em dias. </p>
-<p>Formato válido:</p><ul>
-<li>Valor inteiro entre 1 e 365 inclusive. </li>
-</ul>
+<div class="textblock"><p>Representa um valor de tempo válido em dias. </p>
+<p>Essa classe encapsula a validação e o armazenamento de um tempo inteiro, aceitando valores de 1 a 365 dias, inclusive. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a3e1c553f2b4436f3a823c22014daef03"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3e1c553f2b4436f3a823c22014daef03">&#9670;&nbsp;</a></span>get()</h2>
@@ -115,13 +113,48 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (double)=dele
 </table>
 </div><div class="memdoc">
 
-<p>Retorna o valor do tempo. </p>
-<dl class="section return"><dt>Returns</dt><dd>Inteiro com o valor do tempo. </dd></dl>
+<p>Retorna o tempo armazenado. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classTempo.html" title="Representa um valor de tempo válido em dias.">Tempo</a> atual em dias. </dd></dl>
+
+</div>
+</div>
+<a id="a802416a93a491edc6d1f57581bc6286f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a802416a93a491edc6d1f57581bc6286f">&#9670;&nbsp;</a></span>set() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Tempo::set </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>tempo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Impede a definição de tempo com valor decimal. </p>
+<p>Este método é removido da interface utilizável para evitar valores não inteiros.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tempo</td><td>Valor decimal rejeitado pela interface. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <a id="a6cab635420c04688c5ea8b9f1be44280"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6cab635420c04688c5ea8b9f1be44280">&#9670;&nbsp;</a></span>set()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cab635420c04688c5ea8b9f1be44280">&#9670;&nbsp;</a></span>set() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -136,16 +169,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (double)=dele
       </table>
 </div><div class="memdoc">
 
-<p>Define o valor do tempo após validação. </p>
+<p>Define o tempo armazenado. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">tempo</td><td>Inteiro entre 1 e 365. </td></tr>
+    <tr><td class="paramname">tempo</td><td>Novo valor inteiro entre 1 e 365. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">std::invalid_argument</td><td>se o valor estiver fora do intervalo permitido. </td></tr>
+    <tr><td class="paramname">std::invalid_argument</td><td>Caso o valor informado seja inválido. </td></tr>
   </table>
   </dd>
 </dl>

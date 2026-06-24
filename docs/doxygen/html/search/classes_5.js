@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['historia_120',['Historia',['../classHistoria.html',1,'']]],
-  ['historiaservico_121',['HistoriaServico',['../classHistoriaServico.html',1,'']]]
+  ['historia_153',['Historia',['../classHistoria.html',1,'']]],
+  ['historiaservico_154',['HistoriaServico',['../classHistoriaServico.html',1,'']]]
 ];

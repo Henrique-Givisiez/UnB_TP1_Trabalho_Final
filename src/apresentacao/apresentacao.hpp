@@ -1,3 +1,7 @@
+/**
+ * @file apresentacao.hpp
+ * @brief Declaração das controladoras da camada de apresentação.
+ */
 #ifndef APRESENTACAO_HPP_INCLUDED
 #define APRESENTACAO_HPP_INCLUDED
 

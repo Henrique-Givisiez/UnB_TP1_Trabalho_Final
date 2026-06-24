@@ -69,36 +69,37 @@ $(function() {
 <div class="title">email.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef EMAIL_HPP</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define EMAIL_HPP</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classEmail.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="classEmail.html">Email</a> {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    std::string valor;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> validar(<span class="keyword">const</span> std::string&amp; email);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> validarParteLocal(<span class="keyword">const</span> std::string&amp; local);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> validarDominio(<span class="keyword">const</span> std::string&amp; dominio);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classEmail.html#a8286ec357c66eb515cc794d583ca7ebd">set</a>(<span class="keyword">const</span> std::string&amp; email);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    std::string <a class="code" href="classEmail.html#a44d14c25185ac8ab89abed8a52722de5">get</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;};</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classEmail.html#a44d14c25185ac8ab89abed8a52722de5">   40</a></span>&#160;<span class="keyword">inline</span> std::string <a class="code" href="classEmail.html#a44d14c25185ac8ab89abed8a52722de5">Email::get</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">return</span> valor;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#endif</span></div>
+<a href="email_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef EMAIL_HPP</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define EMAIL_HPP</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classEmail.html">   29</a></span>&#160;<span class="keyword">class </span><a class="code" href="classEmail.html">Email</a> {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    std::string valor;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> validar(<span class="keyword">const</span> std::string&amp; email);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> validarParteLocal(<span class="keyword">const</span> std::string&amp; local);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> validarDominio(<span class="keyword">const</span> std::string&amp; dominio);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classEmail.html#a8286ec357c66eb515cc794d583ca7ebd">set</a>(<span class="keyword">const</span> std::string&amp; email);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::string <a class="code" href="classEmail.html#a44d14c25185ac8ab89abed8a52722de5">get</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classEmail.html#a44d14c25185ac8ab89abed8a52722de5">   55</a></span>&#160;<span class="keyword">inline</span> std::string <a class="code" href="classEmail.html#a44d14c25185ac8ab89abed8a52722de5">Email::get</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">return</span> valor;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassEmail_html_a8286ec357c66eb515cc794d583ca7ebd"><div class="ttname"><a href="classEmail.html#a8286ec357c66eb515cc794d583ca7ebd">Email::set</a></div><div class="ttdeci">void set(const std::string &amp;email)</div><div class="ttdoc">Define o valor do email após validação.</div><div class="ttdef"><b>Definition:</b> email.cpp:108</div></div>
-<div class="ttc" id="aclassEmail_html_a44d14c25185ac8ab89abed8a52722de5"><div class="ttname"><a href="classEmail.html#a44d14c25185ac8ab89abed8a52722de5">Email::get</a></div><div class="ttdeci">std::string get() const</div><div class="ttdoc">Retorna o valor do email.</div><div class="ttdef"><b>Definition:</b> email.hpp:40</div></div>
-<div class="ttc" id="aclassEmail_html"><div class="ttname"><a href="classEmail.html">Email</a></div><div class="ttdoc">Domínio que representa um endereço de email no formato parte-local@dominio.</div><div class="ttdef"><b>Definition:</b> email.hpp:20</div></div>
+<div class="ttc" id="aclassEmail_html_a8286ec357c66eb515cc794d583ca7ebd"><div class="ttname"><a href="classEmail.html#a8286ec357c66eb515cc794d583ca7ebd">Email::set</a></div><div class="ttdeci">void set(const std::string &amp;email)</div><div class="ttdoc">Define o endereço de email armazenado.</div><div class="ttdef"><b>Definition:</b> email.cpp:108</div></div>
+<div class="ttc" id="aclassEmail_html_a44d14c25185ac8ab89abed8a52722de5"><div class="ttname"><a href="classEmail.html#a44d14c25185ac8ab89abed8a52722de5">Email::get</a></div><div class="ttdeci">std::string get() const</div><div class="ttdoc">Retorna o endereço de email armazenado.</div><div class="ttdef"><b>Definition:</b> email.hpp:55</div></div>
+<div class="ttc" id="aclassEmail_html"><div class="ttname"><a href="classEmail.html">Email</a></div><div class="ttdoc">Representa um endereço de email válido.</div><div class="ttdef"><b>Definition:</b> email.hpp:29</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

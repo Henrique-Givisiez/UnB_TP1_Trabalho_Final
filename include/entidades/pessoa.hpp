@@ -1,3 +1,7 @@
+/**
+ * @file pessoa.hpp
+ * @brief Declaração da entidade Pessoa.
+ */
 #ifndef PESSOA_HPP
 #define PESSOA_HPP
 

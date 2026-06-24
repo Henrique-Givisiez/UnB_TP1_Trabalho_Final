@@ -69,7 +69,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Domínio que representa um texto genérico.  
+<p>Representa um texto válido usado nos campos textuais do sistema.  
  <a href="classTexto.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="texto_8hpp_source.html">texto.hpp</a>&gt;</code></p>
@@ -77,20 +77,21 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af9cf932952c04942fc413358f13fe92a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexto.html#af9cf932952c04942fc413358f13fe92a">set</a> (const std::string &amp;texto)</td></tr>
-<tr class="memdesc:af9cf932952c04942fc413358f13fe92a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define o valor do texto após validação.  <a href="classTexto.html#af9cf932952c04942fc413358f13fe92a">More...</a><br /></td></tr>
+<tr class="memdesc:af9cf932952c04942fc413358f13fe92a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define o texto armazenado.  <a href="classTexto.html#af9cf932952c04942fc413358f13fe92a">More...</a><br /></td></tr>
 <tr class="separator:af9cf932952c04942fc413358f13fe92a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbfaf0442f3b2d565b29d44c8f473af0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexto.html#acbfaf0442f3b2d565b29d44c8f473af0">get</a> () const</td></tr>
-<tr class="memdesc:acbfaf0442f3b2d565b29d44c8f473af0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna o valor do texto.  <a href="classTexto.html#acbfaf0442f3b2d565b29d44c8f473af0">More...</a><br /></td></tr>
+<tr class="memdesc:acbfaf0442f3b2d565b29d44c8f473af0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna o texto armazenado.  <a href="classTexto.html#acbfaf0442f3b2d565b29d44c8f473af0">More...</a><br /></td></tr>
 <tr class="separator:acbfaf0442f3b2d565b29d44c8f473af0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Domínio que representa um texto genérico. </p>
+<div class="textblock"><p>Representa um texto válido usado nos campos textuais do sistema. </p>
+<p>Essa classe encapsula a validação e o armazenamento de textos curtos aceitos pelas regras do domínio do trabalho.</p>
 <p>Formato válido:</p><ul>
 <li>Até 40 caracteres.</li>
 <li>Caracteres permitidos: letras (a-z ou A-Z), dígitos (0-9), vírgula (,), ponto (.) ou espaço em branco.</li>
 <li>Vírgula não pode ser seguida por vírgula ou ponto.</li>
 <li>Ponto não pode ser seguido por vírgula ou ponto.</li>
-<li>Espaço em branco é seguido por letra ou dígito.</li>
+<li>Espaço em branco deve ser seguido por letra ou dígito.</li>
 <li>Primeiro e último caractere não podem ser vírgula, ponto ou espaço. </li>
 </ul>
 </div><h2 class="groupheader">Member Function Documentation</h2>
@@ -117,8 +118,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Retorna o valor do texto. </p>
-<dl class="section return"><dt>Returns</dt><dd>String com o texto. </dd></dl>
+<p>Retorna o texto armazenado. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classTexto.html" title="Representa um texto válido usado nos campos textuais do sistema.">Texto</a> atual em formato textual. </dd></dl>
 
 </div>
 </div>
@@ -138,16 +139,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Define o valor do texto após validação. </p>
+<p>Define o texto armazenado. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">texto</td><td>String com até 40 caracteres. </td></tr>
+    <tr><td class="paramname">texto</td><td>Novo texto a ser armazenado. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">std::invalid_argument</td><td>se o formato ou valor for inválido. </td></tr>
+    <tr><td class="paramname">std::invalid_argument</td><td>Caso o valor informado seja inválido. </td></tr>
   </table>
   </dd>
 </dl>

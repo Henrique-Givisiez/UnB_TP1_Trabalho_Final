@@ -69,7 +69,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Domínio que representa uma senha de acesso.  
+<p>Representa uma senha válida para autenticação.  
  <a href="classSenha.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="senha_8hpp_source.html">senha.hpp</a>&gt;</code></p>
@@ -77,14 +77,15 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1d55d9612c10bfceda0071eb0ba474d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenha.html#a1d55d9612c10bfceda0071eb0ba474d6">set</a> (const std::string &amp;senha)</td></tr>
-<tr class="memdesc:a1d55d9612c10bfceda0071eb0ba474d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define o valor da senha após validação.  <a href="classSenha.html#a1d55d9612c10bfceda0071eb0ba474d6">More...</a><br /></td></tr>
+<tr class="memdesc:a1d55d9612c10bfceda0071eb0ba474d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a senha armazenada.  <a href="classSenha.html#a1d55d9612c10bfceda0071eb0ba474d6">More...</a><br /></td></tr>
 <tr class="separator:a1d55d9612c10bfceda0071eb0ba474d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59f8424c705ffbcf3dc8bd30c91b8bff"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenha.html#a59f8424c705ffbcf3dc8bd30c91b8bff">get</a> () const</td></tr>
-<tr class="memdesc:a59f8424c705ffbcf3dc8bd30c91b8bff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna o valor da senha.  <a href="classSenha.html#a59f8424c705ffbcf3dc8bd30c91b8bff">More...</a><br /></td></tr>
+<tr class="memdesc:a59f8424c705ffbcf3dc8bd30c91b8bff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a senha armazenada.  <a href="classSenha.html#a59f8424c705ffbcf3dc8bd30c91b8bff">More...</a><br /></td></tr>
 <tr class="separator:a59f8424c705ffbcf3dc8bd30c91b8bff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Domínio que representa uma senha de acesso. </p>
+<div class="textblock"><p>Representa uma senha válida para autenticação. </p>
+<p>Essa classe encapsula a validação e o armazenamento de uma senha de acesso aceita pelas regras do domínio do trabalho.</p>
 <p>Formato válido:</p><ul>
 <li>Exatamente 6 caracteres.</li>
 <li>Cada caractere pode ser letra (a-z ou A-Z) ou dígito (0-9).</li>
@@ -117,8 +118,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Retorna o valor da senha. </p>
-<dl class="section return"><dt>Returns</dt><dd>String com a senha. </dd></dl>
+<p>Retorna a senha armazenada. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classSenha.html" title="Representa uma senha válida para autenticação.">Senha</a> atual em formato textual. </dd></dl>
 
 </div>
 </div>
@@ -138,16 +139,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Define o valor da senha após validação. </p>
+<p>Define a senha armazenada. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">senha</td><td>String de exatamente 6 caracteres. </td></tr>
+    <tr><td class="paramname">senha</td><td>Nova senha a ser armazenada. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">std::invalid_argument</td><td>se o formato ou valor for inválido. </td></tr>
+    <tr><td class="paramname">std::invalid_argument</td><td>Caso o valor informado seja inválido. </td></tr>
   </table>
   </dd>
 </dl>
